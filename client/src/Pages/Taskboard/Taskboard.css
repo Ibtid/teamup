@@ -1,5 +1,42 @@
 .taskboard {
-  height: 90vh;
+  height: 86vh;
   width: 85vw;
   background: #121212;
+  padding-left: 2vw;
+  padding-top: 4vh;
+}
+
+.taskboard__navbar {
+  margin-bottom: 3vh;
+}
+
+.taskboard__buttondropText {
+  font-size: 1.2vw;
+  margin-left: 1vw;
+}
+
+.taskboard__buttondrop {
+  background-color: #252525;
+  border-radius: 1.5vh;
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
+  width: 20vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #f2f2f2;
+  font-size: 2vh;
+  height: 4.5vh;
+}
+
+.taskboard__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taskboard__content {
+  background-color: white;
+  height: 71vh;
+  width: 81vw;
 }
