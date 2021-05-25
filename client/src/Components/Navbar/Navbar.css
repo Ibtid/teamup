@@ -1,8 +1,8 @@
 .navbar {
-  height: 9.5vh;
+  height: 9.8vh;
   position: sticky;
   background-color: #121212;
-  border-bottom: 0.5vh solid #ff8c42;
+  border-bottom: 0.2vh solid #ff8c42;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,13 +11,13 @@
 .navbar__logo {
   color: #ff8c42;
   font-family: 'Righteous';
-  margin-left: 4vw;
+  margin-left: 2vw;
   font-size: 4vh;
   cursor: pointer;
 }
 
 .navbar__right {
-  margin-right: 4vw;
+  margin-right: 2vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
