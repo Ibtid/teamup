@@ -11,31 +11,6 @@
   margin-bottom: 3vh;
 }
 
-.dashboard__buttondropText {
-  font-size: 1.2vw;
-  margin-left: 1vw;
-}
-
-.dashboard__buttondrop {
-  background-color: #252525;
-  border-radius: 1.5vh;
-  padding-top: 0.4vh;
-  padding-bottom: 0.4vh;
-  width: 25vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #f2f2f2;
-  font-size: 2vh;
-  height: 4.5vh;
-}
-
-.dashboard__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .dashboard__content {
   background-color: #121212;
   height: 72vh;
@@ -66,6 +41,7 @@
 .dashboard__descriptionTitle {
   font-size: 1.4vw;
   padding: 1vh 1vw;
+  font-family: 'Montserrat';
 }
 
 .dashboard__description {
@@ -90,6 +66,7 @@
 
 .dashboard__titleName {
   font-size: 1.4vw;
+  font-family: 'Montserrat';
 }
 
 .dashboard__orange {

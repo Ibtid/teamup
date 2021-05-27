@@ -1,19 +1,14 @@
 import React from 'react';
 import Button from '../../Components/Button/Button';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import './Dashboard.css';
+import BigDropDown from '../../Components/BigDropDown/BigDropDown';
 
 const Dashboard = () => {
   return (
     <div className='dashboard'>
       <div className='dashboard__navbar'>
-        <div className='dashboard__buttondrop'>
-          <div className='dashboard__buttondropText'>Design Project - 1</div>
-          <div className='dashboard__icon'>
-            <ExpandMoreIcon />
-          </div>
-        </div>
+        <BigDropDown />
       </div>
       <div className='dashboard__content'>
         <div className='dashboard__contentColumnOne'>
@@ -23,7 +18,7 @@ const Dashboard = () => {
             </div>
             <div className='dashboard__description'>
               It is a web application for managing projects and work together.
-              It can also be used for academic purposes
+              It can also be used for academic purposes.
             </div>
           </div>
           <div className='dashboard__sprintSection'>

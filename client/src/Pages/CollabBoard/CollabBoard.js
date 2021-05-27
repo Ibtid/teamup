@@ -1,18 +1,13 @@
 import React from 'react';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import './CollabBoard.css';
+import BigDropDown from '../../Components/BigDropDown/BigDropDown';
 
 const CollabBoard = () => {
   return (
     <div className='collabboard'>
       <div className='collabboard__navbar'>
-        <div className='collabboard__buttondrop'>
-          <div className='collabboard__buttondropText'>Design Project - 1</div>
-          <div className='collabboard__icon'>
-            <ExpandMoreIcon />
-          </div>
-        </div>
+        <BigDropDown />
       </div>
       <div className='collabboard__content'></div>
     </div>

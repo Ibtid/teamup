@@ -26,6 +26,7 @@
   align-items: center;
   margin: 3vh 0vh;
   text-decoration: none;
+  transition: 0.2s ease-in-out;
 }
 
 .sidebar__tab:hover {

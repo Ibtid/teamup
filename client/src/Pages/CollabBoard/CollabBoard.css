@@ -2,37 +2,13 @@
   height: 86vh;
   width: 85vw;
   background: #121212;
-  padding-left: 2vw;
+  padding-left: 1.8vw;
   padding-top: 4vh;
+  font-family: 'Open Sans';
 }
 
 .collabboard__navbar {
   margin-bottom: 3vh;
-}
-
-.collabboard__buttondropText {
-  font-size: 1.2vw;
-  margin-left: 1vw;
-}
-
-.collabboard__buttondrop {
-  background-color: #252525;
-  border-radius: 1.5vh;
-  padding-top: 0.5vh;
-  padding-bottom: 0.5vh;
-  width: 20vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #f2f2f2;
-  font-size: 2vh;
-  height: 4.5vh;
-}
-
-.collabboard__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .collabboard__content {
