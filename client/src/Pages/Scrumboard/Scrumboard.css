@@ -2,7 +2,7 @@
   height: 86vh;
   width: 85vw;
   background: #121212;
-  padding-left: 2vw;
+  padding-left: 1.8vw;
   padding-top: 4vh;
 }
 
@@ -11,7 +11,6 @@
 }
 
 .scrumboard__content {
-  background-color: white;
-  height: 71vh;
-  width: 81vw;
+  height: 72vh;
+  width: 79vw;
 }
