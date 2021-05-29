@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   color: #f2f2f2;
-  font-size: 2vh;
+  font-size: 1.2vw;
   height: 4.5vh;
   background-color: #252525;
   border-radius: 1.5vh;
@@ -12,16 +12,5 @@
   padding-bottom: 0.4vh;
   margin-right: 2vw;
   cursor: pointer;
-}
-
-.bigDropDown__Text {
-  font-size: 1.2vw;
-  margin-left: 1vw;
   font-family: 'Montserrat';
-}
-
-.bigDropDown__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

@@ -11,6 +11,7 @@ import Scrumboard from './Pages/Scrumboard/Scrumboard';
 import CollabBoard from './Pages/CollabBoard/CollabBoard';
 import Reports from './Pages/Reports/Reports';
 import Team from './Pages/Team/Team';
+import DropDown from './Components/DropDown/DropDown';
 
 function App() {
   return (
@@ -66,6 +67,11 @@ function App() {
             <Sidebar />
             <Team />
           </div>
+        </Route>
+        <Route path='/'>
+          <DropDown />
+          <div>hi</div>
+          <div>hi</div>
         </Route>
       </Switch>
     </Router>

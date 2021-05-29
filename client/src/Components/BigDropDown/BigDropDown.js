@@ -1,14 +1,12 @@
 import React from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import './BigDropDown.css';
+import DropDown from '../DropDown/DropDown';
 
 const BigDropDown = () => {
   return (
     <div className='bigDropDown'>
-      <div className='bigDropDown__Text'>Design Project - 1</div>
-      <div className='bigDropDown__icon'>
-        <ExpandMoreIcon />
-      </div>
+      <DropDown />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import './Project.css';
+import DropDown from '../../Components/DropDown/DropDown';
 
 const useStyles = makeStyles((theme) => ({
   purple: {
@@ -28,7 +29,7 @@ const Project = () => {
       <div className='project__navbar'>
         <div className='project__logo'>teamup.</div>
         <div className='project__accountInfo'>
-          <Avatar className={classes.purple}>N</Avatar>
+          <Avatar className={classes.purple}>{user.user.name[0]}</Avatar>
           <div className='project__name'>{user ? user.user.name : 'Nafiz'}</div>
         </div>
       </div>
@@ -39,10 +40,7 @@ const Project = () => {
         </div>
         <div className='project__buttondiv'>
           <div className='project__buttondrop'>
-            <div className='project__buttondropText'>Choose Project</div>
-            <div className='project__icon'>
-              <ExpandMoreIcon />
-            </div>
+            <DropDown />
           </div>
           <div className='project__smallText'>Or</div>
           <button className='project__button'>Create Project</button>
