@@ -28,7 +28,7 @@ const Navbar = () => {
         </div>
         <div className='navbar__profile'>
           <Avatar className={classes.purple}>N</Avatar>
-          <div className='project__name'>Nafiz</div>
+          <div className='project__name'>Nafiz Imtiaz</div>
         </div>
       </div>
     </div>

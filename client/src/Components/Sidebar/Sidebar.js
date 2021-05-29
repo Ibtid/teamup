@@ -6,6 +6,7 @@ import BrushIcon from '@material-ui/icons/Brush';
 import GroupIcon from '@material-ui/icons/Group';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import NoteIcon from '@material-ui/icons/Note';
+import GavelIcon from '@material-ui/icons/Gavel';
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
@@ -28,8 +29,17 @@ const Sidebar = () => {
           <div className='sidebar__tabIcon'>
             <LibraryBooksIcon />
           </div>
-          <div className='sidebar__tabText'>Task Board</div>
+          <div className='sidebar__tabText'>Epics & Backlog</div>
         </NavLink>
+        {/*<NavLink
+          to='/scrumboard/:projectId'
+          activeStyle={{ color: '#ff8c42' }}
+          className='sidebar__tab'>
+          <div className='sidebar__tabIcon'>
+            <GavelIcon />
+          </div>
+          <div className='sidebar__tabText'>Points Poll</div>
+        </NavLink>*/}
         <NavLink
           to='/scrumboard/:projectId'
           activeStyle={{ color: '#ff8c42' }}

@@ -2,8 +2,21 @@ import React, { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { v4 as uuidv4 } from 'uuid';
 import Scrollable from '../Scrollable/Scrollable';
+import { Avatar } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { deepPurple } from '@material-ui/core/colors';
 
 import './Kanban.css';
+
+const useStyles = makeStyles((theme) => ({
+  purple: {
+    color: theme.palette.getContrastText(deepPurple[500]),
+    backgroundColor: deepPurple[500],
+    width: theme.spacing(3.5),
+    height: theme.spacing(3.5),
+    fontSize: '3vh',
+  },
+}));
 
 const itemsFromBackend = [
   { id: uuidv4(), content: 'First task' },
@@ -67,6 +80,8 @@ const onDragEnd = (result, columns, setColumns) => {
 };
 
 const Kanban = () => {
+  const classes = useStyles();
+
   const [columns, setColumns] = useState(columnsFromBackend);
   return (
     <div className='kanban'>
@@ -105,16 +120,24 @@ const Kanban = () => {
                                       {...provided.dragHandleProps}
                                       style={{
                                         userSelect: 'none',
-                                        padding: 16,
-                                        margin: '0 0 8px 0',
-                                        minHeight: '50px',
+                                        padding: '1vh 1vw',
+                                        margin: '0 0 1vh 0',
+                                        minHeight: '1vh',
                                         backgroundColor: snapshot.isDragging
-                                          ? '#ff8c42'
+                                          ? '#FF8C42'
                                           : '#252525',
                                         color: 'white',
                                         ...provided.draggableProps.style,
                                       }}>
-                                      {item.content}
+                                      <div className='task__div'>
+                                        <div className='task__story'>
+                                          <div className='task__color'></div>
+                                          {item.content}
+                                        </div>
+                                        <Avatar className={classes.purple}>
+                                          N
+                                        </Avatar>
+                                      </div>
                                     </div>
                                   );
                                 }}
