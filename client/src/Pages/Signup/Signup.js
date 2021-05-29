@@ -31,8 +31,6 @@ const Signup = () => {
       email: values.email || undefined,
       password: values.password || undefined,
     };
-    console.log(user);
-    /*history.push('/signin');*/
     create(user).then((response) => {
       if (response.success) {
         setLoading(false);

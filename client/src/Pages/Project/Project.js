@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
@@ -17,13 +17,19 @@ const useStyles = makeStyles((theme) => ({
 
 const Project = () => {
   const classes = useStyles();
+  const user = JSON.parse(sessionStorage.getItem('jwt'));
+
+  useEffect(() => {
+    console.log(user);
+  }, []);
+
   return (
     <div className='project'>
       <div className='project__navbar'>
         <div className='project__logo'>teamup.</div>
         <div className='project__accountInfo'>
           <Avatar className={classes.purple}>N</Avatar>
-          <div className='project__name'>Nafiz</div>
+          <div className='project__name'>{user ? user.user.name : 'Nafiz'}</div>
         </div>
       </div>
       <div className='project__content'>

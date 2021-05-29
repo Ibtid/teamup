@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import image from './signin_image.svg';
 import { Link } from 'react-router-dom';
-
+import Spinkit from '../../Modals/Spinkit/Spinkit';
 import './Signin.css';
 import { useHistory } from 'react-router-dom';
 import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
+import { signin } from '../../API/auth';
+import auth from '../../API/auth-helper';
 
 const Signin = () => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const [values, setValues] = useState({
     password: '',
@@ -18,18 +22,31 @@ const Signin = () => {
     setValues({ ...values, [name]: event.target.value });
   };
   const clickSubmit = () => {
+    setLoading(true);
     const user = {
       email: values.email || undefined,
       password: values.password || undefined,
     };
-    console.log(user);
-    setOpen(true);
+    signin(user).then((response) => {
+      if (!response.success) {
+        setMessage(response.message);
+        setOpen(true);
+        setLoading(false);
+      } else {
+        auth.authenticate(response);
+        setLoading(false);
+        history.push('/project');
+      }
+    });
 
     /*history.push('/project');*/
   };
   return (
     <div className='signin'>
-      {open && <ResponseModal setOpen={() => setOpen(false)} />}
+      {loading && <Spinkit />}
+      {open && (
+        <ResponseModal setOpen={() => setOpen(false)} message={message} />
+      )}
       <div className='signin__navbar'>teamup.</div>
       <div className='signin__content'>
         <div className='signin__contentLeft'>
