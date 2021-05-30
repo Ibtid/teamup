@@ -1,19 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { findProjectByUserId } from '../../API/project';
+import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
+import Spinkit from '../../Modals/Spinkit/Spinkit';
+import { useHistory } from 'react-router-dom';
 import './DropDown.css';
 
 const DropDown = () => {
+  const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const [haveProject, setHaveProject] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [openResponse, setOpenResponse] = useState(false);
+  const [message, setMessage] = useState('');
+  const [projects, setProjects] = useState([]);
+  const user = JSON.parse(sessionStorage.getItem('jwt'));
 
-  const race = [
-    'Azure Female',
-    'Iron Dwarf',
-    'Highborn Human',
-    'Lowland Human',
-    'Mountain Dwarf',
-    'Scythian Elf',
-    'Woodland Elf',
-  ];
+  useEffect(() => {
+    if (user) {
+      setLoading(true);
+      findProjectByUserId().then((response) => {
+        console.log(response);
+
+        if (response.success) {
+          setProjects(response.projects);
+          console.log(projects);
+          setLoading(false);
+        } else {
+          setMessage(response.message);
+          setOpenResponse(true);
+          setLoading(false);
+        }
+      });
+    }
+  }, []);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -21,15 +40,13 @@ const DropDown = () => {
 
   const handleProject = (e) => {
     setHaveProject(e.currentTarget.textContent);
+    history.push(`/dashboard/${e.currentTarget.textContent}`);
   };
 
   const itemList = (props) => {
     const list = props.map((item) => (
-      <div
-        onClick={handleProject}
-        className='dropdown__item'
-        key={item.toString()}>
-        {item}
+      <div onClick={handleProject} className='dropdown__item' key={item._id}>
+        {item.name}
       </div>
     ));
 
@@ -40,10 +57,12 @@ const DropDown = () => {
     <div
       className={isOpen ? 'dropdown active' : 'dropdown'}
       onClick={handleClick}>
+      {openResponse && <ResponseModal message={message} />}
+      {loading && <Spinkit />}
       <div className='dropdown__text'>
         {!haveProject ? 'Choose Project' : haveProject}
       </div>
-      {itemList(race)}
+      {itemList(projects)}
     </div>
   );
 };

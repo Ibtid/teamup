@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = () => {
+  const user = JSON.parse(sessionStorage.getItem('jwt'));
   const classes = useStyles();
   return (
     <div className='navbar'>
@@ -27,8 +28,12 @@ const Navbar = () => {
           <NotificationsIcon />
         </div>
         <div className='navbar__profile'>
-          <Avatar className={classes.purple}>N</Avatar>
-          <div className='project__name'>Nafiz Imtiaz</div>
+          <Avatar className={classes.purple}>
+            {user ? user.user.name[0] : 'N'}
+          </Avatar>
+          <div className='project__name'>
+            {user ? user.user.name : 'Nafiz Imtiaz'}
+          </div>
         </div>
       </div>
     </div>

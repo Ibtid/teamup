@@ -35,7 +35,7 @@
   align-items: center;
   justify-content: space-between;
   border: 0.2vh solid #ff8c42;
-  width: 10vw;
+  min-width: 6.5vw;
   padding: 0.5vh;
   border-radius: 5vh;
   cursor: pointer;

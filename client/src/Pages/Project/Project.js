@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import './Project.css';
 import DropDown from '../../Components/DropDown/DropDown';
+import NewProject from '../../Modals/NewProject/NewProject';
+import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
+import Spinkit from '../../Modals/Spinkit/Spinkit';
 
 const useStyles = makeStyles((theme) => ({
   purple: {
@@ -19,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
 const Project = () => {
   const classes = useStyles();
   const user = JSON.parse(sessionStorage.getItem('jwt'));
+  const [openForm, setOpenForm] = useState(false);
+  const [openResponse, setOpenResponse] = useState(false);
+  const [message, setMessage] = useState('');
+  const [loadinga, setLoadinga] = useState(false);
 
   useEffect(() => {
     console.log(user);
@@ -26,10 +32,33 @@ const Project = () => {
 
   return (
     <div className='project'>
+      {loadinga && <Spinkit />}
+      {openForm && (
+        <NewProject
+          close={() => {
+            setOpenForm(!openForm);
+          }}
+          admin={user.user._id}
+          setMessage={(str) => setMessage(str)}
+          setOpenResponse={() => {
+            setOpenResponse(!openResponse);
+          }}
+          setLoading={() => setLoadinga(!loadinga)}
+        />
+      )}
+      {openResponse && (
+        <ResponseModal
+          message={message}
+          setOpen={() => setOpenResponse(false)}
+        />
+      )}
+
       <div className='project__navbar'>
         <div className='project__logo'>teamup.</div>
         <div className='project__accountInfo'>
-          <Avatar className={classes.purple}>{user.user.name[0]}</Avatar>
+          <Avatar className={classes.purple}>
+            {user ? user.user.name[0] : 'N'}
+          </Avatar>
           <div className='project__name'>{user ? user.user.name : 'Nafiz'}</div>
         </div>
       </div>
@@ -43,7 +72,13 @@ const Project = () => {
             <DropDown />
           </div>
           <div className='project__smallText'>Or</div>
-          <button className='project__button'>Create Project</button>
+          <button
+            className='project__button'
+            onClick={() => {
+              setOpenForm(true);
+            }}>
+            Create Project
+          </button>
         </div>
       </div>
     </div>
