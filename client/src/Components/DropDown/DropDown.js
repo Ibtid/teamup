@@ -3,12 +3,14 @@ import { findProjectByUserId } from '../../API/project';
 import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
 import Spinkit from '../../Modals/Spinkit/Spinkit';
 import { useHistory } from 'react-router-dom';
-import './DropDown.css';
+import { useStateValue } from '../../StateProvider/StateProvider';
+import './Dropdown.css';
 
 const DropDown = () => {
   const history = useHistory();
+  const [{ project }, dispatch] = useStateValue();
   const [isOpen, setIsOpen] = useState(false);
-  const [haveProject, setHaveProject] = useState('');
+  const [haveProject, setHaveProject] = useState();
   const [loading, setLoading] = useState(false);
   const [openResponse, setOpenResponse] = useState(false);
   const [message, setMessage] = useState('');
@@ -19,11 +21,8 @@ const DropDown = () => {
     if (user) {
       setLoading(true);
       findProjectByUserId().then((response) => {
-        console.log(response);
-
         if (response.success) {
           setProjects(response.projects);
-          console.log(projects);
           setLoading(false);
         } else {
           setMessage(response.message);
@@ -38,14 +37,23 @@ const DropDown = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleProject = (e) => {
+  const handleProject = async (e) => {
     setHaveProject(e.currentTarget.textContent);
-    history.push(`/dashboard/${e.currentTarget.textContent}`);
+    history.push(`/dashboard/${e.target.id}`);
+    await dispatch({
+      type: 'SELECTED_PROJECT',
+      project: { name: e.currentTarget.textContent, id: e.target.id },
+    });
+    console.log(project);
   };
 
   const itemList = (props) => {
     const list = props.map((item) => (
-      <div onClick={handleProject} className='dropdown__item' key={item._id}>
+      <div
+        onClick={handleProject}
+        className='dropdown__item'
+        key={item._id}
+        id={item._id}>
         {item.name}
       </div>
     ));
@@ -60,7 +68,7 @@ const DropDown = () => {
       {openResponse && <ResponseModal message={message} />}
       {loading && <Spinkit />}
       <div className='dropdown__text'>
-        {!haveProject ? 'Choose Project' : haveProject}
+        {!project.name ? 'Choose Project' : project.name}
       </div>
       {itemList(projects)}
     </div>

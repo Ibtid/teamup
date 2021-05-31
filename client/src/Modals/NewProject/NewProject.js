@@ -3,15 +3,18 @@ import ReactDOM from 'react-dom';
 import { create } from '../../API/project';
 import Button from '../../Components/Button/Button';
 import CloseIcon from '@material-ui/icons/Close';
+import { useStateValue } from '../../StateProvider/StateProvider';
+import { useHistory } from 'react-router-dom';
 import './NewProject.css';
 
 const NewProject = (props) => {
+  const history = useHistory();
+  const [{ project }, dispatch] = useStateValue();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const admin = props.admin;
 
   const submit = () => {
-    props.setLoading();
     const project = {
       name: name,
       description: description,
@@ -21,16 +24,18 @@ const NewProject = (props) => {
 
     create(project).then((response) => {
       if (!response.success) {
-        console.log(props.loading);
         props.setMessage(response.message);
         props.setOpenResponse();
       } else {
-        console.log(project);
-        props.setMessage(response.message);
-        props.setOpenResponse();
+        console.log(response);
+        dispatch({
+          type: 'SELECTED_PROJECT',
+          project: { id: response.project._id, name: response.project.name },
+        });
+        history.push(`./dashboard/${response.project._id}`);
       }
     });
-    props.setLoading();
+
     props.close();
   };
 

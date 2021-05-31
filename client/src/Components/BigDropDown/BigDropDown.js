@@ -1,5 +1,4 @@
 import React from 'react';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import './BigDropDown.css';
 import DropDown from '../DropDown/DropDown';
 

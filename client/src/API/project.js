@@ -34,4 +34,20 @@ const findProjectByUserId = async () => {
   }
 };
 
-export { create, findProjectByUserId };
+const listAllMembers = async (projectId) => {
+  try {
+    let response = await fetch(
+      `http://localhost:5000/api/projects/members/${projectId}/`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    return response.json();
+  } catch (error) {}
+};
+
+export { create, findProjectByUserId, listAllMembers };

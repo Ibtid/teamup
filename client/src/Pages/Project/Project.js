@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
@@ -25,10 +25,6 @@ const Project = () => {
   const [openResponse, setOpenResponse] = useState(false);
   const [message, setMessage] = useState('');
   const [loadinga, setLoadinga] = useState(false);
-
-  useEffect(() => {
-    console.log(user);
-  }, []);
 
   return (
     <div className='project'>

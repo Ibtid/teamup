@@ -3,10 +3,12 @@ import './Taskboard.css';
 import BigDropDown from '../../Components/BigDropDown/BigDropDown';
 import Button from '../../Components/Button/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import AddBoard from '../../Modals/AddBoard/AddBoard';
 
 const Taskboard = () => {
   return (
     <div className='taskboard'>
+      <AddBoard />
       <div className='taskboard__navbar'>
         <BigDropDown />
         <Button>Add Board</Button>
