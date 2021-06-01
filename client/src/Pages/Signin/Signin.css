@@ -110,13 +110,6 @@
   transition: all 0.3s ease-in-out;
 }
 
-.signin__button:hover {
-  background: #f2f2f2;
-  font-weight: 700;
-  color: #ff8c42;
-  border: 1px solid #ff8c42;
-}
-
 .signin__switchState {
   margin-top: 5vh;
   display: flex;

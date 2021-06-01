@@ -6,4 +6,10 @@ const auth = {
   },
 };
 
-export default auth;
+const authenticate = async (jwt) => {
+  if (typeof window !== 'undefined') {
+    await sessionStorage.setItem('jwt', JSON.stringify(jwt));
+  }
+};
+
+export { authenticate };

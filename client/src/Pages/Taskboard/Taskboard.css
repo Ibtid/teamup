@@ -13,7 +13,7 @@
 
 .taskboard__content {
   background-color: #121212;
-  height: 72vh;
+  height: 71.5vh;
   width: 79vw;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -27,9 +27,10 @@
 .taskboard__taskBoard {
   display: inline-block;
   border-radius: 2.5vh;
-  height: 72vh;
+  height: 71.5vh;
   width: 25vw;
   margin-right: 1.5vw;
+  overflow: hidden;
 }
 
 .taskboard__red {
@@ -41,7 +42,6 @@
 
 .taskboard__green {
   background-color: #42ffd2;
-  border-radius: 2.5vh;
   height: 100%;
   width: 100%;
 }
@@ -78,4 +78,5 @@
   width: 100%;
   background-color: #252525;
   border-radius: 0vh 0vh 2.5vh 2.5vh;
+  padding-top: 1vw;
 }

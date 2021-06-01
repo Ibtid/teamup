@@ -8,29 +8,28 @@ import './Dropdown.css';
 
 const DropDown = () => {
   const history = useHistory();
-  const [{ project }, dispatch] = useStateValue();
+  const [{ project, user }, dispatch] = useStateValue();
   const [isOpen, setIsOpen] = useState(false);
   const [haveProject, setHaveProject] = useState();
   const [loading, setLoading] = useState(false);
   const [openResponse, setOpenResponse] = useState(false);
   const [message, setMessage] = useState('');
   const [projects, setProjects] = useState([]);
-  const user = JSON.parse(sessionStorage.getItem('jwt'));
 
   useEffect(() => {
-    if (user) {
-      setLoading(true);
-      findProjectByUserId().then((response) => {
-        if (response.success) {
-          setProjects(response.projects);
-          setLoading(false);
-        } else {
-          setMessage(response.message);
-          setOpenResponse(true);
-          setLoading(false);
-        }
-      });
-    }
+    setLoading(true);
+    console.log('User', user);
+    findProjectByUserId(user._id).then((response) => {
+      if (response.success) {
+        setProjects(response.projects);
+        setLoading(false);
+      } else {
+        setMessage(response.message);
+        setOpenResponse(true);
+        setLoading(false);
+      }
+    });
+    setLoading(false);
   }, []);
 
   const handleClick = () => {
@@ -65,7 +64,12 @@ const DropDown = () => {
     <div
       className={isOpen ? 'dropdown active' : 'dropdown'}
       onClick={handleClick}>
-      {openResponse && <ResponseModal message={message} />}
+      {openResponse && (
+        <ResponseModal
+          message={message}
+          setOpen={() => setOpenResponse(false)}
+        />
+      )}
       {loading && <Spinkit />}
       <div className='dropdown__text'>
         {!project.name ? 'Choose Project' : project.name}

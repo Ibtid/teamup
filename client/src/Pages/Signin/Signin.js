@@ -6,13 +6,15 @@ import './Signin.css';
 import { useHistory } from 'react-router-dom';
 import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
 import { signin } from '../../API/auth';
-import auth from '../../API/auth-helper';
+import { authenticate } from '../../API/auth-helper';
+import { useStateValue } from '../../StateProvider/StateProvider';
 
 const Signin = () => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [state, dispatch] = useStateValue();
 
   const [values, setValues] = useState({
     password: '',
@@ -28,14 +30,19 @@ const Signin = () => {
       password: values.password || undefined,
     };
     signin(user).then((response) => {
-      if (!response.success) {
+      console.log(response);
+      if (response.success) {
+        authenticate(response);
+        dispatch({
+          type: 'SIGN_IN',
+          user: response.user,
+        });
+        setLoading(false);
+        history.push('/project');
+      } else {
         setMessage(response.message);
         setOpen(true);
         setLoading(false);
-      } else {
-        auth.authenticate(response);
-        setLoading(false);
-        history.push('/project');
       }
     });
 

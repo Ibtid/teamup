@@ -16,10 +16,11 @@ const create = async (project) => {
   }
 };
 
-const findProjectByUserId = async () => {
+const findProjectByUserId = async (userId) => {
+  const id = userId || user.user._id;
   try {
     let response = await fetch(
-      `http://localhost:5000/api/projects/user/${user.user._id}/`,
+      `http://localhost:5000/api/projects/user/${id}/`,
       {
         method: 'GET',
         headers: {
