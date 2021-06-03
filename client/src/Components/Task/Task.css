@@ -6,13 +6,13 @@
   font-family: 'Open Sans', sans-serif;
   cursor: pointer;
   margin-bottom: 3vh;
-  font-size: 1vw;
+  font-size: 1.1vw;
   width: 100%;
   transition: all 0.3s ease-in-out;
 }
 
 .task:hover {
-  background-color: #f37d34;
+  background-color: #525252;
 }
 
 .bullet {

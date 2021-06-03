@@ -6,17 +6,19 @@ import BrushIcon from '@material-ui/icons/Brush';
 import GroupIcon from '@material-ui/icons/Group';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import NoteIcon from '@material-ui/icons/Note';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useStateValue } from '../../StateProvider/StateProvider';
 
 const Sidebar = () => {
   const [{ project }, dispatch] = useStateValue();
+  const { projectId } = useParams();
+  const projectID = project.id || projectId;
 
   return (
     <div className='sidebar'>
       <div className='sidebar__container'>
         <NavLink
-          to={`/dashboard/${project.id}`}
+          to={`/dashboard/${projectID}`}
           activeStyle={{ color: '#ff8c42' }}
           className='sidebar__tab'>
           <div className='sidebar__tabIcon'>
@@ -25,7 +27,7 @@ const Sidebar = () => {
           <div className='sidebar__tabText'>Dashboard</div>
         </NavLink>
         <NavLink
-          to={`/taskboard/${project.id}`}
+          to={`/taskboard/${projectID}`}
           activeStyle={{ color: '#ff8c42' }}
           className='sidebar__tab'>
           <div className='sidebar__tabIcon'>
@@ -34,7 +36,7 @@ const Sidebar = () => {
           <div className='sidebar__tabText'>Epics & Backlog</div>
         </NavLink>
         <NavLink
-          to={`/scrumboard/${project.id}`}
+          to={`/scrumboard/${projectID}`}
           activeStyle={{ color: '#ff8c42' }}
           className='sidebar__tab'>
           <div className='sidebar__tabIcon'>
@@ -43,7 +45,7 @@ const Sidebar = () => {
           <div className='sidebar__tabText'>Scrum Board</div>
         </NavLink>
         <NavLink
-          to={`/collabboard/${project.id}`}
+          to={`/collabboard/${projectID}`}
           activeStyle={{ color: '#ff8c42' }}
           className='sidebar__tab'>
           <div className='sidebar__tabIcon'>
@@ -52,7 +54,7 @@ const Sidebar = () => {
           <div className='sidebar__tabText'>Collab Board</div>
         </NavLink>
         <NavLink
-          to={`/reports/${project.id}`}
+          to={`/reports/${projectID}`}
           activeStyle={{ color: '#ff8c42' }}
           className='sidebar__tab'>
           <div className='sidebar__tabIcon'>
@@ -61,7 +63,7 @@ const Sidebar = () => {
           <div className='sidebar__tabText'>Reports</div>
         </NavLink>
         <NavLink
-          to={`/team/${project.id}`}
+          to={`/team/${projectID}`}
           activeStyle={{ color: '#ff8c42' }}
           className='sidebar__tab'>
           <div className='sidebar__tabIcon'>

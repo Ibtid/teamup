@@ -10,9 +10,11 @@ import Spinkit from '../../Modals/Spinkit/Spinkit';
 import { listTaskBoards } from '../../API/taskBoard';
 import { useStateValue } from '../../StateProvider/StateProvider';
 import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
+import { useParams } from 'react-router-dom';
 
 const Taskboard = () => {
   const [{ project, boards }, dispatch] = useStateValue();
+  const { projectId } = useParams();
 
   const [openAddBoard, setOpenAddBoard] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -21,7 +23,7 @@ const Taskboard = () => {
 
   useEffect(() => {
     setLoading(true);
-    listTaskBoards(project.id).then((response) => {
+    listTaskBoards(projectId).then((response) => {
       if (response.success) {
         console.log(response);
         dispatch({

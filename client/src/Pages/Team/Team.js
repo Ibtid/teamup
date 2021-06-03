@@ -27,7 +27,7 @@ const Team = () => {
   const classes = useStyles();
   const { projectId } = useParams();
   const [members, setMembers] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [openResponse, setOpenResponse] = useState(false);
   const [message, setMessage] = useState('');
 
@@ -38,13 +38,13 @@ const Team = () => {
       console.log(response);
       if (response.success) {
         setMembers(response.members);
+        setLoading(false);
       } else {
         setMessage(response.message);
         setOpenResponse(true);
+        setLoading(false);
       }
     });
-
-    setLoading(false);
   }, []);
 
   return (
@@ -75,7 +75,7 @@ const Team = () => {
               <Scrollable>
                 <div className='team__members'>
                   {members.map((member) => (
-                    <div className='team__member'>
+                    <div className='team__member' key={member._id}>
                       <div className='team__profileGroup'>
                         <Avatar className={classes.purple}>
                           {member.name[0]}

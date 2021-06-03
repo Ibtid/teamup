@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { findProjectByUserId } from '../../API/project';
 import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
 import Spinkit from '../../Modals/Spinkit/Spinkit';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useStateValue } from '../../StateProvider/StateProvider';
 import './Dropdown.css';
 
 const DropDown = () => {
+  const { projectId } = useParams();
   const history = useHistory();
   const [{ project, user }, dispatch] = useStateValue();
+  const [projectName, setProjectName] = useState('Choose Project');
   const [isOpen, setIsOpen] = useState(false);
-  const [haveProject, setHaveProject] = useState();
   const [loading, setLoading] = useState(false);
   const [openResponse, setOpenResponse] = useState(false);
   const [message, setMessage] = useState('');
@@ -21,7 +22,14 @@ const DropDown = () => {
     console.log('User', user);
     findProjectByUserId(user._id).then((response) => {
       if (response.success) {
+        console.log(response);
         setProjects(response.projects);
+        projects.map((aProjectFromResponse) => {
+          if (aProjectFromResponse._id === projectId) {
+            console.log('response', aProjectFromResponse.name);
+            initialProjectSearch(aProjectFromResponse.name);
+          }
+        });
         setLoading(false);
       } else {
         setMessage(response.message);
@@ -29,21 +37,32 @@ const DropDown = () => {
         setLoading(false);
       }
     });
-    setLoading(false);
   }, []);
+
+  const initialProjectSearch = async (name) => {
+    setProjectName(name);
+    await dispatch({
+      type: 'SELECTED_PROJECT',
+      project: {
+        name: name,
+        id: projectId,
+      },
+    });
+  };
 
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
 
   const handleProject = async (e) => {
-    setHaveProject(e.currentTarget.textContent);
     history.push(`/dashboard/${e.target.id}`);
     await dispatch({
       type: 'SELECTED_PROJECT',
-      project: { name: e.currentTarget.textContent, id: e.target.id },
+      project: {
+        name: e.currentTarget.textContent,
+        id: e.target.id || projectId,
+      },
     });
-    console.log(project);
   };
 
   const itemList = (props) => {
@@ -72,7 +91,7 @@ const DropDown = () => {
       )}
       {loading && <Spinkit />}
       <div className='dropdown__text'>
-        {!project.name ? 'Choose Project' : project.name}
+        {!project.name ? projectName : project.name}
       </div>
       {itemList(projects)}
     </div>
