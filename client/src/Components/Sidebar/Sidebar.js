@@ -42,7 +42,7 @@ const Sidebar = () => {
           <div className='sidebar__tabIcon'>
             <NoteIcon />
           </div>
-          <div className='sidebar__tabText'>Scrum Board</div>
+          <div className='sidebar__tabText'>Sprint</div>
         </NavLink>
         <NavLink
           to={`/collabboard/${projectID}`}

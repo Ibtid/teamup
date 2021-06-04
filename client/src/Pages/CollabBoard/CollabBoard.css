@@ -12,7 +12,24 @@
 }
 
 .collabboard__content {
-  background-color: white;
-  height: 71vh;
-  width: 81vw;
+  background-color: #121212;
+  height: 71.5vh;
+  width: 79vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.collabboard__left {
+  height: 71.5vh;
+  width: 64vw;
+  background-color: aliceblue;
+  border-radius: 2.5vh;
+  overflow: hidden;
+}
+
+.collabboard__right {
+  height: 71.5vh;
+  width: 14vw;
+  background-color: #525252;
 }
