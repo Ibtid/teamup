@@ -55,6 +55,13 @@ function App() {
             <CollabBoard />
           </div>
         </Route>
+        <Route path='/room/:roomId'>
+          <Navbar />
+          <div className='app__flexSidebar'>
+            <Sidebar />
+            <CollabBoard />
+          </div>
+        </Route>
         <Route path='/reports/:projectId'>
           <Navbar />
           <div className='app__flexSidebar'>
@@ -69,9 +76,7 @@ function App() {
             <Team />
           </div>
         </Route>
-        <Route path='/'>
-          <ArtBoard />
-        </Route>
+        <Route path='/'></Route>
       </Switch>
     </Router>
   );

@@ -12,7 +12,12 @@ import { useStateValue } from '../../StateProvider/StateProvider';
 const Sidebar = () => {
   const [{ project }, dispatch] = useStateValue();
   const { projectId } = useParams();
+  const { roomId } = useParams();
   const projectID = project.id || projectId;
+
+  const collabboardRoute = roomId
+    ? `/room/${roomId}`
+    : `/collabboard/${projectID}`;
 
   return (
     <div className='sidebar'>
@@ -45,7 +50,7 @@ const Sidebar = () => {
           <div className='sidebar__tabText'>Sprint</div>
         </NavLink>
         <NavLink
-          to={`/collabboard/${projectID}`}
+          to={collabboardRoute}
           activeStyle={{ color: '#ff8c42' }}
           className='sidebar__tab'>
           <div className='sidebar__tabIcon'>

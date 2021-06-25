@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
-    width: theme.spacing(3.5),
-    height: theme.spacing(3.5),
-    fontSize: '3vh',
+    width: theme.spacing(3.2),
+    height: theme.spacing(3.2),
+    fontSize: '1vw',
   },
 }));
 

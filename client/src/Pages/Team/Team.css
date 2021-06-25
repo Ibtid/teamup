@@ -41,8 +41,10 @@
 .team__projectOwnerName {
   display: flex;
   align-items: center;
+  font-size: 1.3vw;
   margin-left: 1vw;
   margin-top: 0.5vh;
+  cursor: pointer;
 }
 
 .team__collaborators {

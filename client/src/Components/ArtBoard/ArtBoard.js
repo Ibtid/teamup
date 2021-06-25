@@ -41,7 +41,12 @@ const ArtBoard = () => {
       context.moveTo(x0, y0);
       context.lineTo(x1, y1);
       context.strokeStyle = color;
-      context.lineWidth = 4;
+      if (color === '#f2f2f2') {
+        context.lineWidth = 40;
+      } else {
+        context.lineWidth = 4;
+      }
+      //context.lineWidth = 4;
       context.stroke();
       context.closePath();
 
@@ -131,16 +136,16 @@ const ArtBoard = () => {
     <div className='artboard'>
       <canvas className='artboard__container' ref={canvasRef}></canvas>
       <div className='artboard__settings'>
-        <div className='artboard__label'>Colors</div>
+        {/*<div className='artboard__label'>Colors</div>*/}
         <div ref={colorsRef} className='colors'>
           <div className='color black black' />
           <div className='color red red' />
           <div className='color green green' />
           <div className='color blue blue' />
-          <div className='color white #f2f2f2' />
+          <div className='color #f2f2f2 white' />
         </div>
 
-        <div className='artboard__label'>Text pitchers</div>
+        {/*<div className='artboard__label'>Text pitchers</div>*/}
         <form className='input_container'>
           <input
             className='input'
@@ -148,7 +153,7 @@ const ArtBoard = () => {
             id='name'
             name='name'
             value={input}
-            placeholder='Enter pitcher name'
+            placeholder='Enter pitcher'
             onChange={(e) => {
               setInput(e.target.value);
             }}
