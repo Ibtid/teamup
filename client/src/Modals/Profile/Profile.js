@@ -1,30 +1,70 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Scrollable from '../../Components/Scrollable/Scrollable';
-import image from './Untitled1.jpg';
+import { isAuthenticated } from '../../API/auth-helper';
+import { update } from '../../API/user';
 
 import './Profile.css';
 
 const useStyles = makeStyles((theme) => ({
   purple: {
-    color: theme.palette.getContrastText(deepPurple[500]),
-    backgroundColor: deepPurple[500],
     width: theme.spacing(15),
     height: theme.spacing(15),
-    fontSize: '3vh',
   },
 }));
 
 const Profile = (props) => {
   const user = JSON.parse(sessionStorage.getItem('jwt'));
+  const jwt = isAuthenticated();
+  const image = `http://localhost:5000/${user.user.image}`;
+  const [previewUrl, setPreviewUrl] = useState(image);
+  const [file, setFile] = useState();
+
+  const filePickerRef = useRef();
+
+  const pickImageHandler = () => {
+    filePickerRef.current.click();
+  };
+
+  const handleImage = async (event) => {
+    let pickedFile;
+    if (event.target.files && event.target.files.length === 1) {
+      pickedFile = event.target.files[0];
+      setFile(pickedFile);
+    }
+
+    const formData = new FormData();
+    formData.append('image', event.target.files[0]);
+    update({ userId: user.user._id }, { t: jwt.token }, formData).then(
+      (response) => {
+        console.log(response);
+        if (response.success) {
+          user.user.image = response.user.image;
+          sessionStorage.setItem('jwt', JSON.stringify(user));
+        }
+      }
+    );
+  };
 
   const classes = useStyles();
   const slide = props.openProfile ? 'slide__in' : 'slide__out';
+
+  useEffect(() => {
+    console.log(jwt.token);
+    if (!file) {
+      return;
+    }
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewUrl(fileReader.result);
+    };
+    fileReader.readAsDataURL(file);
+  }, [file]);
+
   return ReactDOM.createPortal(
     <div className='profile'>
       <div className={`profile__container ${slide}`}>
@@ -32,9 +72,19 @@ const Profile = (props) => {
           <DoubleArrowIcon />
         </div>
         <div className='profile__imageSection'>
-          <Avatar className={classes.purple} src={image} />
-
-          <div className='profile__circle'>
+          <input
+            style={{ display: 'none' }}
+            ref={filePickerRef}
+            type='file'
+            className='newProduct__input'
+            id='image'
+            name='image'
+            placeholder='Choose the image'
+            accept='.jpg,.png,.jpeg'
+            onChange={handleImage}
+          />
+          <Avatar className={classes.purple} src={previewUrl} />
+          <div className='profile__circle' onClick={pickImageHandler}>
             <div className='profile__addPictureButton slide__in'>
               <AddAPhotoIcon />
             </div>

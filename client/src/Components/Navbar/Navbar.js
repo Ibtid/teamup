@@ -2,18 +2,15 @@ import React, { useState } from 'react';
 import Button from '../Button/Button';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
+
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Profile from '../../Modals/Profile/Profile';
 import './Navbar.css';
 
 const useStyles = makeStyles((theme) => ({
   purple: {
-    color: theme.palette.getContrastText(deepPurple[500]),
-    backgroundColor: deepPurple[500],
     width: theme.spacing(3.5),
     height: theme.spacing(3.5),
-    fontSize: '3vh',
   },
 }));
 
@@ -43,9 +40,11 @@ const Navbar = () => {
           onClick={() => {
             setOpenProfile(true);
           }}>
-          <Avatar className={classes.purple}>
-            {user ? user.user.name[0] : 'N'}
-          </Avatar>
+          <Avatar
+            className={classes.purple}
+            src={`http://localhost:5000/${user.user.image}`}
+          />
+
           <div className='project__name'>
             {user ? user.user.name : 'Nafiz Imtiaz'}
           </div>

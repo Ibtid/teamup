@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
 import './Project.css';
 import DropDown from '../../Components/DropDown/DropDown';
 import NewProject from '../../Modals/NewProject/NewProject';
@@ -11,11 +10,8 @@ import Profile from '../../Modals/Profile/Profile';
 
 const useStyles = makeStyles((theme) => ({
   purple: {
-    color: theme.palette.getContrastText(deepPurple[500]),
-    backgroundColor: deepPurple[500],
     width: theme.spacing(4),
     height: theme.spacing(4),
-    fontSize: '3vh',
   },
 }));
 
@@ -66,9 +62,11 @@ const Project = () => {
           onClick={() => {
             setOpenProfile(true);
           }}>
-          <Avatar className={classes.purple}>
-            {user ? user.user.name[0] : 'N'}
-          </Avatar>
+          <Avatar
+            className={classes.purple}
+            src={`http://localhost:5000/${user.user.image}`}
+          />
+
           <div className='project__name'>{user ? user.user.name : 'Nafiz'}</div>
         </div>
       </div>
