@@ -7,6 +7,7 @@ import DropDown from '../../Components/DropDown/DropDown';
 import NewProject from '../../Modals/NewProject/NewProject';
 import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
 import Spinkit from '../../Modals/Spinkit/Spinkit';
+import Profile from '../../Modals/Profile/Profile';
 
 const useStyles = makeStyles((theme) => ({
   purple: {
@@ -25,10 +26,19 @@ const Project = () => {
   const [openResponse, setOpenResponse] = useState(false);
   const [message, setMessage] = useState('');
   const [loadinga, setLoadinga] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false);
 
   return (
     <div className='project'>
       {loadinga && <Spinkit />}
+      {openProfile && (
+        <Profile
+          openProfile={openProfile}
+          closeProfile={() => {
+            setOpenProfile(!setOpenProfile);
+          }}
+        />
+      )}
       {openForm && (
         <NewProject
           close={() => {
@@ -51,7 +61,11 @@ const Project = () => {
 
       <div className='project__navbar'>
         <div className='project__logo'>teamup.</div>
-        <div className='project__accountInfo'>
+        <div
+          className='project__accountInfo'
+          onClick={() => {
+            setOpenProfile(true);
+          }}>
           <Avatar className={classes.purple}>
             {user ? user.user.name[0] : 'N'}
           </Avatar>

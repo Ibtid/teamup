@@ -2,6 +2,7 @@ export const initialState = {
   project: {},
   user: {},
   boards: [],
+  allUsers: [],
 };
 
 const reducer = (state, action) => {
@@ -20,6 +21,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         boards: action.boards,
+      };
+    case 'UPDATE_ALL_USERS':
+      return {
+        ...state,
+        allUsers: action.allUsers,
       };
     default:
       return state;

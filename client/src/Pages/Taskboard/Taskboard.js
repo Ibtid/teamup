@@ -11,12 +11,15 @@ import { listTaskBoards } from '../../API/taskBoard';
 import { useStateValue } from '../../StateProvider/StateProvider';
 import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
 import { useParams } from 'react-router-dom';
+import AddTask from '../../Modals/AddTask/AddTask';
 
 const Taskboard = () => {
   const [{ project, boards }, dispatch] = useStateValue();
   const { projectId } = useParams();
 
   const [openAddBoard, setOpenAddBoard] = useState(false);
+  const [openAddTask, setOpenAddTask] = useState(false);
+
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('');
@@ -57,6 +60,13 @@ const Taskboard = () => {
           }}
         />
       )}
+      {openAddTask && (
+        <AddTask
+          closeAddTask={() => {
+            setOpenAddTask(false);
+          }}
+        />
+      )}
       <div className='taskboard__navbar'>
         <BigDropDown />
         <Button onClick={() => setOpenAddBoard(true)}>Add Board</Button>
@@ -67,7 +77,13 @@ const Taskboard = () => {
             <div className={board.color}>
               <div className='taskboard__header'>
                 <div className='taskboard__headerText'>{board.name}</div>
-                <AddCircleOutlineIcon />
+                <div
+                  className='taskboard__addTask'
+                  onClick={() => {
+                    setOpenAddTask(true);
+                  }}>
+                  <AddCircleOutlineIcon />
+                </div>
               </div>
               <div className='taskboard__taskList'>
                 <Scrollable>

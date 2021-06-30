@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../Button/Button';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import Profile from '../../Modals/Profile/Profile';
 import './Navbar.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -18,16 +19,30 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const user = JSON.parse(sessionStorage.getItem('jwt'));
+  const [openProfile, setOpenProfile] = useState(false);
+
   const classes = useStyles();
   return (
     <div className='navbar'>
+      {openProfile && (
+        <Profile
+          openProfile={openProfile}
+          closeProfile={() => {
+            setOpenProfile(!setOpenProfile);
+          }}
+        />
+      )}
       <div className='navbar__logo'>teamup.</div>
       <div className='navbar__right'>
         <Button>+ New Project</Button>
         <div className='navbar__icon'>
           <NotificationsIcon />
         </div>
-        <div className='navbar__profile'>
+        <div
+          className='navbar__profile'
+          onClick={() => {
+            setOpenProfile(true);
+          }}>
           <Avatar className={classes.purple}>
             {user ? user.user.name[0] : 'N'}
           </Avatar>

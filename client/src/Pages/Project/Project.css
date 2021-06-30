@@ -33,6 +33,7 @@
   width: 7vw;
   padding: 0.5vh;
   border-radius: 5vh;
+  cursor: pointer;
 }
 
 .project__name {
