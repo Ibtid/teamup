@@ -1,34 +1,35 @@
 import React from 'react';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
 
 import './Task.css';
 
 const useStyles = makeStyles((theme) => ({
   purple: {
-    color: theme.palette.getContrastText(deepPurple[500]),
-    backgroundColor: deepPurple[500],
     width: theme.spacing(2.5),
     height: theme.spacing(2.5),
-    fontSize: '1vw',
   },
 }));
 
-const Task = () => {
+const Task = (props) => {
   const classes = useStyles();
+  const activeClassName =
+    props.status === 'Pending' ? 'not_active' : 'yes_active';
+  const activeClassText = props.status === 'Pending' ? 'Not active' : 'active';
   return (
     <div className='task'>
       <div className='bullet'>
-        <div className='red'></div>
+        <div className={props.color}></div>
       </div>
 
-      <div className='task__text'>
-        As a user i want to pay using card asa asa asa{' '}
-      </div>
+      <div className='task__text'>{props.story}</div>
 
       <div className='task__image'>
-        <Avatar className={classes.purple}>N</Avatar>
+        <Avatar
+          className={classes.purple}
+          src={`http://localhost:5000/${props.image}`}
+        />
+        <div className={activeClassName}>{activeClassText}</div>
       </div>
     </div>
   );

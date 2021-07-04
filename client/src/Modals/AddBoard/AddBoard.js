@@ -5,6 +5,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import BrushIcon from '@material-ui/icons/Brush';
 import { create } from '../../API/taskBoard';
 import { useStateValue } from '../../StateProvider/StateProvider';
+import Spinkit from '../Spinkit/Spinkit';
+import ResponseModal from '../ResponseModal/ResponseModal';
 import './AddBoard.css';
 
 const AddBoard = (props) => {
@@ -13,7 +15,12 @@ const AddBoard = (props) => {
   const [color, setColor] = useState('');
   const [boardName, setBoardName] = useState('');
 
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
+  const [openResponse, setOpenResponse] = useState(false);
+
   const addboard = () => {
+    setLoading(true);
     const board = {
       name: boardName,
       color: color,
@@ -22,16 +29,25 @@ const AddBoard = (props) => {
     console.log(board);
     create(board).then((response) => {
       if (response.success) {
-        console.log(response.message);
+        props.setOpenAddBoard();
+        setLoading(false);
       } else {
-        console.log(response.message);
+        setMessage(response.message);
+        setOpenResponse(true);
+        setLoading(false);
       }
     });
-    props.setOpenAddBoard();
   };
 
   return ReactDOM.createPortal(
     <div className='addboard'>
+      {loading && <Spinkit />}
+      {openResponse && (
+        <ResponseModal
+          message={message}
+          setOpen={() => setOpenResponse(false)}
+        />
+      )}
       <div className='addboard__container'>
         <div className='addboard__header'>
           <div className='addboard__title'>Board name</div>

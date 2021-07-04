@@ -1,37 +1,106 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './AddTask.css';
 import CloseIcon from '@material-ui/icons/Close';
 import Button from '../../Components/Button/Button';
+import { useParams } from 'react-router-dom';
+import { listAllMembers } from '../../API/project';
+import Spinkit from '../Spinkit/Spinkit';
+import ResponseModal from '../ResponseModal/ResponseModal';
+import { create } from '../../API/task';
+import { useHistory } from 'react-router';
 
 const AddTask = (props) => {
-  const Category = [
-    { value: 0, label: 'Film & Animation' },
-    { value: 1, label: 'Auto & Vehicles' },
-    { value: 2, label: 'Music' },
-    { value: 3, label: 'Pets & Animals' },
-    { value: 4, label: 'Sports' },
-  ];
+  const { projectId } = useParams();
+  const members = [{ _id: 1, email: 'None' }];
+  const [toBeAssigned, setToBeAssigned] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState('');
+  const [openResponse, setOpenResponse] = useState(false);
+  const [assignedTo, setAssignedTo] = useState('');
+  const [story, setStory] = useState('');
+  const [points, setPoints] = useState(3);
+  const history = useHistory();
+
+  useEffect(() => {
+    setLoading(true);
+    listAllMembers(projectId).then((response) => {
+      console.log(response);
+      if (response.success) {
+        response.members.map((member) => members.push(member));
+        setToBeAssigned(members);
+        setLoading(false);
+      } else {
+        setMessage(response.message);
+        setOpenResponse(true);
+        setLoading(false);
+      }
+    });
+  }, []);
+
+  const selectMember = (event) => {
+    setAssignedTo(event.target.value);
+  };
+
+  const submitHandler = () => {
+    setLoading(true);
+    const body = {
+      boardId: props.boardId,
+      color: props.color,
+      story,
+      points,
+      assignedTo,
+      projectId,
+      status: 'Pending',
+    };
+    create(body).then((response) => {
+      console.log(response);
+      if (response.success) {
+        setLoading(false);
+        history.push(`/taskboard/${projectId}`);
+        props.closeAddTask();
+      } else {
+        setMessage(response.message);
+        setOpenResponse(true);
+        setLoading(false);
+      }
+    });
+  };
+
   return ReactDOM.createPortal(
     <div className='addTask'>
+      {loading && <Spinkit />}
+      {openResponse && (
+        <ResponseModal
+          message={message}
+          setOpen={() => setOpenResponse(false)}
+        />
+      )}
       <div className='addTask__container'>
         <div className='addTask__closeButton' onClick={props.closeAddTask}>
           <CloseIcon />
         </div>
         <div className='addTask__storyContainer'>
           <div className='addTask__title'>Story Name</div>
-          <textarea row='2' className='addTask__input' />
+          <textarea
+            row='2'
+            className='addTask__input'
+            value={story}
+            onChange={(event) => {
+              setStory(event.target.value);
+            }}
+          />
         </div>
         <div className='addTask__memberContainer'>
           <div className='addTask__member'>
             <div className='addTask__title'>Assign Member</div>
-            <select className='addTask__selector'>
-              {Category.map((item, index) => (
+            <select className='addTask__selector' onChange={selectMember}>
+              {toBeAssigned.map((member) => (
                 <option
-                  key={index}
-                  value={item.value}
+                  key={member._id}
+                  value={member._id}
                   className='addTask__option'>
-                  {item.label}
+                  {member.email}
                 </option>
               ))}
             </select>
@@ -39,9 +108,16 @@ const AddTask = (props) => {
           <div className='addTask__getSuggestions'>Get suggestions</div>
         </div>
         <div className='addTask__title'>Story Points</div>
-        <input className='addTask__storyPoint' type='number' />
+        <input
+          className='addTask__storyPoint'
+          type='number'
+          value={points}
+          onChange={(event) => {
+            setPoints(event.target.value);
+          }}
+        />
         <div className='addTask__button'>
-          <Button>Add Board</Button>
+          <Button onClick={submitHandler}>Add Story</Button>
         </div>
       </div>
     </div>,
