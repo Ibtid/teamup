@@ -18,6 +18,7 @@ const Signup = () => {
     name: '',
     password: '',
     email: '',
+    username: '',
   });
 
   const handleChange = (name) => (event) => {
@@ -30,6 +31,7 @@ const Signup = () => {
       name: values.name || undefined,
       email: values.email || undefined,
       password: values.password || undefined,
+      username: values.username || undefined,
     };
     create(user).then((response) => {
       if (response.success) {
@@ -69,8 +71,19 @@ const Signup = () => {
               <div className='signin__label'>Username</div>
               <input
                 className='signin__input'
+                id='username'
+                placeholder='e.g alex89'
+                type='text'
+                value={values.username}
+                onChange={handleChange('username')}
+              />
+            </div>
+            <div className='signin__inputdiv'>
+              <div className='signin__label'>FullName</div>
+              <input
+                className='signin__input'
                 id='name'
-                placeholder='Enter Username'
+                placeholder='First and last name'
                 type='text'
                 value={values.name}
                 onChange={handleChange('name')}
@@ -82,7 +95,7 @@ const Signup = () => {
                 className='signin__input'
                 id='email'
                 type='text'
-                placeholder='Enter Email'
+                placeholder='.gmail.com'
                 value={values.email}
                 onChange={handleChange('email')}
               />

@@ -1,9 +1,7 @@
 export const initialState = {
   project: {},
   user: {},
-  boards: [],
   allUsers: [],
-  tasks: [],
 };
 
 const reducer = (state, action) => {
@@ -17,16 +15,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         project: action.project,
-      };
-    case 'RETRIEVED_BOARDS':
-      return {
-        ...state,
-        boards: action.boards,
-      };
-    case 'RETRIEVED_TASKS':
-      return {
-        ...state,
-        boards: action.tasks,
       };
     case 'UPDATE_ALL_USERS':
       return {

@@ -9,6 +9,7 @@
 
 .collabboard__navbar {
   margin-bottom: 3vh;
+  display: flex;
 }
 
 .collabboard__content {

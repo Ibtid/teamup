@@ -19,16 +19,13 @@ const DropDown = () => {
 
   useEffect(() => {
     setLoading(true);
-    console.log('CALLED');
     findProjectByUserId(user._id).then((response) => {
       if (response.success) {
-        console.log(response);
         setProjects(response.projects);
 
         //verify project use
         projects.map((aProjectFromResponse) => {
           if (aProjectFromResponse._id === projectId) {
-            console.log('response', aProjectFromResponse.name);
             initialProjectSearch(aProjectFromResponse.name);
           }
         });

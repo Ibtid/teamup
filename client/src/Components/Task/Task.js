@@ -17,19 +17,23 @@ const Task = (props) => {
     props.status === 'Pending' ? 'not_active' : 'yes_active';
   const activeClassText = props.status === 'Pending' ? 'Not active' : 'active';
   return (
-    <div className='task'>
-      <div className='bullet'>
+    <div className={`task ${props.evenly}`}>
+      <div className={`bullet ${props.noMargin}`}>
         <div className={props.color}></div>
       </div>
 
-      <div className='task__text'>{props.story}</div>
+      <div className={`task__text ${props.smallText} ${props.putWhitespace}`}>
+        {props.story}
+      </div>
 
-      <div className='task__image'>
+      <div className={`task__image ${props.noDisplay}`}>
         <Avatar
           className={classes.purple}
           src={`http://localhost:5000/${props.image}`}
         />
-        <div className={activeClassName}>{activeClassText}</div>
+        <div className={`${activeClassName} ${props.noStatus}`}>
+          {activeClassText}
+        </div>
       </div>
     </div>
   );

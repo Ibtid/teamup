@@ -91,45 +91,52 @@ const Taskboard = () => {
         <Button onClick={() => setOpenAddBoard(true)}>New Epic</Button>
       </div>
       <div className='taskboard__content'>
-        {boards.map((board) => (
-          <div className='taskboard__taskBoard' key={board._id}>
-            <div className={board.color}>
-              <div className='taskboard__header'>
-                <div className='taskboard__headerText'>{board.name}</div>
-                <div
-                  className='taskboard__addTask'
-                  onClick={() => {
-                    setColor(board.color);
-                    setBoardId(board._id);
-                    setOpenAddTask(true);
-                  }}>
-                  <AddCircleOutlineIcon />
+        {boards
+          .slice(0)
+          .reverse()
+          .map((board) => (
+            <div className='taskboard__taskBoard' key={board._id}>
+              <div className={board.color}>
+                <div className='taskboard__header'>
+                  <div className='taskboard__headerText'>{board.name}</div>
+                  <div
+                    className='taskboard__addTask'
+                    onClick={() => {
+                      setColor(board.color);
+                      setBoardId(board._id);
+                      setOpenAddTask(true);
+                    }}>
+                    <AddCircleOutlineIcon />
+                  </div>
+                </div>
+                <div className='taskboard__taskList'>
+                  <Scrollable>
+                    {tasks ? (
+                      tasks
+                        .slice(0)
+                        .reverse()
+                        .map((task) => {
+                          if (task.boardId === board._id) {
+                            return (
+                              <Task
+                                key={task._id}
+                                color={task.color}
+                                image={task.assignedTo.image}
+                                story={task.story}
+                                status={task.status}
+                                putWhitespace='putWhitespace'
+                              />
+                            );
+                          }
+                        })
+                    ) : (
+                      <div style={{ color: 'white' }}>no task</div>
+                    )}
+                  </Scrollable>
                 </div>
               </div>
-              <div className='taskboard__taskList'>
-                <Scrollable>
-                  {tasks ? (
-                    tasks.map((task) => {
-                      if (task.boardId === board._id) {
-                        return (
-                          <Task
-                            key={task._id}
-                            color={task.color}
-                            image={task.image}
-                            story={task.story}
-                            status={task.status}
-                          />
-                        );
-                      }
-                    })
-                  ) : (
-                    <div style={{ color: 'white' }}>no task</div>
-                  )}
-                </Scrollable>
-              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );

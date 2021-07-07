@@ -57,11 +57,19 @@
   color: #f2f2f2;
 }
 
+.dashboard__sprintContent {
+  height: 80%;
+  width: 100%;
+  margin-top: 1vh;
+  padding-right: 2vw;
+}
+
 .dashboard__title {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1vh 1vw;
+  /*background-color: red;*/
 }
 
 .dashboard__titleName {
@@ -108,6 +116,12 @@
   border-radius: 2.5vh;
 }
 
+.dashboard__myTaskContent {
+  margin-top: 1vh;
+  height: 80%;
+  width: 100%;
+}
+
 .dashboard__collabBoardSection {
   height: 30%;
   width: 100%;
@@ -138,4 +152,16 @@
   height: 45%;
   background-color: #252525;
   border-radius: 2.5vh;
+}
+
+.dashboard__singleMember {
+  display: flex;
+  align-items: center;
+  padding-left: 1.2vw;
+  margin-top: 2vh;
+  font-size: 1vw;
+}
+
+.dashboard__singleMemberName {
+  margin-left: 1.2vw;
 }

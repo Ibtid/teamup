@@ -11,8 +11,6 @@ import Scrumboard from './Pages/Scrumboard/Scrumboard';
 import CollabBoard from './Pages/CollabBoard/CollabBoard';
 import Reports from './Pages/Reports/Reports';
 import Team from './Pages/Team/Team';
-import DropDown from './Components/DropDown/DropDown';
-import ArtBoard from './Components/ArtBoard/ArtBoard';
 
 function App() {
   return (

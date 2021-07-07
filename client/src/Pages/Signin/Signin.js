@@ -76,7 +76,7 @@ const Signin = () => {
                 className='signin__input'
                 id='email'
                 type='text'
-                placeholder='Enter Email'
+                placeholder='.gmail.com'
                 value={values.email}
                 onChange={handleChange('email')}
               />

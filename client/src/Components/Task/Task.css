@@ -22,15 +22,16 @@
   border-radius: 50%;
   overflow: hidden;
   margin-left: 1vw;
-  margin-right: 1vw;
+  margin-right: 0vw;
   margin-top: 0.5vh;
 }
 
 .task__text {
   text-align: start;
+  flex: 0.8;
+  font-size: 0.9vw;
 
-  white-space: pre-line;
-  width: 70%;
+  /*width: 70%;*/
 }
 
 .task__image {
@@ -65,4 +66,27 @@
   width: 2vw;
   border: 1px solid greenyellow;
   color: greenyellow;
+}
+
+.noDisplay {
+  display: none;
+}
+
+.evenly {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+.smallText {
+  font-size: 0.9vw;
+}
+
+.noMargin {
+  margin-left: 0vw;
+  margin-right: 0vw;
+}
+
+.putWhitespace {
+  white-space: normal;
 }

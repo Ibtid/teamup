@@ -90,12 +90,14 @@ const Profile = (props) => {
             </div>
           </div>
         </div>
-        <div className='profile__fullName'>Ibtid Rahman</div>
+        <div className='profile__fullName'>{`${user.user.name}`}</div>
         <div className='profile__info'>
           <Scrollable>
             <div className='profile__infoTitle'>Personal Info</div>
-            <div className='profile__infoData'>Username: ibtid43</div>
-            <div className='profile__infoData'>Email: ibtid011@gmail.com</div>
+            <div className='profile__infoData'>
+              Username: {user.user.username}
+            </div>
+            <div className='profile__infoData'>Email: {user.user.email}</div>
             <div className='profile__infoTitle'>Project(s)</div>
             <div className='profile__infoData'>TeamUp</div>
             <div className='profile__infoData'>Horek-Rokom</div>

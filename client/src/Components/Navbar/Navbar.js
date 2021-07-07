@@ -46,7 +46,7 @@ const Navbar = () => {
           />
 
           <div className='project__name'>
-            {user ? user.user.name : 'Nafiz Imtiaz'}
+            {user ? user.user.username : 'Nafiz Imtiaz'}
           </div>
         </div>
       </div>

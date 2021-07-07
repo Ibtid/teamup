@@ -67,7 +67,9 @@ const Project = () => {
             src={`http://localhost:5000/${user.user.image}`}
           />
 
-          <div className='project__name'>{user ? user.user.name : 'Nafiz'}</div>
+          <div className='project__name'>
+            {user ? user.user.username : 'Nafiz'}
+          </div>
         </div>
       </div>
       <div className='project__content'>

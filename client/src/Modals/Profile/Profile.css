@@ -120,7 +120,8 @@
 .profile__tag {
   margin-right: 0.5vw;
   margin-bottom: 0.5vw;
-  border-radius: 0.4vh;
+  margin-top: 0.5vw;
+  border-radius: 1vh;
   padding: 0.1vh 1vw 0.1vh 1vw;
   background-color: #c4c4c4;
   font-size: 0.95vw;
@@ -135,9 +136,17 @@
   font-size: 0.95vw;
   width: 5vw;
   margin-top: 2.5vh;
-  border-radius: 5vh;
+  border-radius: 1.25vh;
   text-align: center;
   position: relative;
   left: 35%;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: 0.01vh solid #fa5959;
+}
+
+.logoutButton:hover {
+  background-color: #252525;
+  color: #fa5959;
+  border: 0.01vh solid #fa5959;
 }

@@ -63,9 +63,9 @@ const Team = () => {
       <div className='team__content'>
         <div className='team__contentLeft'>
           <div className='team__projectOwner'>
-            <div className='team__header'>Scrum Master</div>
+            <div className='team__header'>Team Lead</div>
             <div className='team__projectOwnerName'>
-              <Avatar className={classes.purple}>N</Avatar>
+              <Avatar className={classes.purple} />
               <div className='team__memberName'>Nafiz Imtiaz</div>
             </div>
           </div>
@@ -77,10 +77,11 @@ const Team = () => {
                   {members.map((member) => (
                     <div className='team__member' key={member._id}>
                       <div className='team__profileGroup'>
-                        <Avatar className={classes.purple}>
-                          {member.name[0]}
-                        </Avatar>
-                        <div className='team__memberName'>{member.name}</div>
+                        <Avatar
+                          className={classes.purple}
+                          src={`http://localhost:5000/${member.image}`}
+                        />
+                        <div className='team__memberName'>{`${member.name}`}</div>
                       </div>
                       <div className='team__functions'>
                         <div className='team__buttondrop'>

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
 
 .signin {
   background-color: #121212;
@@ -56,13 +56,14 @@
   position: absolute;
   bottom: 12vh;
   right: 10vw;
-  background-color: #f2f2f2;
+  background-color: #252525;
   border-radius: 3vh;
-  color: #121212;
+
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  color: #f2f2f2;
 }
 
 .signin__header {
@@ -81,19 +82,20 @@
 .signin__label {
   font-size: 0.9vw;
   font-weight: 800;
-  color: #121212;
+  color: #f2f2f2;
   margin-bottom: 0.8vh;
 }
 
 .signin__input {
-  height: 3vh;
+  height: 2.5vh;
   width: 20vw;
   background: #a3a3a3;
   border: none;
   outline: none;
-  padding: 1vh;
+  padding: 0.5vh 0.5vw;
   border-radius: 1.5vh;
   font-size: 0.9vw;
+  border: 0.3vh solid #ff8c42;
 }
 
 .signin__button {

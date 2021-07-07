@@ -1,12 +1,12 @@
-const create = async (task) => {
+const getOnline = async (body) => {
   try {
-    let response = await fetch('http://localhost:5000/api/tasks', {
+    let response = await fetch('http://localhost:5000/api/actives', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(task),
+      body: JSON.stringify(body),
     });
     return await response.json();
   } catch (error) {
@@ -14,14 +14,15 @@ const create = async (task) => {
   }
 };
 
-const listTasksByProjectId = async (projectId) => {
+const getOffline = async (body) => {
   try {
-    let response = await fetch(`http://localhost:5000/api/tasks/${projectId}`, {
-      method: 'GET',
+    let response = await fetch('http://localhost:5000/api/actives', {
+      method: 'DELETE',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(body),
     });
     return await response.json();
   } catch (error) {
@@ -29,10 +30,10 @@ const listTasksByProjectId = async (projectId) => {
   }
 };
 
-const getMyTask = async (userId) => {
+const getActives = async (projectId) => {
   try {
     let response = await fetch(
-      `http://localhost:5000/api/tasks/users/${userId}`,
+      `http://localhost:5000/api/actives/${projectId}`,
       {
         method: 'GET',
         headers: {
@@ -47,4 +48,4 @@ const getMyTask = async (userId) => {
   }
 };
 
-export { create, listTasksByProjectId, getMyTask };
+export { getActives, getOffline, getOnline };
