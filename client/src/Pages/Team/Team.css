@@ -86,6 +86,7 @@
   cursor: pointer;
   transition: 0.2s ease-in-out;
   width: 100%;
+  font-size: 1.2vw;
 }
 
 .team__buttondrop {

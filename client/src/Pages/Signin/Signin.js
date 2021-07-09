@@ -87,7 +87,7 @@ const Signin = () => {
                 className='signin__input'
                 id='password'
                 type='password'
-                placeholder='Enter Password'
+                placeholder='At least 6 characters'
                 value={values.password}
                 onChange={handleChange('password')}></input>
             </div>
