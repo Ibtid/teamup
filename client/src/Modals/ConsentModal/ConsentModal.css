@@ -1,0 +1,36 @@
+.consentModal {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(13, 13, 13, 0.7);
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.consentModal__container {
+  background-color: #252525;
+  padding: 4vh 1.5vw;
+  border-radius: 1.5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.consentModal__text {
+  color: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.5vw;
+  margin-bottom: 5vh;
+}
+
+.consentModal__actionButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 30vw;
+}

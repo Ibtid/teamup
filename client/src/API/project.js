@@ -48,7 +48,53 @@ const listAllMembers = async (projectId) => {
       }
     );
     return response.json();
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export { create, findProjectByUserId, listAllMembers };
+const addNewMember = async (body) => {
+  try {
+    let response = await fetch(
+      `http://localhost:5000/api/projects/members/${body.projectId}/`,
+      {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      }
+    );
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const removeMember = async (body) => {
+  try {
+    let response = await fetch(
+      `http://localhost:5000/api/projects/members/${body.projectId}/`,
+      {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      }
+    );
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  create,
+  findProjectByUserId,
+  listAllMembers,
+  addNewMember,
+  removeMember,
+};

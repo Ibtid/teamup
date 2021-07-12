@@ -2,20 +2,12 @@ import React, { useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import { Avatar } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Scrollable from '../../Components/Scrollable/Scrollable';
 import { isAuthenticated } from '../../API/auth-helper';
 import { update } from '../../API/user';
 
 import './Profile.css';
-
-const useStyles = makeStyles((theme) => ({
-  purple: {
-    width: theme.spacing(15),
-    height: theme.spacing(15),
-  },
-}));
 
 const Profile = (props) => {
   const user = JSON.parse(sessionStorage.getItem('jwt'));
@@ -50,7 +42,6 @@ const Profile = (props) => {
     );
   };
 
-  const classes = useStyles();
   const slide = props.openProfile ? 'slide__in' : 'slide__out';
 
   useEffect(() => {
@@ -83,10 +74,13 @@ const Profile = (props) => {
             accept='.jpg,.png,.jpeg'
             onChange={handleImage}
           />
-          <Avatar className={classes.purple} src={previewUrl} />
+          <Avatar
+            style={{ width: '9.4vw', height: '19.7vh' }}
+            src={previewUrl}
+          />
           <div className='profile__circle' onClick={pickImageHandler}>
-            <div className='profile__addPictureButton slide__in'>
-              <AddAPhotoIcon />
+            <div className='profile__addPictureButton'>
+              <AddAPhotoIcon style={{ width: '2.75vw', height: '5.5vh' }} />
             </div>
           </div>
         </div>
