@@ -83,55 +83,30 @@ const CollabBoard = () => {
         <Button>Clear Board</Button>
         <AvatarGroup style={{ margin: '0vw 0vw 0vw 2vw' }} max={8}>
           {activeMembers.length !== 0 &&
-            activeMembers.map((member) => (
-              <Avatar
-                style={{
-                  height: '5vh',
-                  width: '2.5vw',
-                  border: '0.3vh solid #f2f2f2',
-                }}
-                alt='Remy Sharp'
-                src={`http://localhost:5000/${member.image}`}
-              />
-            ))}
-          {activeMembers.length === 0 && (
-            <Avatar
-              style={{
-                height: '5vh',
-                width: '2.5vw',
-                border: '0.3vh solid #f2f2f2',
-              }}
-              alt='Remy Sharp'
-              src={`http://localhost:5000/${user.user.image}`}
-            />
-          )}
-          {/*<Avatar
+            activeMembers.map((member) =>
+              member.image !== user.user.image ? (
+                <Avatar
+                  style={{
+                    height: '5vh',
+                    width: '2.5vw',
+                    border: '0.3vh solid #f2f2f2',
+                  }}
+                  alt='Remy Sharp'
+                  src={`http://localhost:5000/${member.image}`}
+                />
+              ) : (
+                <div style={{ display: 'none' }}></div>
+              )
+            )}
+          <Avatar
             style={{
               height: '5vh',
               width: '2.5vw',
               border: '0.3vh solid #f2f2f2',
             }}
             alt='Remy Sharp'
-            src='http://localhost:5000/uploads/5259b634-ab6e-411d-83d8-2720915a8cf9.jpeg'
+            src={`http://localhost:5000/${user.user.image}`}
           />
-          <Avatar
-            style={{
-              height: '5vh',
-              width: '2.5vw',
-              border: '0.3vh solid #f2f2f2',
-            }}
-            alt='Travis Howard'
-            src='http://localhost:5000/uploads/11e3277b-b3db-4613-b690-0b5e8271e90b.jpeg'
-          />
-          <Avatar
-            style={{
-              height: '5vh',
-              width: '2.5vw',
-              border: '0.3vh solid #f2f2f2',
-            }}
-            alt='Cindy Baker'
-            src='http://localhost:5000/uploads/134cae90-51a5-4fb8-b305-2b484d43fc78.jpeg'
-          />*/}
         </AvatarGroup>
       </div>
       <div className='collabboard__content'>

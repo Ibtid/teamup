@@ -1,11 +1,9 @@
 import React from 'react';
 
-import './Signin.css';
-
-import SigninForm from '../../Components/AuthForms/SigninForm';
 import AuthContent from '../../Components/AuthContent/AuthContent';
+import RecoveryThirdForm from '../../Components/AuthForms/RecoveryThirdForm';
 
-const Signin = () => {
+const ThirdStep = () => {
   return (
     <div className='signin'>
       <div className='signin__navbar'>teamup.</div>
@@ -14,11 +12,11 @@ const Signin = () => {
           <AuthContent />
         </div>
         <div className='signin__contentRight'>
-          <SigninForm />
+          <RecoveryThirdForm />
         </div>
       </div>
     </div>
   );
 };
 
-export default Signin;
+export default ThirdStep;

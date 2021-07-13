@@ -49,4 +49,39 @@ const update = async (params, credentials, user) => {
 
 const remove = async () => {};
 
-export { create, list, read, update, remove };
+const forgetPassword = async (body) => {
+  try {
+    let response = await fetch('http://localhost:5000/forget-password', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    return await response.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const resetPassword = async (body) => {
+  try {
+    let response = await fetch(
+      `http://localhost:5000/reset-password/${body.resetToken}`,
+      {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      }
+    );
+    return await response.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { create, list, read, update, remove, forgetPassword, resetPassword };

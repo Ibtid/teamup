@@ -17,6 +17,9 @@
   cursor: pointer;
 }
 
+.bottomMargin {
+  margin-bottom: -7.5vh;
+}
 .signin__bigTextContainer {
   padding-top: 5vh;
   padding-bottom: 3vh;
@@ -47,15 +50,15 @@
   align-items: center;
 }
 
-/*.signin__contentRight {
+.signin__contentRight {
   margin-top: 15vh;
   margin-right: 10vw;
-}*/
+}
 
 .signin__form {
-  position: absolute;
+  /*position: absolute;
   bottom: 12vh;
-  right: 10vw;
+  right: 10vw;*/
   background-color: #252525;
   border-radius: 3vh;
 
@@ -99,6 +102,17 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+.signin__forgetPassword {
+  position: relative;
+  top: -1vh;
+  left: -7vw;
+  color: #ff8c42;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.8vw;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .signin__button {
   margin-top: 3.5vh;
   background: #ff8c42;
@@ -113,13 +127,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2vh;
+  margin-bottom: 3.5vh;
   border-radius: 1vh;
   transition: all 0.3s ease-in-out;
 }
 
 .signin__switchState {
-  margin-top: 5vh;
+  margin-top: 2.5vh;
   display: flex;
   margin-bottom: 3vh;
   font-size: 2vh;

@@ -11,6 +11,10 @@ import Scrumboard from './Pages/Scrumboard/Scrumboard';
 import CollabBoard from './Pages/CollabBoard/CollabBoard';
 import Reports from './Pages/Reports/Reports';
 import Team from './Pages/Team/Team';
+import FirstStep from './Pages/RecoveryPages/FirstStep';
+import SecondStep from './Pages/RecoveryPages/SecondStep';
+import ThirdStep from './Pages/RecoveryPages/ThirdStep';
+import FinalStep from './Pages/RecoveryPages/FinalStep';
 
 function App() {
   return (
@@ -21,6 +25,18 @@ function App() {
         </Route>
         <Route path='/signup'>
           <Signup />
+        </Route>
+        <Route path='/account-recovery/stepOne'>
+          <FirstStep />
+        </Route>
+        <Route path='/account-recovery/stepTwo/:email'>
+          <SecondStep />
+        </Route>
+        <Route path='/account-recovery/stepThree/:verificationCode'>
+          <ThirdStep />
+        </Route>
+        <Route path='/account-recovery/success'>
+          <FinalStep />
         </Route>
         <Route path='/project'>
           <Project />
