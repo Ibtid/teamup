@@ -6,15 +6,23 @@ import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Scrollable from '../../Components/Scrollable/Scrollable';
 import { isAuthenticated } from '../../API/auth-helper';
 import { update } from '../../API/user';
+import { signout } from '../../API/auth';
+import { useHistory } from 'react-router-dom';
+import Spinkit from '../Spinkit/Spinkit';
+import ResponseModal from '../ResponseModal/ResponseModal';
 
 import './Profile.css';
 
 const Profile = (props) => {
+  const history = useHistory();
   const user = JSON.parse(sessionStorage.getItem('jwt'));
   const jwt = isAuthenticated();
   const image = `http://localhost:5000/${user.user.image}`;
   const [previewUrl, setPreviewUrl] = useState(image);
   const [file, setFile] = useState();
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
+  const [open, setOpen] = useState(false);
 
   const filePickerRef = useRef();
 
@@ -56,8 +64,27 @@ const Profile = (props) => {
     fileReader.readAsDataURL(file);
   }, [file]);
 
+  const logout = () => {
+    setLoading(true);
+    signout().then((response) => {
+      if (response.success) {
+        history.push('/signin');
+        sessionStorage.removeItem('jwt');
+        setLoading(false);
+      } else {
+        setMessage('Failed to Logout');
+        setOpen(true);
+        setLoading(false);
+      }
+    });
+  };
+
   return ReactDOM.createPortal(
     <div className='profile'>
+      {loading && <Spinkit />}
+      {open && (
+        <ResponseModal setOpen={() => setOpen(false)} message={message} />
+      )}
       <div className={`profile__container ${slide}`}>
         <div className='profile__closeButton' onClick={props.closeProfile}>
           <DoubleArrowIcon />
@@ -106,7 +133,9 @@ const Profile = (props) => {
             </div>
           </Scrollable>
         </div>
-        <div className='logoutButton'>Logout</div>
+        <div className='logoutButton' onClick={logout}>
+          Logout
+        </div>
       </div>
     </div>,
     document.getElementById('profile')

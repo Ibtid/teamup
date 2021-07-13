@@ -1,3 +1,5 @@
+import { signout } from './auth';
+
 const authenticate = async (jwt) => {
   if (typeof window !== 'undefined') {
     await sessionStorage.setItem('jwt', JSON.stringify(jwt));
@@ -11,4 +13,13 @@ const isAuthenticated = () => {
   else return false;
 };
 
-export { authenticate, isAuthenticated };
+const clearJWT = (cb) => {
+  if (typeof window !== 'undefined') sessionStorage.removeItem('jwt');
+  cb();
+  //optional
+  signout().then((data) => {
+    document.cookie = 't=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  });
+};
+
+export { authenticate, isAuthenticated, clearJWT };
