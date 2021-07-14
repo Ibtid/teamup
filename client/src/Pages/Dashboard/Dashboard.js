@@ -25,6 +25,7 @@ const Dashboard = () => {
 
   const [myTasks, setMyTasks] = useState([]);
   const [allTasks, setALLTasks] = useState([]);
+  const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
   const [loadinga, setLoadinga] = useState(false);
   const [loadingb, setLoadingb] = useState(false);
@@ -59,6 +60,7 @@ const Dashboard = () => {
     listAllMembers(projectId).then((response) => {
       if (response.success) {
         setMembers(response.members);
+        setDescription(response.description);
         setLoadingb(false);
       } else {
         console.log(response.message);
@@ -77,15 +79,12 @@ const Dashboard = () => {
         <BigDropDown />
       </div>
       <div className='dashboard__content'>
-        <div className='dashboard__contentColumnOne'>
+        <div className='dashboard__contentColumnOne slide__downC1'>
           <div className='dashboard__projectDescription'>
             <div className='dashboard__descriptionTitle'>
               Project Description
             </div>
-            <div className='dashboard__description'>
-              It is a web application for managing projects and work together.
-              It can also be used for academic purposes.
-            </div>
+            <div className='dashboard__description'>{description}</div>
           </div>
           <div className='dashboard__sprintSection'>
             <div className='dashboard__title'>
@@ -123,7 +122,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className='dashboard__contentColumnTwo'>
+        <div className='dashboard__contentColumnTwo slide__downC2'>
           <div className='dashboard__myTaskSection'>
             <div className='dashboard__title'>
               <div className='dashboard__titleName'>My Task</div>
@@ -167,7 +166,7 @@ const Dashboard = () => {
             <div className='dashboard__collabboardContext'></div>
           </div>
         </div>
-        <div className='dashboard__contentColumnThree'>
+        <div className='dashboard__contentColumnThree slide__downC3'>
           <div className='dashboard__reportSection'>
             <div className='dashboard__title'>
               <div className='dashboard__titleName'>Task Progress</div>

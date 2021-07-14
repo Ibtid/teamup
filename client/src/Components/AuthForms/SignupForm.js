@@ -62,7 +62,7 @@ const SignupForm = () => {
         />
       </div>
       <div className='signin__inputdiv'>
-        <div className='signin__label'>FullName</div>
+        <div className='signin__label'>Full Name</div>
         <input
           className='signin__input'
           id='name'

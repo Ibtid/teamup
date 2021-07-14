@@ -50,7 +50,7 @@ const AddBoard = (props) => {
       )}
       <div className='addboard__container'>
         <div className='addboard__header'>
-          <div className='addboard__title'>Board name</div>
+          <div className='addboard__title'>Epic name</div>
           <div
             className='addboard__closeButton'
             onClick={props.setOpenAddBoard}>
@@ -121,7 +121,7 @@ const AddBoard = (props) => {
           </div>
         </div>
         <div className='addboard__button'>
-          <Button onClick={addboard}>Add Board</Button>
+          <Button onClick={addboard}>Add Epic</Button>
         </div>
       </div>
     </div>,

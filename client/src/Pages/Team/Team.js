@@ -114,7 +114,7 @@ const Team = () => {
               <div className='team__memberName'>{admin.name}</div>
             </div>
           </div>
-          <div className='team__collaborators'>
+          <div className='team__collaborators slide__downC1'>
             <div className='team__header'>Collaborators</div>
             <div className='team__collaboratorsContent'>
               <Scrollable>
@@ -150,7 +150,7 @@ const Team = () => {
             </div>
           </div>
         </div>
-        <div className='team__contentRight'>
+        <div className='team__contentRight slide__downC3'>
           <div className='team__noProfile'>No Profile Selected</div>
         </div>
       </div>

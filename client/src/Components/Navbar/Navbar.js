@@ -33,7 +33,7 @@ const Navbar = () => {
       <div className='navbar__right'>
         <Button>+ New Project</Button>
         <div className='navbar__icon'>
-          <NotificationsIcon />
+          <NotificationsIcon style={{ fontSize: '2vw' }} />
         </div>
         <div
           className='navbar__profile'

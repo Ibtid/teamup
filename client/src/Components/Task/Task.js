@@ -6,8 +6,8 @@ import './Task.css';
 
 const useStyles = makeStyles((theme) => ({
   purple: {
-    width: theme.spacing(2.5),
-    height: theme.spacing(2.5),
+    width: theme.spacing(3),
+    height: theme.spacing(3),
   },
 }));
 

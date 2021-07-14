@@ -10,8 +10,12 @@ const ConsentModal = ({ message, answerNo, answerYes }) => {
       <div className='consentModal__container'>
         <div className='consentModal__text'>{message}</div>
         <div className='consentModal__actionButtons'>
-          <Button onClick={answerYes}>Yes</Button>
-          <Button onClick={answerNo}>No</Button>
+          <Button red='red' onClick={answerYes}>
+            Yes
+          </Button>
+          <Button neutral='neutral' onClick={answerNo}>
+            No
+          </Button>
         </div>
       </div>
     </div>,
