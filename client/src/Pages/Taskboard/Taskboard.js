@@ -8,7 +8,6 @@ import Task from '../../Components/Task/Task';
 import Scrollable from '../../Components/Scrollable/Scrollable';
 import Spinkit from '../../Modals/Spinkit/Spinkit';
 import { listTaskBoards } from '../../API/taskBoard';
-import { useStateValue } from '../../StateProvider/StateProvider';
 import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
 import { useParams } from 'react-router-dom';
 import AddTask from '../../Modals/AddTask/AddTask';
@@ -86,6 +85,7 @@ const Taskboard = () => {
           }}
         />
       )}
+
       <div className='taskboard__navbar'>
         <BigDropDown />
         <Button onClick={() => setOpenAddBoard(true)}>New Epic</Button>

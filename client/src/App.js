@@ -90,7 +90,10 @@ function App() {
             <Team />
           </div>
         </Route>
-        <Route path='/'></Route>
+        <Route path='/'>
+          <div className='ball'></div>
+          <input type='datetime-local' name='datetime' />
+        </Route>
       </Switch>
     </Router>
   );

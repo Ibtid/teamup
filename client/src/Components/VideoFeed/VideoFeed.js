@@ -94,8 +94,8 @@ const VideoFeed = () => {
       });
     return () => {
       socketRef.current.disconnect();
-      //console.log(peersRef.current[0]);
-      peersRef.current[0].peer.destroy();
+      console.log(peersRef.current[0]);
+      //peersRef.current[0].peer.destroy();
     };
   }, []);
 
@@ -180,8 +180,8 @@ const VideoFeed = () => {
           className='videoFeed__disconnectButton'
           onClick={() => {
             socketRef.current.disconnect();
-            //console.log(peersRef.current[0]);
-            peersRef.current[0].peer.destroy();
+            console.log(peersRef.current[0]);
+            //peersRef.current[0].peer.destroy();
             setVideo(false);
             setAudio(false);
             history.push(`/collabboard/${roomId}`);

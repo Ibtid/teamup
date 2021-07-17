@@ -8,6 +8,34 @@
 
 .scrumboard__navbar {
   margin-bottom: 3vh;
+  display: flex;
+}
+
+.scrumboard__selector {
+  height: 4.95vh;
+  min-width: 7.95vw;
+  max-width: 9.95vw;
+  background-color: #ff8c42;
+  border-radius: 0.7vw;
+  font-size: 0.8vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-family: 'Open Sans';
+  cursor: pointer;
+  color: #121212;
+  transition: all 0.1s ease-in-out;
+  border: 1px solid #ff8c42;
+  outline: none;
+  margin-left: 2vw;
+  padding-left: 1vw;
+}
+
+.scrumboard__selector:hover {
+  background: #121212;
+  color: #ff8c42;
+  border: 1px solid #ff8c42;
 }
 
 .scrumboard__content {
