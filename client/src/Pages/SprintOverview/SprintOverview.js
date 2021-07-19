@@ -7,6 +7,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 import './SprintOverview.css';
 import Scrollable from '../../Components/Scrollable/Scrollable';
+import TaskProgress from '../../Components/Charts/TaskProgress';
 
 const SprintOverview = () => {
   const [openNewSprint, setOpenNewSprint] = useState(false);
@@ -74,6 +75,28 @@ const SprintOverview = () => {
             <div className='sprintOverview__header'>Current Sprint</div>
             <div className='sprintOverview__contentOverviewLarge'>
               {readymadeDiv}
+              <div className='sprintOverview__chartSection'>
+                <div className='sprintOverview__sprintHeader'>
+                  Sprint Progress
+                </div>
+                <div className='sprintOverview__chartInfo'>
+                  <div className='sprintOverview__chartInfoGroup'>
+                    <div className='sprintOverview__pendingColor'></div>
+                    <div className='sprintOverview__chartInfoText'>Pending</div>
+                  </div>
+                  <div className='sprintOverview__chartInfoGroup'>
+                    <div className='sprintOverview__ongoingColor'></div>
+                    <div className='sprintOverview__chartInfoText'>Ongoing</div>
+                  </div>
+                  <div className='sprintOverview__chartInfoGroup'>
+                    <div className='sprintOverview__completedColor'></div>
+                    <div className='sprintOverview__chartInfoText'>
+                      Completed
+                    </div>
+                  </div>
+                </div>
+                <TaskProgress />
+              </div>
             </div>
           </div>
         </div>

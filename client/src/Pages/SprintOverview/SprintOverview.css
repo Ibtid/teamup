@@ -110,3 +110,48 @@
   cursor: pointer;
   color: #ff8c42;
 }
+
+.sprintOverview__chartSection {
+  height: 53.25vh;
+  border-radius: 0vh 0vh 2.5vh 2.5vh;
+  width: 100%;
+  padding-left: 1vw;
+  padding-top: 2vh;
+  color: #f2f2f2;
+  position: relative;
+}
+
+.sprintOverview__chartInfo {
+  position: absolute;
+  bottom: 10vh;
+  left: 3vw;
+}
+
+.sprintOverview__pendingColor {
+  height: 0.7vw;
+  width: 0.7vw;
+  background: #2d2d2d;
+  margin-right: 0.3vw;
+  border-radius: 50%;
+}
+
+.sprintOverview__ongoingColor {
+  height: 0.7vw;
+  width: 0.7vw;
+  background: #00aaf2;
+  margin-right: 0.3vw;
+  border-radius: 50%;
+}
+
+.sprintOverview__completedColor {
+  height: 0.7vw;
+  width: 0.7vw;
+  background: #8f44fd;
+  margin-right: 0.3vw;
+  border-radius: 50%;
+}
+
+.sprintOverview__chartInfoGroup {
+  display: flex;
+  align-items: center;
+}
