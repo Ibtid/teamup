@@ -7,10 +7,12 @@ import AddSprint from '../../Modals/AddSprint/AddSprint';
 
 const Scrumboard = () => {
   const [openNewSprint, setOpenNewSprint] = useState(false);
+  const [sprintNo, setSprintNo] = useState(0);
   return (
     <div className='scrumboard'>
       {openNewSprint && (
         <AddSprint
+          sprintNo={sprintNo}
           closeAddSprint={() => {
             setOpenNewSprint(false);
           }}

@@ -120,6 +120,8 @@ const Taskboard = () => {
                             return (
                               <Task
                                 key={task._id}
+                                points={task.points}
+                                assignedTo={task.assignedTo}
                                 color={task.color}
                                 image={task.assignedTo.image}
                                 story={task.story}

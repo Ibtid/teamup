@@ -30,7 +30,7 @@
 .addTask__storyContainer {
   color: #f2f2f2;
   font-family: 'Montserrat', sans-serif;
-  margin-top: -5.75vh;
+  margin-top: -3vh;
 }
 
 .addTask__title {
@@ -47,7 +47,7 @@
   font-size: 1vw;
   padding: 0.5vh 0.5vw;
   outline: none;
-  height: 6vh;
+  height: 8vh;
   width: 95%;
   border-radius: 1vh;
   border: 0.1vh solid #ff8c42;
@@ -60,7 +60,7 @@
 .addTask__memberContainer {
   display: flex;
   align-items: center;
-  margin-bottom: 4vh;
+  margin-bottom: 3vh;
 }
 
 .addTask__selector {

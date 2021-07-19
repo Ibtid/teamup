@@ -91,10 +91,30 @@ const removeMember = async (body) => {
   }
 };
 
+const listAllSprints = async (body) => {
+  try {
+    let response = await fetch(
+      `http://localhost:5000/api/projects/sprints/${body.projectId}/`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      }
+    );
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export {
   create,
   findProjectByUserId,
   listAllMembers,
   addNewMember,
   removeMember,
+  listAllSprints,
 };

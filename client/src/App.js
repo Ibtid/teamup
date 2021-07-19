@@ -15,6 +15,7 @@ import FirstStep from './Pages/RecoveryPages/FirstStep';
 import SecondStep from './Pages/RecoveryPages/SecondStep';
 import ThirdStep from './Pages/RecoveryPages/ThirdStep';
 import FinalStep from './Pages/RecoveryPages/FinalStep';
+import SprintOverview from './Pages/SprintOverview/SprintOverview';
 
 function App() {
   return (
@@ -55,11 +56,18 @@ function App() {
             <Taskboard />
           </div>
         </Route>
-        <Route path='/scrumboard/:projectId'>
+        <Route path='/sprint/:sprintId'>
           <Navbar />
           <div className='app__flexSidebar'>
             <Sidebar />
             <Scrumboard />
+          </div>
+        </Route>
+        <Route path='/scrumboard/:projectId'>
+          <Navbar />
+          <div className='app__flexSidebar'>
+            <Sidebar />
+            <SprintOverview />
           </div>
         </Route>
         <Route path='/collabboard/:projectId'>

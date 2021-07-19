@@ -22,7 +22,7 @@
 .updateTask__storyContainer {
   color: #f2f2f2;
   font-family: 'Montserrat', sans-serif;
-  margin-top: -5.75vh;
+  margin-top: -3vh;
 }
 
 .updateTask__title {
@@ -37,9 +37,9 @@
   color: #f2f2f2;
   font-family: 'Montserrat', sans-serif;
   font-size: 1vw;
-  padding: 0.5vh 0.5vw;
+  padding: 1vh 0.5vw;
   outline: none;
-  height: 5.5vh;
+  height: 8vh;
   width: 95%;
   border-radius: 1vh;
   border: 0.1vh solid #ff8c42;
@@ -57,6 +57,22 @@
 
 .updateTask__SprintContainer {
   margin-right: 2.5vw;
+}
+
+.updateTask__points {
+  background: #252525;
+  color: #f2f2f2;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1vw;
+  padding: 0.5vh 0.5vw;
+  outline: none;
+  height: 3.5vh;
+  width: 15%;
+  border-radius: 1vh;
+  border: 0.1vh solid #ff8c42;
+  margin-bottom: 0vh;
+  margin-top: 1.5vh;
+  font-weight: 500;
 }
 
 .updateTask__buttonContainer {

@@ -24,6 +24,8 @@ const Task = (props) => {
     <>
       {openUpdateTask && props.status === 'Pending' && (
         <UpdateTask
+          points={props.points}
+          assignedTo={props.assignedTo}
           close={() => {
             setOpenUpdateTask(false);
           }}
