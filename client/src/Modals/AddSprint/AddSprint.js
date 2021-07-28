@@ -7,6 +7,7 @@ import Spinkit from '../Spinkit/Spinkit';
 import ResponseModal from '../ResponseModal/ResponseModal';
 
 import './AddSprint.css';
+import { create } from '../../API/sprint';
 
 const AddSprint = (props) => {
   const { projectId } = useParams();
@@ -17,15 +18,36 @@ const AddSprint = (props) => {
   const [openResponse, setOpenResponse] = useState(false);
 
   const createSprint = () => {
+    setLoading(true);
     const body = {
       sprintNo: props.sprintNo + 1,
-      startDate: new Date(startDate),
-      endDate: new Date(endDate),
+      startTime: new Date(startDate),
+      endTime: new Date(endDate),
       projectId: projectId,
     };
-    console.log(body.startDate);
-    console.log(body.endDate);
-    console.log(new Date());
+    console.log(body);
+    create(body).then((response) => {
+      if (response.success) {
+        setMessage(response.message);
+        setOpenResponse(true);
+        setLoading(false);
+      } else {
+        setMessage(response.message);
+        setOpenResponse(true);
+        setLoading(false);
+      }
+    });
+    console.log(body.startTime);
+    console.log(body.endTime);
+    console.log(Date());
+
+    let time = new Date();
+    if (body.endTime < time) {
+      console.log('less');
+    }
+    if (body.endTime > time) {
+      console.log('more');
+    }
   };
   return ReactDOM.createPortal(
     <div className='addSprint'>

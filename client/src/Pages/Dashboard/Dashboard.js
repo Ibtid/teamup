@@ -10,6 +10,7 @@ import Task from '../../Components/Task/Task';
 import { useParams } from 'react-router';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import TaskProgress from '../../Components/Charts/TaskProgress';
 
 const useStyles = makeStyles((theme) => ({
   purple: {
@@ -68,6 +69,11 @@ const Dashboard = () => {
       }
     });
   }, []);
+
+  const chartData = [
+    { name: 'A', value: 20, fill: '#2D2D2D' },
+    { name: 'B', value: 25, fill: '#00AAF2' },
+  ];
 
   return (
     <div className='dashboard'>
@@ -177,7 +183,12 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-            <div className='dashboard__reportContent'></div>
+            <div className='dashboard__reportContent'>
+              <div className='dashboard__chartInfo'>
+                <div className='sprintOverview__chartInfoGroup'>67.9%</div>
+              </div>
+              <TaskProgress data={chartData} datakey='value' />
+            </div>
           </div>
           <div className='dashboard__teamSection'>
             <div className='dashboard__title'>

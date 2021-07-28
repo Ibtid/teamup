@@ -12,14 +12,18 @@ import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
 import { useParams } from 'react-router-dom';
 import AddTask from '../../Modals/AddTask/AddTask';
 import { listTasksByProjectId } from '../../API/task';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import ConsentModal from '../../Modals/ConsentModal/ConsentModal';
 
 const Taskboard = () => {
   const { projectId } = useParams();
 
   const [openAddBoard, setOpenAddBoard] = useState(false);
   const [openAddTask, setOpenAddTask] = useState(false);
+  const [openConsentModal, setOpenConsentModal] = useState(false);
 
   const [loading, setLoading] = useState(false);
+  const [loadinga, setLoadinga] = useState(false);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('');
   const [boards, setBoards] = useState([]);
@@ -44,16 +48,16 @@ const Taskboard = () => {
   }, [openAddBoard]);
 
   useEffect(() => {
-    setLoading(true);
+    setLoadinga(true);
     listTasksByProjectId(projectId).then((response) => {
       if (response.success) {
         console.log(response);
         setTasks(response.tasks);
-        setLoading(false);
+        setLoadinga(false);
       } else {
         setMessage(response.message);
         setOpen(true);
-        setLoading(false);
+        setLoadinga(false);
       }
     });
   }, [openAddTask]);
@@ -68,6 +72,7 @@ const Taskboard = () => {
         />
       )}
       {loading && <Spinkit />}
+      {loadinga && <Spinkit />}
       {open && (
         <ResponseModal
           message={message}
@@ -85,6 +90,17 @@ const Taskboard = () => {
           }}
         />
       )}
+      {openConsentModal && (
+        <ConsentModal
+          message={`Are you sure you want to delete the epic along with all of it's stories?`}
+          answerNo={() => {
+            setOpenConsentModal(false);
+          }}
+          answerYes={() => {
+            setOpenConsentModal(false);
+          }}
+        />
+      )}
 
       <div className='taskboard__navbar'>
         <BigDropDown />
@@ -99,14 +115,23 @@ const Taskboard = () => {
               <div className={board.color}>
                 <div className='taskboard__header'>
                   <div className='taskboard__headerText'>{board.name}</div>
-                  <div
-                    className='taskboard__addTask'
-                    onClick={() => {
-                      setColor(board.color);
-                      setBoardId(board._id);
-                      setOpenAddTask(true);
-                    }}>
-                    <AddCircleOutlineIcon />
+                  <div className='taskboard__headerButton'>
+                    <div
+                      className='taskboard__addTask'
+                      onClick={() => {
+                        setColor(board.color);
+                        setBoardId(board._id);
+                        setOpenAddTask(true);
+                      }}>
+                      <AddCircleOutlineIcon />
+                    </div>
+                    <div
+                      className='taskboard__deleteBoard'
+                      onClick={() => {
+                        setOpenConsentModal(true);
+                      }}>
+                      <DeleteOutlineIcon />
+                    </div>
                   </div>
                 </div>
                 <div className='taskboard__taskList'>

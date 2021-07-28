@@ -74,6 +74,17 @@
   justify-content: space-between;
 }
 
+.taskboard__headerButton {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taskboard__deleteBoard {
+  margin-left: 1.5vw;
+}
+
 .taskboard__addTask {
   cursor: pointer;
 }
