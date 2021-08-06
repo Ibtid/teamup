@@ -5,9 +5,10 @@ import { listAllMembers } from '../../API/project';
 import Spinkit from '../Spinkit/Spinkit';
 import ResponseModal from '../ResponseModal/ResponseModal';
 import { useParams } from 'react-router-dom';
-
+import { getSprints } from '../../API/sprint';
 import './UpdateTask.css';
 import Button from '../../Components/Button/Button';
+import { updateTask } from '../../API/task';
 
 const UpdateTask = (props) => {
   const { projectId } = useParams();
@@ -19,7 +20,12 @@ const UpdateTask = (props) => {
   const [toBeAssigned, setToBeAssigned] = useState([]);
   const [assignedTo, setAssignedTo] = useState(props.assignedTo._id);
 
+  const defaultSprint = [{ _id: 0, sprintNo: '--' }];
+  const [sprints, setSprints] = useState([]);
+  const [sprint, setSprint] = useState('');
+
   const [loading, setLoading] = useState(true);
+  const [loadinga, setLoadinga] = useState(true);
   const [message, setMessage] = useState('');
   const [openResponse, setOpenResponse] = useState(false);
 
@@ -45,8 +51,29 @@ const UpdateTask = (props) => {
     });
   }, []);
 
+  useEffect(() => {
+    setLoadinga(true);
+    getSprints(projectId).then((response) => {
+      if (response.success) {
+        response.sprints.map((sprint) => {
+          defaultSprint.push(sprint);
+        });
+        setSprints(defaultSprint);
+        setLoadinga(false);
+      } else {
+        setMessage(response.message);
+        setOpenResponse(true);
+        setLoadinga(false);
+      }
+    });
+  }, []);
+
   const selectMember = (event) => {
     setAssignedTo(event.target.value);
+  };
+
+  const selectSprint = (event) => {
+    setSprint(event.target.value);
   };
 
   const update = () => {
@@ -54,13 +81,25 @@ const UpdateTask = (props) => {
       assignedTo,
       story,
       points,
+      sprintId: sprint,
+      taskId: props._id,
     };
-    console.log(body);
+    updateTask(body).then((response) => {
+      console.log(response);
+      if (response.success) {
+        props.close();
+      } else {
+        setMessage(response.message);
+        setOpenResponse(true);
+        setLoadinga(false);
+      }
+    });
   };
 
   return ReactDOM.createPortal(
     <div className='updateTask'>
       {loading && <Spinkit />}
+      {loadinga && <Spinkit />}
       {openResponse && (
         <ResponseModal
           message={message}
@@ -103,16 +142,15 @@ const UpdateTask = (props) => {
         <div className='updateTask__secondSection'>
           <div className='updateTask__SprintContainer'>
             <div className='updateTask__title'>Add Sprint</div>
-            <select className='addTask__selector' onChange={props.selectMember}>
-              <option key='1' className='addTask__option'>
-                None
-              </option>
-              <option key='2' className='addTask__option'>
-                Sprint 1
-              </option>
-              <option key='3' className='addTask__option'>
-                Sprint 2
-              </option>
+            <select className='addTask__selector' onChange={selectSprint}>
+              {sprints.map((indexSprint) => (
+                <option
+                  key={indexSprint._id}
+                  value={indexSprint._id}
+                  className='addTask__option'>
+                  Sprint {indexSprint.sprintNo}
+                </option>
+              ))}
             </select>
           </div>
           <div className='updateTask__StoryPoints'>

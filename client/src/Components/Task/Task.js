@@ -24,10 +24,12 @@ const Task = (props) => {
     <>
       {openUpdateTask && props.status === 'Pending' && (
         <UpdateTask
+          _id={props._id}
           points={props.points}
           assignedTo={props.assignedTo}
           close={() => {
             setOpenUpdateTask(false);
+            props.switchReloadSignal();
           }}
           story={props.story}
         />

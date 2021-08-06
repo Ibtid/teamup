@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { v4 as uuidv4 } from 'uuid';
 import Scrollable from '../Scrollable/Scrollable';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
+import { useParams } from 'react-router-dom';
+import { getSprintDetails } from '../../API/sprint';
 
 import './Kanban.css';
 
@@ -83,6 +85,18 @@ const Kanban = () => {
   const classes = useStyles();
 
   const [columns, setColumns] = useState(columnsFromBackend);
+
+  const { sprintId } = useParams();
+
+  useEffect(() => {
+    let body = {
+      sprintId,
+    };
+    getSprintDetails(body).then((response) => {
+      console.log(response);
+    });
+  }, []);
+
   return (
     <div className='kanban'>
       <DragDropContext

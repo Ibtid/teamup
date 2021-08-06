@@ -32,4 +32,22 @@ const getSprints = async (projectId) => {
   }
 };
 
-export { create, getSprints };
+const getSprintDetails = async (body) => {
+  try {
+    let response = await fetch(
+      `http://localhost:5000/api/sprints/info/${body.sprintId}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { create, getSprints, getSprintDetails };

@@ -32,6 +32,8 @@ const Taskboard = () => {
   const [boardId, setBoardId] = useState('');
   const [tasks, setTasks] = useState([]);
 
+  const [reloadSignal, setReloadSignal] = useState(false);
+
   useEffect(() => {
     setLoading(true);
     listTaskBoards(projectId).then((response) => {
@@ -60,7 +62,7 @@ const Taskboard = () => {
         setLoadinga(false);
       }
     });
-  }, [openAddTask]);
+  }, [openAddTask, reloadSignal]);
 
   return (
     <div className='taskboard'>
@@ -145,6 +147,10 @@ const Taskboard = () => {
                             return (
                               <Task
                                 key={task._id}
+                                switchReloadSignal={() => {
+                                  setReloadSignal(!reloadSignal);
+                                }}
+                                _id={task._id}
                                 points={task.points}
                                 assignedTo={task.assignedTo}
                                 color={task.color}
