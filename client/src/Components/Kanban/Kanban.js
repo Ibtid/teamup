@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import { getSprintDetails } from '../../API/sprint';
 import Spinkit from '../../Modals/Spinkit/Spinkit';
 import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
+import { updateTaskFromKanban } from '../../API/task';
 
 import './Kanban.css';
 
@@ -24,6 +25,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Kanban = () => {
   const classes = useStyles();
+  const { sprintId } = useParams();
+
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('');
@@ -37,9 +40,34 @@ const Kanban = () => {
     if (source.droppableId !== destination.droppableId) {
       const sourceColumn = columns[source.droppableId];
       const destColumn = columns[destination.droppableId];
+
       const sourceItems = [...sourceColumn.items];
       const destItems = [...destColumn.items];
       const [removed] = sourceItems.splice(source.index, 1);
+
+      //testing
+
+      const body = {
+        taskId: removed._id,
+        sprintId: sprintId,
+        destName: destColumn.name,
+        sourceName: sourceColumn.name,
+      };
+
+      setLoading(true);
+      updateTaskFromKanban(body).then((response) => {
+        console.log(response);
+        if (response.success) {
+          setLoading(false);
+        } else {
+          setMessage(response.message);
+          setOpen(true);
+          setLoading(false);
+        }
+      });
+
+      console.log(body);
+
       destItems.splice(destination.index, 0, removed);
       setColumns({
         ...columns,
@@ -67,15 +95,12 @@ const Kanban = () => {
     }
   };
 
-  const { sprintId } = useParams();
-
   useEffect(() => {
     setLoading(true);
     let body = {
       sprintId,
     };
     getSprintDetails(body).then((response) => {
-      console.log(response);
       if (response.success) {
         setColumns({
           [uuidv4()]: {
@@ -147,9 +172,10 @@ const Kanban = () => {
                                       {...provided.dragHandleProps}
                                       style={{
                                         userSelect: 'none',
-                                        padding: '1vh 1vw',
-                                        margin: '0 0 1vh 0',
+                                        padding: '1vh 0.8vw',
+                                        margin: '0 0 0 0',
                                         minHeight: '1vh',
+                                        borderRadius: '1vh',
                                         backgroundColor: snapshot.isDragging
                                           ? '#525252'
                                           : '#252525',

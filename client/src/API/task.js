@@ -66,4 +66,29 @@ const updateTask = async (body) => {
   }
 };
 
-export { create, listTasksByProjectId, getMyTask, updateTask };
+const updateTaskFromKanban = async (body) => {
+  try {
+    let response = await fetch(
+      `http://localhost:5000/api/tasks/kanban/${body.taskId}`,
+      {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      }
+    );
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  create,
+  listTasksByProjectId,
+  getMyTask,
+  updateTask,
+  updateTaskFromKanban,
+};
