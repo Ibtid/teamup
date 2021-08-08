@@ -202,6 +202,9 @@ const Kanban = () => {
                             );
                           })}
                           {provided.placeholder}
+                          {column.items.length === 0 && (
+                            <div className='empty__Kanban'>{`No ${column.name} Stories`}</div>
+                          )}
                         </div>
                       </Scrollable>
                     );

@@ -56,3 +56,15 @@
   background: #42ffd2;
   border-radius: 50%;
 }
+
+.empty__Kanban {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  width: 100%;
+  font-size: 1.2vw;
+  font-family: 'Montserrat';
+
+  color: #3a3a3a;
+}
