@@ -20,12 +20,15 @@ const UpdateTask = (props) => {
   const [toBeAssigned, setToBeAssigned] = useState([]);
   const [assignedTo, setAssignedTo] = useState(props.assignedTo._id);
 
-  const defaultSprint = [{ _id: 0, sprintNo: '--' }];
+  const defaultSprint = [
+    { _id: props.sprintId || 0, sprintNo: props.sprintNo || '--' },
+  ];
   const [sprints, setSprints] = useState([]);
   const [sprint, setSprint] = useState('');
 
   const [loading, setLoading] = useState(true);
   const [loadinga, setLoadinga] = useState(true);
+  const [loadingb, setLoadingb] = useState(false);
   const [message, setMessage] = useState('');
   const [openResponse, setOpenResponse] = useState(false);
 
@@ -56,7 +59,7 @@ const UpdateTask = (props) => {
     getSprints(projectId).then((response) => {
       if (response.success) {
         response.sprints.map((sprint) => {
-          defaultSprint.push(sprint);
+          if (sprint._id !== defaultSprint[0]._id) defaultSprint.push(sprint);
         });
         setSprints(defaultSprint);
         setLoadinga(false);
@@ -77,6 +80,7 @@ const UpdateTask = (props) => {
   };
 
   const update = () => {
+    setLoadingb(true);
     const body = {
       assignedTo,
       story,
@@ -84,14 +88,16 @@ const UpdateTask = (props) => {
       sprintId: sprint,
       taskId: props._id,
     };
+    console.log(body);
     updateTask(body).then((response) => {
       console.log(response);
       if (response.success) {
+        setLoadingb(false);
         props.close();
       } else {
         setMessage(response.message);
         setOpenResponse(true);
-        setLoadinga(false);
+        setLoadingb(false);
       }
     });
   };
@@ -100,6 +106,7 @@ const UpdateTask = (props) => {
     <div className='updateTask'>
       {loading && <Spinkit />}
       {loadinga && <Spinkit />}
+      {loadingb && <Spinkit />}
       {openResponse && (
         <ResponseModal
           message={message}

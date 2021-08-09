@@ -144,12 +144,19 @@ const Taskboard = () => {
                         .reverse()
                         .map((task) => {
                           if (task.boardId === board._id) {
+                            let sprintId = task.sprintId
+                              ? task.sprintId._id
+                              : 0;
+                            let sprintNo = task.sprintId
+                              ? task.sprintId.sprintNo
+                              : '--';
                             return (
                               <Task
                                 key={task._id}
                                 switchReloadSignal={() => {
                                   setReloadSignal(!reloadSignal);
                                 }}
+                                fromEpic={true}
                                 _id={task._id}
                                 points={task.points}
                                 assignedTo={task.assignedTo}
@@ -158,6 +165,8 @@ const Taskboard = () => {
                                 story={task.story}
                                 status={task.status}
                                 putWhitespace='putWhitespace'
+                                sprintId={sprintId}
+                                sprintNo={sprintNo}
                               />
                             );
                           }

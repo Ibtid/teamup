@@ -2,9 +2,12 @@ import React from 'react';
 
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
-const TaskProgress = ({ fromSprint, data, datakey }) => {
-  const innerRadius = fromSprint ? 75 : 40;
-  const paddingAngle = fromSprint ? 10 : null;
+const TaskProgress = ({ fromSprint, data, datakey, fromReport }) => {
+  let innerRadius = fromSprint ? 75 : 40;
+  let paddingAngle = fromSprint ? 10 : null;
+
+  innerRadius = fromReport ? 40 : innerRadius;
+  paddingAngle = fromReport ? 10 : null;
 
   return (
     <ResponsiveContainer width='100%' height='80%'>

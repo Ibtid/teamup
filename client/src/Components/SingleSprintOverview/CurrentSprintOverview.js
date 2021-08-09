@@ -41,19 +41,19 @@ const CurrentSprintOverview = ({
           <div className='sprintOverview__chartInfoGroup'>
             <div className='sprintOverview__pendingColor'></div>
             <div className='sprintOverview__chartInfoText'>
-              Pending {pendingPercentage || 0}%
+              Pending {pendingPercentage.toString().substring(0, 5) || 0}%
             </div>
           </div>
           <div className='sprintOverview__chartInfoGroup'>
             <div className='sprintOverview__ongoingColor'></div>
             <div className='sprintOverview__chartInfoText'>
-              Ongoing {ongoingPercentage || 0}%
+              Ongoing {ongoingPercentage.toString().substring(0, 5) || 0}%
             </div>
           </div>
           <div className='sprintOverview__chartInfoGroup'>
             <div className='sprintOverview__completedColor'></div>
             <div className='sprintOverview__chartInfoText'>
-              Completed {completedPercentage || 0}%
+              Completed {completedPercentage.toString().substring(0, 5) || 0}%
             </div>
           </div>
         </div>

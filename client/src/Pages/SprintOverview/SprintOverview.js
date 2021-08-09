@@ -28,7 +28,9 @@ const SprintOverview = () => {
       console.log(response);
       if (response.success) {
         const lastSprint = response.sprints[response.sprints.length - 1];
-        setSprintNo(lastSprint.sprintNo);
+        if (lastSprint) {
+          setSprintNo(lastSprint.sprintNo);
+        }
 
         //Identifying the upcoming sprints
         const upcoming = response.sprints.filter(
@@ -49,7 +51,6 @@ const SprintOverview = () => {
             new Date() < new Date(sprint.endTime)
         );
         setCurrentSprint(current);
-
         setLoading(false);
       } else {
         setMessage(response.message);
@@ -57,7 +58,7 @@ const SprintOverview = () => {
         setOpenResponse(true);
       }
     });
-  }, []);
+  }, [openNewSprint]);
 
   return (
     <div className='sprintOverview'>

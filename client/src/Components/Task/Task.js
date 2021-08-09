@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import UpdateTask from '../../Modals/UpdateTask/UpdateTask';
+import Scrollable from '../Scrollable/Scrollable';
 
 import './Task.css';
 
@@ -14,15 +15,19 @@ const useStyles = makeStyles((theme) => ({
 
 const Task = (props) => {
   const classes = useStyles();
-  const activeClassName =
+
+  let activeClassName =
     props.status === 'Pending' ? 'not_active' : 'yes_active';
-  const activeClassText = props.status === 'Pending' ? 'Not active' : 'active';
+  activeClassName = props.status === 'completed' ? 'done' : activeClassName;
+
+  let activeClassText = props.status === 'Pending' ? 'inactive' : 'active';
+  activeClassText = props.status === 'completed' ? 'done' : activeClassText;
 
   const [openUpdateTask, setOpenUpdateTask] = useState(false);
 
   return (
     <>
-      {openUpdateTask && props.status === 'Pending' && (
+      {openUpdateTask && props.fromEpic && props.status !== 'completed' && (
         <UpdateTask
           _id={props._id}
           points={props.points}
@@ -32,6 +37,8 @@ const Task = (props) => {
             props.switchReloadSignal();
           }}
           story={props.story}
+          sprintNo={props.sprintNo}
+          sprintId={props.sprintId}
         />
       )}
       <div

@@ -123,7 +123,7 @@ const Kanban = () => {
         setLoading(false);
       }
     });
-  }, []);
+  }, [open]);
 
   return (
     <div className='kanban'>
