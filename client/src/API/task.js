@@ -85,10 +85,26 @@ const updateTaskFromKanban = async (body) => {
   }
 };
 
+const deleteTask = async (taskId) => {
+  try {
+    let response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export {
   create,
   listTasksByProjectId,
   getMyTask,
   updateTask,
   updateTaskFromKanban,
+  deleteTask,
 };

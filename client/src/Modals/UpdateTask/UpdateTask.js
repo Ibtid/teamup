@@ -9,6 +9,8 @@ import { getSprints } from '../../API/sprint';
 import './UpdateTask.css';
 import Button from '../../Components/Button/Button';
 import { updateTask } from '../../API/task';
+import ConsentModal from '../../Modals/ConsentModal/ConsentModal';
+import { deleteTask } from '../../API/task';
 
 const UpdateTask = (props) => {
   const { projectId } = useParams();
@@ -31,6 +33,7 @@ const UpdateTask = (props) => {
   const [loadingb, setLoadingb] = useState(false);
   const [message, setMessage] = useState('');
   const [openResponse, setOpenResponse] = useState(false);
+  const [openConsentModal, setOpenConsentModal] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -102,6 +105,21 @@ const UpdateTask = (props) => {
     });
   };
 
+  const removeTaskClicked = () => {
+    setLoading(true);
+    deleteTask(props._id).then((response) => {
+      if (response.success) {
+        setLoading(false);
+        setOpenConsentModal(false);
+        props.close();
+      } else {
+        setMessage(response.message);
+        setOpenResponse(true);
+        setLoading(false);
+      }
+    });
+  };
+
   return ReactDOM.createPortal(
     <div className='updateTask'>
       {loading && <Spinkit />}
@@ -111,6 +129,15 @@ const UpdateTask = (props) => {
         <ResponseModal
           message={message}
           setOpen={() => setOpenResponse(false)}
+        />
+      )}
+      {openConsentModal && (
+        <ConsentModal
+          message={`Are you sure you want to delete the story?`}
+          answerNo={() => {
+            setOpenConsentModal(false);
+          }}
+          answerYes={removeTaskClicked}
         />
       )}
       <div className='updateTask__container'>
@@ -175,7 +202,13 @@ const UpdateTask = (props) => {
 
         <div className='updateTask__buttonContainer'>
           <Button onClick={update}>Update</Button>
-          <Button red='red'>Delete</Button>
+          <Button
+            red='red'
+            onClick={() => {
+              setOpenConsentModal(true);
+            }}>
+            Delete
+          </Button>
         </div>
       </div>
     </div>,
