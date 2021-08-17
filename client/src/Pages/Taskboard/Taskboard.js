@@ -7,7 +7,7 @@ import AddBoard from '../../Modals/AddBoard/AddBoard';
 import Task from '../../Components/Task/Task';
 import Scrollable from '../../Components/Scrollable/Scrollable';
 import Spinkit from '../../Modals/Spinkit/Spinkit';
-import { listTaskBoards } from '../../API/taskBoard';
+import { listTaskBoards, deleteBoard } from '../../API/taskBoard';
 import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
 import { useParams } from 'react-router-dom';
 import AddTask from '../../Modals/AddTask/AddTask';
@@ -33,6 +33,7 @@ const Taskboard = () => {
   const [tasks, setTasks] = useState([]);
 
   const [reloadSignal, setReloadSignal] = useState(false);
+  const [reloadSignala, setReloadSignala] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -47,7 +48,7 @@ const Taskboard = () => {
         setLoading(false);
       }
     });
-  }, [openAddBoard]);
+  }, [openAddBoard, reloadSignala]);
 
   useEffect(() => {
     setLoadinga(true);
@@ -63,6 +64,22 @@ const Taskboard = () => {
       }
     });
   }, [openAddTask, reloadSignal]);
+
+  const removeboardClicked = () => {
+    setLoadinga(true);
+    deleteBoard(boardId).then((response) => {
+      if (response.success) {
+        setOpenConsentModal(false);
+        setLoadinga(false);
+        setReloadSignala(!reloadSignala);
+      } else {
+        setOpenConsentModal(false);
+        setMessage(response.message);
+        setOpen(true);
+        setLoadinga(false);
+      }
+    });
+  };
 
   return (
     <div className='taskboard'>
@@ -98,9 +115,7 @@ const Taskboard = () => {
           answerNo={() => {
             setOpenConsentModal(false);
           }}
-          answerYes={() => {
-            setOpenConsentModal(false);
-          }}
+          answerYes={removeboardClicked}
         />
       )}
 
@@ -130,6 +145,7 @@ const Taskboard = () => {
                     <div
                       className='taskboard__deleteBoard'
                       onClick={() => {
+                        setBoardId(board._id);
                         setOpenConsentModal(true);
                       }}>
                       <DeleteOutlineIcon />

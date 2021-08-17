@@ -32,4 +32,19 @@ const listTaskBoards = async (projectId) => {
   }
 };
 
-export { create, listTaskBoards };
+const deleteBoard = async (boardId) => {
+  try {
+    let response = await fetch(`http://localhost:5000/api/boards/${boardId}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { create, listTaskBoards, deleteBoard };
