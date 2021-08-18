@@ -50,4 +50,22 @@ const getSprintDetails = async (body) => {
   }
 };
 
-export { create, getSprints, getSprintDetails };
+const deleteSprint = async (sprintId) => {
+  try {
+    let response = await fetch(
+      `http://localhost:5000/api/sprints/${sprintId}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { create, getSprints, getSprintDetails, deleteSprint };
