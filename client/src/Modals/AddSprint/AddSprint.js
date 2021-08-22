@@ -55,7 +55,10 @@ const AddSprint = (props) => {
       {openResponse && (
         <ResponseModal
           message={message}
-          setOpen={() => setOpenResponse(false)}
+          setOpen={() => {
+            setOpenResponse(false);
+            props.closeAddSprint();
+          }}
         />
       )}
       <div className='addSprint__container'>

@@ -53,7 +53,7 @@ const Profile = (props) => {
   const slide = props.openProfile ? 'slide__in' : 'slide__out';
 
   useEffect(() => {
-    console.log(jwt.token);
+    console.log(user);
     if (!file) {
       return;
     }
@@ -120,9 +120,10 @@ const Profile = (props) => {
             </div>
             <div className='profile__infoData'>Email: {user.user.email}</div>
             <div className='profile__infoTitle'>Project(s)</div>
-            <div className='profile__infoData'>TeamUp</div>
-            <div className='profile__infoData'>Horek-Rokom</div>
-            <div className='profile__infoData'>DodgeLegends</div>
+            {user.user.projects.length !== 0 &&
+              user.user.projects.map((project) => (
+                <div className='profile__infoData'>{project.name}</div>
+              ))}
             <div className='profile__infoTitle'>Tags</div>
             <div className='profile__tagContainer'>
               <div className='profile__tag'>Front End</div>
