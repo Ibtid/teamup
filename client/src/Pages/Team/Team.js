@@ -38,6 +38,8 @@ const Team = () => {
   const [openConsentModal, setOpenConsentModal] = useState(false);
   const [memberToBeRemovedName, setMemberToBeRemovedName] = useState('');
   const [memberToBeRemovedId, setMemberToBeRemovedId] = useState('');
+  const [selectedMember, setSelectedMember] = useState(false);
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -45,8 +47,10 @@ const Team = () => {
     listAllMembers(projectId).then((response) => {
       console.log(response);
       if (response.success) {
+        console.log(response.members);
         setMembers(response.members);
         setAdmin(response.admin);
+        setTasks(response.tasks);
         setLoading(false);
       } else {
         setMessage(response.message);
@@ -120,7 +124,30 @@ const Team = () => {
               <Scrollable>
                 <div className='team__members'>
                   {members.map((member) => (
-                    <div className='team__member' key={member._id}>
+                    <div
+                      className='team__member'
+                      key={member._id}
+                      onClick={() => {
+                        let completed = 0;
+                        let total = 0;
+                        tasks.forEach((task, j) => {
+                          if (member._id === task.assignedTo) {
+                            total = total + 1;
+                            if (task.status === 'completed') {
+                              completed = completed + 1;
+                            }
+                          }
+                        });
+
+                        setSelectedMember({
+                          name: member.name,
+                          image: member.image,
+                          username: member.username,
+                          email: member.email,
+                          completed: completed,
+                          total: total || 'Nan',
+                        });
+                      }}>
                       <div className='team__profileGroup'>
                         <Avatar
                           className={classes.purple}
@@ -151,7 +178,32 @@ const Team = () => {
           </div>
         </div>
         <div className='team__contentRight slide__downC3'>
-          <div className='team__noProfile'>No Profile Selected</div>
+          {selectedMember ? (
+            <div className='team__selectedMember'>
+              <Avatar
+                style={{ width: '9.4vw', height: '19.7vh' }}
+                src={`http://localhost:5000/${selectedMember.image}`}
+              />
+              <div className='team__selectedName'>{selectedMember.name}</div>
+              <div className='team__selectedInfo'>
+                <div className='team__selectedTitle'>Team Info</div>
+                <div className='team__selectedData'>Role: Member</div>
+                <div className='team__selectedData'>
+                  Task Completed: {selectedMember.completed}/
+                  {selectedMember.total}
+                </div>
+                <div className='team__selectedTitle'>Personal Information</div>
+                <div className='team__selectedData'>
+                  Username: {selectedMember.username}
+                </div>
+                <div className='team__selectedData'>
+                  Email: {selectedMember.email}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className='team__noProfile'>No Profile Selected</div>
+          )}
         </div>
       </div>
     </div>

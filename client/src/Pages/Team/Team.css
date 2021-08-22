@@ -164,3 +164,44 @@
   color: #5f5f5f;
   font-size: 1.1vw;
 }
+
+.team__selectedMember {
+  display: flex;
+  align-items: center;
+  color: #f2f2f2;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding-top: 6vh;
+}
+
+.team__selectedName {
+  margin-top: 2.5vh;
+  color: #f2f2f2;
+  font-size: 1.4vw;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 2vh;
+}
+
+.team__selectedInfo {
+  width: 100%;
+  padding-left: 2vw;
+}
+
+.team__selectedTitle {
+  margin-top: 3vh;
+  margin-bottom: 1.5vh;
+  color: #ff8c42;
+  font-weight: 900;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95vw;
+}
+
+.team__selectedData {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  color: #f2f2f2;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95vw;
+}
