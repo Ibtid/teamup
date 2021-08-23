@@ -37,6 +37,7 @@
   width: 100%;
   border-radius: 2.5vh;
   color: #f2f2f2;
+  padding-right: 0vw;
 }
 
 .team__projectOwnerName {
@@ -44,8 +45,18 @@
   align-items: center;
   font-size: 1.3vw;
   margin-left: 1vw;
+  margin-right: 1vw;
   margin-top: 0.5vh;
   cursor: pointer;
+  border-radius: 0.5vw;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
+}
+
+.team__projectOwnerName:hover {
+  background: #525252;
 }
 
 .team__collaborators {
@@ -100,25 +111,38 @@
   border-radius: 1.5vh;
   padding-top: 0.5vh;
   padding-bottom: 0.5vh;
-  width: 11vw;
+  padding-left: 0.5vw;
+  cursor: pointer;
+  width: 12vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   color: #f2f2f2;
   font-size: 2vh;
-  height: 3vh;
+  height: 4.235vh;
+  outline: none;
+  background-color: #252525;
 }
 
 .team__buttondropText {
   margin-left: 1vh;
 }
 
-.team__icon {
-  color: #ff8c42;
+.team__role {
+  border: 1px solid #ff8c42;
+  border-radius: 1.5vh;
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
+  cursor: pointer;
+  width: 11vw;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-right: 1vh;
+  align-items: center;
+  color: #f2f2f2;
+  font-size: 2vh;
+  height: 3vh;
+  outline: none;
+  background-color: #252525;
 }
 
 .team__member:hover {
@@ -204,4 +228,26 @@
   color: #f2f2f2;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.95vw;
+}
+
+.team__selectedButton {
+  color: #121212;
+  background-color: #fa5959;
+  padding: 0.5vh 1vw 0.5vh 1vw;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95vw;
+  width: 5vw;
+  margin-top: 2.5vh;
+  border-radius: 1.25vh;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: 0.01vh solid #fa5959;
+}
+
+.team__selectedButton:hover {
+  background-color: #252525;
+  color: #fa5959;
+  border: 0.01vh solid #fa5959;
 }

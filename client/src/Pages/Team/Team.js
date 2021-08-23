@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Team = () => {
   const classes = useStyles();
+  const user = JSON.parse(sessionStorage.getItem('jwt'));
   const { projectId } = useParams();
   const [members, setMembers] = useState([]);
   const [admin, setAdmin] = useState([]);
@@ -40,16 +41,21 @@ const Team = () => {
   const [memberToBeRemovedId, setMemberToBeRemovedId] = useState('');
   const [selectedMember, setSelectedMember] = useState(false);
   const [tasks, setTasks] = useState([]);
+  let responseMembers = [];
 
   useEffect(() => {
     setLoading(true);
 
     listAllMembers(projectId).then((response) => {
-      console.log(response);
       if (response.success) {
-        console.log(response.members);
-        setMembers(response.members);
         setAdmin(response.admin);
+        response.members.forEach((member) => {
+          if (member._id !== response.admin._id) {
+            console.log(member.name + ' is added' + member._id);
+            responseMembers.push(member);
+            setMembers(responseMembers);
+          }
+        });
         setTasks(response.tasks);
         setLoading(false);
       } else {
@@ -69,6 +75,7 @@ const Team = () => {
     removeMember(body).then((response) => {
       setLoading(true);
       if (response.success) {
+        setSelectedMember(false);
         setOpenConsentModal(false);
         setLoading(false);
       } else {
@@ -107,13 +114,39 @@ const Team = () => {
       )}
       <div className='team__navbar'>
         <BigDropDown />
-        <Button onClick={() => setOpenAddMember(true)}>Add Member</Button>
+        {user.user._id === admin._id && (
+          <Button onClick={() => setOpenAddMember(true)}>Add Member</Button>
+        )}
       </div>
       <div className='team__content'>
         <div className='team__contentLeft'>
           <div className='team__projectOwner'>
             <div className='team__header'>Team Lead</div>
-            <div className='team__projectOwnerName'>
+            <div
+              className='team__projectOwnerName'
+              onClick={() => {
+                let completed = 0;
+                let total = 0;
+                tasks.forEach((task, j) => {
+                  if (admin._id === task.assignedTo) {
+                    total = total + 1;
+                    if (admin.status === 'completed') {
+                      completed = completed + 1;
+                    }
+                  }
+                });
+
+                setSelectedMember({
+                  name: admin.name,
+                  image: admin.image,
+                  username: admin.username,
+                  email: admin.email,
+                  completed: completed,
+                  total: total || 'Nan',
+                  role: 'Lead',
+                  id: admin._id,
+                });
+              }}>
               <Avatar src={`http://localhost:5000/${admin.image}`} />
               <div className='team__memberName'>{admin.name}</div>
             </div>
@@ -146,7 +179,11 @@ const Team = () => {
                           email: member.email,
                           completed: completed,
                           total: total || 'Nan',
+                          role: 'Member',
+                          id: member._id,
                         });
+                        console.log(member._id);
+                        console.log(user.user._id);
                       }}>
                       <div className='team__profileGroup'>
                         <Avatar
@@ -156,19 +193,28 @@ const Team = () => {
                         <div className='team__memberName'>{`${member.name}`}</div>
                       </div>
                       <div className='team__functions'>
-                        <div className='team__buttondrop'>
-                          <div className='team__buttondropText'>Member</div>
-                          <div className='team__icon'>
-                            <ExpandMoreIcon />
+                        {user.user._id === admin._id ? (
+                          <select className='team__buttondrop'>
+                            <option id='1'>Software Developer</option>
+                            <option id='2'>Junior Developer</option>
+                            <option id='3'>Intern</option>
+                          </select>
+                        ) : (
+                          <div className='team__role'>
+                            <div className='team__roleText'>Member</div>
                           </div>
-                        </div>
-                        <ClearIcon
-                          onClick={() => {
-                            setMemberToBeRemovedName(member.name);
-                            setMemberToBeRemovedId(member._id);
-                            setOpenConsentModal(true);
-                          }}
-                        />
+                        )}
+                        {user.user._id === admin._id ? (
+                          <ClearIcon
+                            onClick={() => {
+                              setMemberToBeRemovedName(member.name);
+                              setMemberToBeRemovedId(member._id);
+                              setOpenConsentModal(true);
+                            }}
+                          />
+                        ) : (
+                          <div></div>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -187,7 +233,9 @@ const Team = () => {
               <div className='team__selectedName'>{selectedMember.name}</div>
               <div className='team__selectedInfo'>
                 <div className='team__selectedTitle'>Team Info</div>
-                <div className='team__selectedData'>Role: Member</div>
+                <div className='team__selectedData'>
+                  Role: {selectedMember.role}
+                </div>
                 <div className='team__selectedData'>
                   Task Completed: {selectedMember.completed}/
                   {selectedMember.total}
@@ -200,6 +248,21 @@ const Team = () => {
                   Email: {selectedMember.email}
                 </div>
               </div>
+              {user.user._id === selectedMember.id &&
+                user.user._id !== admin._id && (
+                  <div className='team__selectedButton'>Leave</div>
+                )}
+              {user.user._id === admin._id && selectedMember.id !== admin._id && (
+                <div
+                  className='team__selectedButton'
+                  onClick={() => {
+                    setMemberToBeRemovedName(selectedMember.name);
+                    setMemberToBeRemovedId(selectedMember.id);
+                    setOpenConsentModal(true);
+                  }}>
+                  Remove
+                </div>
+              )}
             </div>
           ) : (
             <div className='team__noProfile'>No Profile Selected</div>

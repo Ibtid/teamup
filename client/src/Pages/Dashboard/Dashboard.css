@@ -227,6 +227,11 @@
   border-radius: 2.5vh;
 }
 
+.dashboard__teamContent {
+  height: 76%;
+  width: 100%;
+}
+
 .dashboard__singleMember {
   display: flex;
   align-items: center;
