@@ -16,6 +16,22 @@ const create = async (project) => {
   }
 };
 
+const changeMemberDesignation = async (body) => {
+  try {
+    let response = await fetch('http://localhost:5000/api/projects/', {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const findProjectByUserId = async (userId) => {
   const id = userId || user.user._id;
   try {
@@ -117,4 +133,5 @@ export {
   addNewMember,
   removeMember,
   listAllSprints,
+  changeMemberDesignation,
 };

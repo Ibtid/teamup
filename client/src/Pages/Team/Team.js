@@ -6,10 +6,9 @@ import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
 import Scrollable from '../../Components/Scrollable/Scrollable';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ClearIcon from '@material-ui/icons/Clear';
 import { useParams } from 'react-router-dom';
-import { listAllMembers } from '../../API/project';
+import { listAllMembers, changeMemberDesignation } from '../../API/project';
 import Spinkit from '../../Modals/Spinkit/Spinkit';
 import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
 import AddMember from '../../Modals/AddMember/AddMember';
@@ -41,13 +40,19 @@ const Team = () => {
   const [memberToBeRemovedId, setMemberToBeRemovedId] = useState('');
   const [selectedMember, setSelectedMember] = useState(false);
   const [tasks, setTasks] = useState([]);
-  let responseMembers = [];
+  const [reloadSignal, setReloadSignal] = useState(false);
+  const [srDev, setSrDev] = useState([]);
+  const [jrDev, setJrDev] = useState([]);
+  const [intern, setIntern] = useState([]);
 
   useEffect(() => {
     setLoading(true);
 
     listAllMembers(projectId).then((response) => {
       if (response.success) {
+        let responseMembers = [];
+        console.log('i am setting');
+        console.log(response);
         setAdmin(response.admin);
         response.members.forEach((member) => {
           if (member._id !== response.admin._id) {
@@ -57,6 +62,9 @@ const Team = () => {
           }
         });
         setTasks(response.tasks);
+        setSrDev(response.srDev);
+        setJrDev(response.jrDev);
+        setIntern(response.intern);
         setLoading(false);
       } else {
         setMessage(response.message);
@@ -64,7 +72,7 @@ const Team = () => {
         setLoading(false);
       }
     });
-  }, [openAddMember, openConsentModal]);
+  }, [openAddMember, openConsentModal, reloadSignal]);
 
   const removeMemberClicked = () => {
     setLoading(true);
@@ -85,6 +93,132 @@ const Team = () => {
         setLoading(false);
       }
     });
+  };
+
+  const changeDesignation = (event) => {
+    setLoading(true);
+    let body = {
+      newDesignation: event.target.value,
+      memberId: selectedMember.id,
+      projectId,
+    };
+    changeMemberDesignation(body).then((response) => {
+      if (response.success) {
+        switchSelect(body.memberId);
+        setSelectedMember(false);
+        setLoading(false);
+        setReloadSignal(!reloadSignal);
+      } else {
+        setOpenResponse(true);
+        setMessage(response.message);
+        setLoading(false);
+      }
+    });
+  };
+
+  const srDevSelect = (
+    <select className='team__buttondrop' onChange={changeDesignation}>
+      <option id='1' value='sr'>
+        Software Developer
+      </option>
+      <option id='2' value='jr'>
+        Junior Developer
+      </option>
+      <option id='3' value='intern'>
+        Intern
+      </option>
+    </select>
+  );
+  const jrDevSelect = (
+    <select className='team__buttondrop' onChange={changeDesignation}>
+      <option id='1' value='jr'>
+        Junior Developer
+      </option>
+      <option id='2' value='sr'>
+        Software Developer
+      </option>
+      <option id='3' value='intern'>
+        Intern
+      </option>
+    </select>
+  );
+
+  const internSelect = (
+    <select className='team__buttondrop' onChange={changeDesignation}>
+      <option id='1' value='intern'>
+        Intern
+      </option>
+      <option id='2' value='sr'>
+        Software Developer
+      </option>
+      <option id='3' value='jr'>
+        Junior Developer
+      </option>
+    </select>
+  );
+
+  const memberSelect = (
+    <select className='team__buttondrop' onChange={changeDesignation}>
+      <option id='0' value='member'>
+        Member
+      </option>
+      <option id='1' value='sr'>
+        Software Developer
+      </option>
+      <option id='2' value='jr'>
+        Junior Developer
+      </option>
+      <option id='3' value='intern'>
+        Intern
+      </option>
+    </select>
+  );
+
+  const switchSelect = (memberId) => {
+    let memberDesignation = 'Member';
+    let selectDiv = memberSelect;
+
+    srDev.forEach((dev) => {
+      if (memberId === dev) {
+        memberDesignation = 'Software Developer';
+        selectDiv = srDevSelect;
+      }
+    });
+    jrDev.forEach((dev) => {
+      if (memberId === dev) {
+        memberDesignation = 'Junior Developer';
+        selectDiv = jrDevSelect;
+      }
+    });
+    intern.forEach((dev) => {
+      if (memberId === dev) {
+        memberDesignation = 'Intern';
+        selectDiv = internSelect;
+      }
+    });
+    return { selectDiv, memberDesignation };
+  };
+
+  const designationDiv = (memberId) => {
+    let memberDesignation = 'Member';
+
+    srDev.forEach((dev) => {
+      if (memberId === dev) {
+        memberDesignation = 'Software Developer';
+      }
+    });
+    jrDev.forEach((dev) => {
+      if (memberId === dev) {
+        memberDesignation = 'Junior Developer';
+      }
+    });
+    intern.forEach((dev) => {
+      if (memberId === dev) {
+        memberDesignation = 'Intern';
+      }
+    });
+
+    return { memberDesignation };
   };
 
   return (
@@ -141,9 +275,9 @@ const Team = () => {
                   image: admin.image,
                   username: admin.username,
                   email: admin.email,
-                  completed: completed,
-                  total: total || 'Nan',
-                  role: 'Lead',
+                  completed: completed || ' -',
+                  total: total || '-',
+                  role: 'Team Lead',
                   id: admin._id,
                 });
               }}>
@@ -177,13 +311,13 @@ const Team = () => {
                           image: member.image,
                           username: member.username,
                           email: member.email,
-                          completed: completed,
-                          total: total || 'Nan',
-                          role: 'Member',
+                          completed: completed || ' -',
+                          total: total || '-',
+                          role:
+                            designationDiv(member._id).memberDesignation ||
+                            'Member',
                           id: member._id,
                         });
-                        console.log(member._id);
-                        console.log(user.user._id);
                       }}>
                       <div className='team__profileGroup'>
                         <Avatar
@@ -194,14 +328,10 @@ const Team = () => {
                       </div>
                       <div className='team__functions'>
                         {user.user._id === admin._id ? (
-                          <select className='team__buttondrop'>
-                            <option id='1'>Software Developer</option>
-                            <option id='2'>Junior Developer</option>
-                            <option id='3'>Intern</option>
-                          </select>
+                          switchSelect(member._id).selectDiv
                         ) : (
                           <div className='team__role'>
-                            <div className='team__roleText'>Member</div>
+                            {designationDiv(member._id).memberDesignation}
                           </div>
                         )}
                         {user.user._id === admin._id ? (
