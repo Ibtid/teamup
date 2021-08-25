@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
 import Scrollable from '../../Components/Scrollable/Scrollable';
 import ClearIcon from '@material-ui/icons/Clear';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { listAllMembers, changeMemberDesignation } from '../../API/project';
 import Spinkit from '../../Modals/Spinkit/Spinkit';
 import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Team = () => {
+  let history = useHistory();
   const classes = useStyles();
   const user = JSON.parse(sessionStorage.getItem('jwt'));
   const { projectId } = useParams();
@@ -44,19 +45,20 @@ const Team = () => {
   const [srDev, setSrDev] = useState([]);
   const [jrDev, setJrDev] = useState([]);
   const [intern, setIntern] = useState([]);
+  const [openLeaveConsentModal, setOpenLeaveConsentModal] = useState(false);
 
   useEffect(() => {
     setLoading(true);
 
     listAllMembers(projectId).then((response) => {
       if (response.success) {
+        setMembers([]);
         let responseMembers = [];
         console.log('i am setting');
         console.log(response);
         setAdmin(response.admin);
         response.members.forEach((member) => {
           if (member._id !== response.admin._id) {
-            console.log(member.name + ' is added' + member._id);
             responseMembers.push(member);
             setMembers(responseMembers);
           }
@@ -86,6 +88,28 @@ const Team = () => {
         setSelectedMember(false);
         setOpenConsentModal(false);
         setLoading(false);
+      } else {
+        setOpenConsentModal(false);
+        setOpenResponse(true);
+        setMessage(response.message);
+        setLoading(false);
+      }
+    });
+  };
+
+  const removeMyselfClicked = () => {
+    setLoading(true);
+    const body = {
+      projectId: projectId,
+      memberId: memberToBeRemovedId,
+    };
+    removeMember(body).then((response) => {
+      setLoading(true);
+      if (response.success) {
+        setSelectedMember(false);
+        setOpenConsentModal(false);
+        setLoading(false);
+        history.push('/project');
       } else {
         setOpenConsentModal(false);
         setOpenResponse(true);
@@ -239,11 +263,20 @@ const Team = () => {
       )}
       {openConsentModal && (
         <ConsentModal
-          message={`Remove ${memberToBeRemovedName} from the team?`}
+          message={`Are you sure you want to remove ${selectedMember.username} from the team?`}
           answerNo={() => {
             setOpenConsentModal(false);
           }}
           answerYes={removeMemberClicked}
+        />
+      )}
+      {openLeaveConsentModal && (
+        <ConsentModal
+          message={`Are you sure you want to leave the team?`}
+          answerNo={() => {
+            setOpenLeaveConsentModal(false);
+          }}
+          answerYes={removeMyselfClicked}
         />
       )}
       <div className='team__navbar'>
@@ -380,7 +413,15 @@ const Team = () => {
               </div>
               {user.user._id === selectedMember.id &&
                 user.user._id !== admin._id && (
-                  <div className='team__selectedButton'>Leave</div>
+                  <div
+                    className='team__selectedButton'
+                    onClick={() => {
+                      setMemberToBeRemovedName(selectedMember.name);
+                      setMemberToBeRemovedId(selectedMember.id);
+                      setOpenLeaveConsentModal(true);
+                    }}>
+                    Leave
+                  </div>
                 )}
               {user.user._id === admin._id && selectedMember.id !== admin._id && (
                 <div

@@ -8,6 +8,7 @@ import { getMyTask, listTasksByProjectId } from '../../API/task';
 import { listAllMembers } from '../../API/project';
 import Task from '../../Components/Task/Task';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TaskProgress from '../../Components/Charts/TaskProgress';
@@ -104,7 +105,7 @@ const Dashboard = () => {
             </div>
             <div className='dashboard__sprintContent'>
               <Scrollable>
-                {allTasks ? (
+                {allTasks.length > 0 ? (
                   allTasks.map((task) => {
                     if (task.status !== 'Pending')
                       return (
@@ -122,7 +123,7 @@ const Dashboard = () => {
                     return <div></div>;
                   })
                 ) : (
-                  <div>No Tasks</div>
+                  <div className='emptyList'>No Current Sprint</div>
                 )}
               </Scrollable>
             </div>
@@ -141,7 +142,7 @@ const Dashboard = () => {
             </div>
             <div className='dashboard__myTaskContent'>
               <Scrollable>
-                {myTasks ? (
+                {myTasks.length > 0 ? (
                   myTasks.map((task) => (
                     <Task
                       key={task._id}
@@ -154,7 +155,7 @@ const Dashboard = () => {
                     />
                   ))
                 ) : (
-                  <div>No Tasks</div>
+                  <div className='emptyList'>No Task Assigned</div>
                 )}
               </Scrollable>
             </div>
@@ -176,12 +177,12 @@ const Dashboard = () => {
           <div className='dashboard__reportSection'>
             <div className='dashboard__title'>
               <div className='dashboard__titleName'>Task Progress</div>
-              <div className='dashboard__orange'>
+              <Link to={`/reports/${projectId}`} className='dashboard__orange'>
                 <div className='dashboard__orangeText'>Details</div>
                 <div className='dashboard__orangeIcon'>
                   <NavigateNextIcon />
                 </div>
-              </div>
+              </Link>
             </div>
             <div className='dashboard__reportContent'>
               <div className='dashboard__chartInfo'>
@@ -193,29 +194,33 @@ const Dashboard = () => {
           <div className='dashboard__teamSection'>
             <div className='dashboard__title'>
               <div className='dashboard__titleName'>Team Members</div>
-              <div className='dashboard__orange'>
+              <Link to={`/team/${projectId}`} className='dashboard__orange'>
                 <div className='dashboard__orangeText'>Details</div>
                 <div className='dashboard__orangeIcon'>
                   <NavigateNextIcon />
                 </div>
-              </div>
+              </Link>
             </div>
             <div className='dashboard__teamContent'>
               <Scrollable>
-                {members ? (
-                  members.map((member) => (
-                    <div className='dashboard__singleMember'>
-                      <Avatar
-                        className={classes.purple}
-                        src={`http://localhost:5000/${member.image}`}
-                      />
-                      <div className='dashboard__singleMemberName'>
-                        {`${member.name}`}
-                      </div>
-                    </div>
-                  ))
+                {members.length > 0 ? (
+                  members.map((member) => {
+                    if (member._id !== user.user._id)
+                      return (
+                        <div className='dashboard__singleMember'>
+                          <Avatar
+                            className={classes.purple}
+                            src={`http://localhost:5000/${member.image}`}
+                          />
+                          <div className='dashboard__singleMemberName'>
+                            {`${member.name}`}
+                          </div>
+                        </div>
+                      );
+                    return <div></div>;
+                  })
                 ) : (
-                  <div>No Tasks</div>
+                  <div>No Members</div>
                 )}
               </Scrollable>
             </div>
