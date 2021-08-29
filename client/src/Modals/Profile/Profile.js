@@ -23,6 +23,16 @@ const Profile = (props) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [open, setOpen] = useState(false);
+  const tags =
+    user.user.tags.length !== 0
+      ? [
+          user.user.tags[0].word,
+          user.user.tags[1].word,
+          user.user.tags[2].word,
+          user.user.tags[3].word,
+          user.user.tags[4].word,
+        ]
+      : [];
 
   const filePickerRef = useRef();
 
@@ -124,13 +134,13 @@ const Profile = (props) => {
               user.user.projects.map((project) => (
                 <div className='profile__infoData'>{project.name}</div>
               ))}
-            <div className='profile__infoTitle'>Tags</div>
+            <div className='profile__infoTitle'>Recent Tags</div>
             <div className='profile__tagContainer'>
-              <div className='profile__tag'>Front End</div>
-              <div className='profile__tag'>UI/UX</div>
-              <div className='profile__tag'>Prototype</div>
-              <div className='profile__tag'>IA</div>
-              <div className='profile__tag'>Wireframing</div>
+              {user.user.tags &&
+                tags.map((tag) => <div className='profile__tag'>{tag}</div>)}
+              {tags.length === 0 && (
+                <div className='profile__infoData'>No Recent Tags</div>
+              )}
             </div>
           </Scrollable>
         </div>

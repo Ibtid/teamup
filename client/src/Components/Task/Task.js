@@ -42,7 +42,7 @@ const Task = (props) => {
         />
       )}
       <div
-        className={`task ${props.evenly}`}
+        className={`task ${props.evenly} ${props.extraMargin}`}
         onClick={() => {
           setOpenUpdateTask(true);
         }}>

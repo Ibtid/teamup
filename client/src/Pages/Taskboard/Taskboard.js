@@ -172,6 +172,7 @@ const Taskboard = () => {
                                 switchReloadSignal={() => {
                                   setReloadSignal(!reloadSignal);
                                 }}
+                                extraMargin='extraMargin'
                                 fromEpic={true}
                                 _id={task._id}
                                 points={task.points}

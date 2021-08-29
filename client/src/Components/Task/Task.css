@@ -13,6 +13,10 @@
   border-radius: 0.7vw;
 }
 
+.extraMargin {
+  margin-bottom: 3.5vh;
+}
+
 .task::-webkit-scrollbar {
   display: none;
 }
