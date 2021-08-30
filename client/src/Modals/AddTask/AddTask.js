@@ -7,8 +7,9 @@ import { useParams } from 'react-router-dom';
 import { listAllMembers } from '../../API/project';
 import Spinkit from '../Spinkit/Spinkit';
 import ResponseModal from '../ResponseModal/ResponseModal';
-import { create } from '../../API/task';
+import { create, getSuggestions } from '../../API/task';
 import { useHistory } from 'react-router';
+import SuggestUserModal from '../SuggestionModal/SuggestUserModal';
 
 const AddTask = (props) => {
   const { projectId } = useParams();
@@ -16,7 +17,9 @@ const AddTask = (props) => {
   const [toBeAssigned, setToBeAssigned] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState('');
+  const [suggested, setSuggested] = useState([]);
   const [openResponse, setOpenResponse] = useState(false);
+  const [openSuggestResponse, setOpenSuggestResponse] = useState(false);
   const [assignedTo, setAssignedTo] = useState('');
   const [story, setStory] = useState('');
   const [points, setPoints] = useState(3);
@@ -67,6 +70,25 @@ const AddTask = (props) => {
     });
   };
 
+  const getSuggestionsClicked = () => {
+    setLoading(true);
+    const body = {
+      task: story,
+      projectId,
+    };
+    getSuggestions(body).then((response) => {
+      if (response.success) {
+        setSuggested(response.finalNicknames);
+        setOpenSuggestResponse(true);
+        setLoading(false);
+      } else {
+        setMessage(response.message);
+        setOpenResponse(true);
+        setLoading(false);
+      }
+    });
+  };
+
   return ReactDOM.createPortal(
     <div className='addTask'>
       {loading && <Spinkit />}
@@ -74,6 +96,13 @@ const AddTask = (props) => {
         <ResponseModal
           message={message}
           setOpen={() => setOpenResponse(false)}
+        />
+      )}
+      {openSuggestResponse && (
+        <SuggestUserModal
+          suggested={suggested}
+          message={message}
+          setOpen={() => setOpenSuggestResponse(false)}
         />
       )}
       <div className='addTask__container'>
@@ -105,7 +134,11 @@ const AddTask = (props) => {
               ))}
             </select>
           </div>
-          <div className='addTask__getSuggestions'>Get suggestions</div>
+          <div
+            className='addTask__getSuggestions'
+            onClick={getSuggestionsClicked}>
+            Get suggestions
+          </div>
         </div>
         <div className='addTask__title'>Story Points</div>
         <input

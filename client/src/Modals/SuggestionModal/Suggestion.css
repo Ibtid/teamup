@@ -1,0 +1,20 @@
+.suggest__data {
+  margin-left: 1.5vw;
+  width: 18vw;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  color: #f2f2f2;
+  font-weight: 900;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.yellowtext {
+  margin-left: -0vw;
+  width: 20vw;
+  color: #ff8c42;
+}

@@ -31,6 +31,8 @@ const Profile = (props) => {
           user.user.tags[2].word,
           user.user.tags[3].word,
           user.user.tags[4].word,
+          user.user.tags[5].word,
+          user.user.tags[6].word,
         ]
       : [];
 
