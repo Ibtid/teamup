@@ -79,6 +79,9 @@ const AddTask = (props) => {
     getSuggestions(body).then((response) => {
       if (response.success) {
         setSuggested(response.finalNicknames);
+        if (response.finalNicknames.length === 0) {
+          setMessage('Could not suggest anyone');
+        }
         setOpenSuggestResponse(true);
         setLoading(false);
       } else {

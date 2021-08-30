@@ -10,7 +10,8 @@ import './UpdateTask.css';
 import Button from '../../Components/Button/Button';
 import { updateTask } from '../../API/task';
 import ConsentModal from '../../Modals/ConsentModal/ConsentModal';
-import { deleteTask } from '../../API/task';
+import { deleteTask, getSuggestions } from '../../API/task';
+import SuggestUserModal from '../SuggestionModal/SuggestUserModal';
 
 const UpdateTask = (props) => {
   const { projectId } = useParams();
@@ -18,20 +19,26 @@ const UpdateTask = (props) => {
   const [story, setStory] = useState(props.story);
   const [points, setPoints] = useState(props.points);
 
-  const members = [{ _id: props.assignedTo._id, email: 'None' }];
+  const members = [
+    { _id: props.assignedTo ? props.assignedTo._id : '1', email: 'None' },
+  ];
   const [toBeAssigned, setToBeAssigned] = useState([]);
-  const [assignedTo, setAssignedTo] = useState(props.assignedTo._id);
+  const [assignedTo, setAssignedTo] = useState(
+    props.assignedTo ? props.assignedTo._id : '1'
+  );
 
   const defaultSprint = [
     { _id: props.sprintId || 0, sprintNo: props.sprintNo || '--' },
   ];
   const [sprints, setSprints] = useState([]);
   const [sprint, setSprint] = useState('');
-
+  const [openSuggestResponse, setOpenSuggestResponse] = useState(false);
+  const [suggested, setSuggested] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadinga, setLoadinga] = useState(true);
   const [loadingb, setLoadingb] = useState(false);
   const [message, setMessage] = useState('');
+
   const [openResponse, setOpenResponse] = useState(false);
   const [openConsentModal, setOpenConsentModal] = useState(false);
 
@@ -120,6 +127,28 @@ const UpdateTask = (props) => {
     });
   };
 
+  const getSuggestionsClicked = () => {
+    setLoading(true);
+    const body = {
+      task: story,
+      projectId,
+    };
+    getSuggestions(body).then((response) => {
+      if (response.success) {
+        setSuggested(response.finalNicknames);
+        if (response.finalNicknames.length === 0) {
+          setMessage('Could not suggest anyone');
+        }
+        setOpenSuggestResponse(true);
+        setLoading(false);
+      } else {
+        setMessage(response.message);
+        setOpenResponse(true);
+        setLoading(false);
+      }
+    });
+  };
+
   return ReactDOM.createPortal(
     <div className='updateTask'>
       {loading && <Spinkit />}
@@ -138,6 +167,13 @@ const UpdateTask = (props) => {
             setOpenConsentModal(false);
           }}
           answerYes={removeTaskClicked}
+        />
+      )}
+      {openSuggestResponse && (
+        <SuggestUserModal
+          suggested={suggested}
+          message={message}
+          setOpen={() => setOpenSuggestResponse(false)}
         />
       )}
       <div className='updateTask__container'>
@@ -170,7 +206,11 @@ const UpdateTask = (props) => {
               ))}
             </select>
           </div>
-          <div className='addTask__getSuggestions'>Get suggestions</div>
+          <div
+            className='addTask__getSuggestions'
+            onClick={getSuggestionsClicked}>
+            Get suggestions
+          </div>
         </div>
 
         <div className='updateTask__secondSection'>

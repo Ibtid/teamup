@@ -25,6 +25,7 @@ const SuggestUserModal = (props) => {
               <div>{user.score}</div>
             </div>
           ))}
+        <div className='suggest__extraSpace'></div>
         <Button onClick={props.setOpen}>Okay</Button>
       </div>
     </div>,

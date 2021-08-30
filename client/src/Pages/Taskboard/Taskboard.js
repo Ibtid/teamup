@@ -178,7 +178,9 @@ const Taskboard = () => {
                                 points={task.points}
                                 assignedTo={task.assignedTo}
                                 color={task.color}
-                                image={task.assignedTo.image}
+                                image={
+                                  task.assignedTo ? task.assignedTo.image : ''
+                                }
                                 story={task.story}
                                 status={task.status}
                                 putWhitespace='putWhitespace'
