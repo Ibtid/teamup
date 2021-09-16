@@ -68,4 +68,22 @@ const deleteSprint = async (sprintId) => {
   }
 };
 
-export { create, getSprints, getSprintDetails, deleteSprint };
+const getCurrentSprint = async (projectId) => {
+  try {
+    let response = await fetch(
+      `http://localhost:5000/api/currentSprint/${projectId}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { create, getSprints, getSprintDetails, deleteSprint, getCurrentSprint };

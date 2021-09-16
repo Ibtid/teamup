@@ -93,11 +93,13 @@ const Profile = (props) => {
       skill: newSkill,
       userId: user.user._id,
     };
+    setLoading(true);
     addSkill(body).then((response) => {
       if (response.success) {
         user.user.skills.push(newSkill);
         setSkillSet(user.user.skills);
         sessionStorage.setItem('jwt', JSON.stringify(user));
+        setLoading(false);
       } else {
         setMessage(response.message);
         setOpen(true);
@@ -112,6 +114,7 @@ const Profile = (props) => {
       skill: skillToBeDeleted,
       userId: user.user._id,
     };
+    setLoading(true);
     deleteSkill(body).then((response) => {
       if (response.success) {
         let filteredSkills = user.user.skills.filter(
@@ -120,6 +123,7 @@ const Profile = (props) => {
         user.user.skills = filteredSkills;
         setSkillSet(user.user.skills);
         sessionStorage.setItem('jwt', JSON.stringify(user));
+        setLoading(false);
       } else {
         setMessage(response.message);
         setOpen(true);

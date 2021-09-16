@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TaskProgress from '../../Components/Charts/TaskProgress';
+import { getCurrentSprint } from '../../API/sprint';
 
 const useStyles = makeStyles((theme) => ({
   purple: {
@@ -27,10 +28,12 @@ const Dashboard = () => {
 
   const [myTasks, setMyTasks] = useState([]);
   const [allTasks, setALLTasks] = useState([]);
+  const [currentTasks, setCurrentTasks] = useState([]);
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
   const [loadinga, setLoadinga] = useState(false);
   const [loadingb, setLoadingb] = useState(false);
+  const [loadingc, setLoadingc] = useState(false);
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
@@ -41,8 +44,23 @@ const Dashboard = () => {
       } else {
         console.log(response.message);
       }
-
       setLoading(false);
+    });
+  }, []);
+
+  useEffect(() => {
+    setLoadingc(true);
+    getCurrentSprint(projectId).then((response) => {
+      if (response.success) {
+        let aggregate = [];
+        response.currentSprint.pending.forEach((x) => aggregate.push(x));
+        response.currentSprint.ongoing.forEach((x) => aggregate.push(x));
+        response.currentSprint.completed.forEach((x) => aggregate.push(x));
+        setCurrentTasks(aggregate);
+      } else {
+        console.log(response.message);
+      }
+      setLoadingc(false);
     });
   }, []);
 
@@ -81,7 +99,7 @@ const Dashboard = () => {
       {loading && <Spinkit />}
       {loadinga && <Spinkit />}
       {loadingb && <Spinkit />}
-
+      {loadingc && <Spinkit />}
       <div className='dashboard__navbar'>
         <BigDropDown />
       </div>
@@ -105,8 +123,8 @@ const Dashboard = () => {
             </div>
             <div className='dashboard__sprintContent'>
               <Scrollable>
-                {allTasks.length > 0 ? (
-                  allTasks.map((task) => {
+                {currentTasks.length > 0 ? (
+                  currentTasks.map((task) => {
                     if (task.status !== 'Pending')
                       return (
                         <Task
