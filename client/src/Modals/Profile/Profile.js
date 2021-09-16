@@ -5,11 +5,13 @@ import { Avatar } from '@material-ui/core';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Scrollable from '../../Components/Scrollable/Scrollable';
 import { isAuthenticated } from '../../API/auth-helper';
-import { update } from '../../API/user';
+import { update, addSkill, deleteSkill } from '../../API/user';
 import { signout } from '../../API/auth';
 import { useHistory } from 'react-router-dom';
 import Spinkit from '../Spinkit/Spinkit';
 import ResponseModal from '../ResponseModal/ResponseModal';
+import ClearIcon from '@material-ui/icons/Clear';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 import './Profile.css';
 
@@ -23,18 +25,9 @@ const Profile = (props) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [open, setOpen] = useState(false);
-  const tags =
-    user.user.tags.length !== 0
-      ? [
-          user.user.tags[0].word,
-          user.user.tags[1].word,
-          user.user.tags[2].word,
-          user.user.tags[3].word,
-          user.user.tags[4].word,
-          user.user.tags[5].word,
-          user.user.tags[6].word,
-        ]
-      : [];
+  const [focusChanged, setFocusChanged] = useState('');
+  const [newSkill, setNewSkill] = useState('');
+  const [skillSet, setSkillSet] = useState(user.user.skills);
 
   const filePickerRef = useRef();
 
@@ -91,6 +84,50 @@ const Profile = (props) => {
     });
   };
 
+  const handleNewSkill = (e) => {
+    setNewSkill(e.target.value);
+  };
+
+  const submitNewSkill = () => {
+    const body = {
+      skill: newSkill,
+      userId: user.user._id,
+    };
+    addSkill(body).then((response) => {
+      if (response.success) {
+        user.user.skills.push(newSkill);
+        setSkillSet(user.user.skills);
+        sessionStorage.setItem('jwt', JSON.stringify(user));
+      } else {
+        setMessage(response.message);
+        setOpen(true);
+        setLoading(false);
+      }
+      setNewSkill('');
+    });
+  };
+
+  const removeSkill = (skillToBeDeleted) => {
+    let body = {
+      skill: skillToBeDeleted,
+      userId: user.user._id,
+    };
+    deleteSkill(body).then((response) => {
+      if (response.success) {
+        let filteredSkills = user.user.skills.filter(
+          (aSkill) => aSkill !== skillToBeDeleted
+        );
+        user.user.skills = filteredSkills;
+        setSkillSet(user.user.skills);
+        sessionStorage.setItem('jwt', JSON.stringify(user));
+      } else {
+        setMessage(response.message);
+        setOpen(true);
+        setLoading(false);
+      }
+    });
+  };
+
   return ReactDOM.createPortal(
     <div className='profile'>
       {loading && <Spinkit />}
@@ -125,26 +162,55 @@ const Profile = (props) => {
         </div>
         <div className='profile__fullName'>{`${user.user.name}`}</div>
         <div className='profile__info'>
-          <Scrollable>
-            <div className='profile__infoTitle'>Personal Info</div>
-            <div className='profile__infoData'>
-              Username: {user.user.username}
+          <div className='profile__infoTitle'>Personal Info</div>
+          <div className='profile__infoData'>
+            Username: {user.user.username}
+          </div>
+          <div className='profile__infoData'>Email: {user.user.email}</div>
+          <div className='profile__infoTitle'>Project(s)</div>
+          {user.user.projects.length !== 0 &&
+            user.user.projects.map((project) => (
+              <div className='profile__infoData'>{project.name}</div>
+            ))}
+
+          <div className='profile__infoTitle'>Proficiency</div>
+          <div className={`profile__tagInputContainer ${focusChanged}`}>
+            <input
+              onFocus={() => {
+                setFocusChanged('whiteBorder');
+              }}
+              onBlur={() => {
+                setFocusChanged('');
+              }}
+              className='profile__tagInput'
+              type='text'
+              placeholder='Add a new skill'
+              value={newSkill}
+              onChange={handleNewSkill}
+            />
+            <div className='profile__tagIcon' onClick={submitNewSkill}>
+              <AddCircleOutlineIcon />
             </div>
-            <div className='profile__infoData'>Email: {user.user.email}</div>
-            <div className='profile__infoTitle'>Project(s)</div>
-            {user.user.projects.length !== 0 &&
-              user.user.projects.map((project) => (
-                <div className='profile__infoData'>{project.name}</div>
-              ))}
-            <div className='profile__infoTitle'>Recent Tags</div>
-            <div className='profile__tagContainer'>
-              {user.user.tags &&
-                tags.map((tag) => <div className='profile__tag'>{tag}</div>)}
-              {tags.length === 0 && (
-                <div className='profile__infoData'>No Recent Tags</div>
-              )}
-            </div>
-          </Scrollable>
+          </div>
+          <div className='profile__tagContainerLength'>
+            <Scrollable>
+              <div className='profile__tagContainer'>
+                {skillSet.length !== 0 &&
+                  skillSet.map((oneSkill) => (
+                    <div className='profile__tag'>
+                      <div>{oneSkill}</div>
+                      <div
+                        className='profile__tagIcon'
+                        onClick={() => {
+                          removeSkill(oneSkill);
+                        }}>
+                        <ClearIcon style={{ fontSize: '1vw' }} />
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </Scrollable>
+          </div>
         </div>
         <div className='logoutButton' onClick={logout}>
           Logout

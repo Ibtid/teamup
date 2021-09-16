@@ -1,3 +1,7 @@
+.paddingMinus {
+  padding-right: 2.2vw;
+}
+
 .suggest__data {
   margin-left: 1.5vw;
   width: 18vw;
@@ -14,9 +18,21 @@
 }
 
 .yellowtext {
-  margin-left: -0vw;
+  margin-left: 0vw;
   width: 20vw;
   color: #ff8c42;
+}
+
+.suggest__rank {
+  margin-left: 1vw;
+}
+
+.suggest__name {
+  margin-left: -0.7vw;
+}
+
+.suggest__score {
+  margin-right: -0.1vw;
 }
 
 .suggest__extraSpace {

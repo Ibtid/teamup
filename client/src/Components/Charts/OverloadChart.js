@@ -11,31 +11,31 @@ import {
 const data = [
   {
     subject: 'Ibtid',
-    A: 50,
+    A: 16,
   },
   {
     subject: 'Nafiz',
-    A: 100,
+    A: 16,
   },
   {
     subject: 'Adiba',
-    A: 86,
+    A: 15,
   },
   {
     subject: 'Robi',
-    A: 99,
+    A: 16,
   },
   {
     subject: 'Sananda',
-    A: 85,
+    A: 17,
   },
   {
     subject: 'Hissan',
-    A: 65,
+    A: 9,
   },
   {
     subject: 'Fahim',
-    A: 75,
+    A: 9,
   },
 ];
 

@@ -84,4 +84,46 @@ const resetPassword = async (body) => {
   }
 };
 
-export { create, list, read, update, remove, forgetPassword, resetPassword };
+const addSkill = async (body) => {
+  try {
+    let response = await fetch(`http://localhost:5000/api/skills/users`, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    return await response.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const deleteSkill = async (body) => {
+  try {
+    let response = await fetch(`http://localhost:5000/api/skills/users`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    return await response.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export {
+  create,
+  list,
+  read,
+  update,
+  remove,
+  forgetPassword,
+  resetPassword,
+  addSkill,
+  deleteSkill,
+};
