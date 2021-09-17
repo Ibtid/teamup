@@ -56,31 +56,52 @@ const Reports = () => {
               </div>
             </div>
           </div>
+          <div className='reports__completion'>
+            <div className='reports__rowOneTitle'>Stories Per Head</div>
+            <div className='reports__rowOneContent'>
+              <OverLoadChart />
+            </div>
+          </div>
           <div className='reports__summaryGraph'>
-            <div className='reports__rowOneTitle'>Composed Chart</div>
+            <div className='reports__rowOneTitle'>Velocity</div>
             <div className='reports__rowGraphContent'>
-              <SummaryChart />
+              <SummaryChart forVelocity={true} />
             </div>
           </div>
         </div>
         <div className='reports__firstRow'>
-          <div className='reports__rowOneChart'>
-            <div className='reports__rowOneTitle'>Task Completion</div>
-            <div className='reports__rowOneContent'>
-              <TaskProgress data={chartData} datakey='value' />
-            </div>
-          </div>
-
-          <div className='reports__rowOneChart'>
-            <div className='reports__rowOneTitle'>Task Division</div>
-            <div className='reports__rowOneContent'>
-              <TaskProgress fromReport={true} data={data2} datakey='value' />
+          <div className='reports__summaryGraph'>
+            <div className='reports__rowOneTitle'>Story</div>
+            <div className='reports__rowGraphContent'>
+              <SummaryChart forStory={true} />
             </div>
           </div>
           <div className='reports__rowOneChart'>
-            <div className='reports__rowOneTitle'>Work Load</div>
+            <div className='reports__rowOneTitle'>Task Progress</div>
             <div className='reports__rowOneContent'>
-              <OverLoadChart />
+              <div className='reports__taskprogressContainer'>
+                <TaskProgress fromReport={true} data={data2} datakey='value' />
+              </div>
+              <div className='reports__progressColors'>
+                <div className='reports__progressColorsGroup'>
+                  <div className='sprintOverview__pendingColor'></div>
+                  <div className='sprintOverview__chartInfoText'>
+                    Pending 20%
+                  </div>
+                </div>
+                <div className='reports__progressColorsGroup'>
+                  <div className='sprintOverview__ongoingColor'></div>
+                  <div className='sprintOverview__chartInfoText'>
+                    Ongoing 20%
+                  </div>
+                </div>
+                <div className='reports__progressColorsGroup'>
+                  <div className='sprintOverview__completedColor'></div>
+                  <div className='sprintOverview__chartInfoText'>
+                    Completed 20%
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

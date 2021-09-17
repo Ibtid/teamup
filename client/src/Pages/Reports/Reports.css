@@ -25,7 +25,7 @@
 }
 .reports__summaryTextGroup {
   height: 100%;
-  width: 18vw;
+  width: 14vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +33,7 @@
 }
 
 .reports__summary {
-  width: 14vw;
+  width: 10vw;
   height: 10vh;
   background-color: #252525;
   border-radius: 1.5vh;
@@ -59,7 +59,7 @@
   color: #f2f2f2;
   background-color: #252525;
   border-radius: 1.5vh;
-  width: 60vw;
+  width: 42vw;
 }
 
 .reports__rowGraphContent {
@@ -72,7 +72,7 @@
 
 .reports__bigText {
   font-size: 2vw;
-  margin-bottom: 1vh;
+  margin-bottom: 0.5vh;
 }
 
 .reports__summaryIcon {
@@ -87,8 +87,16 @@
   justify-content: space-between;
 }
 
+.reports__completion {
+  width: 20vw;
+  height: 34.5vh;
+  background: #252525;
+  border-radius: 1.5vh;
+  color: #f2f2f2;
+}
+
 .reports__rowOneChart {
-  width: 25vw;
+  width: 35vw;
   height: 34.5vh;
   background: #252525;
   border-radius: 1.5vh;
@@ -98,11 +106,26 @@
 .reports__rowOneContent {
   height: 100%;
   width: 100%;
+  display: flex;
 }
-
+.reports__taskprogressContainer {
+  height: 100%;
+  width: 70%;
+}
 .reports__rowOneTitle {
   font-size: 1.4vw;
   padding: 1vh 1vw;
 
   font-family: 'Montserrat';
+}
+
+.reports__progressColors {
+  margin-top: 5vh;
+  margin-left: -3vw;
+}
+
+.reports__progressColorsGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1vh;
 }
