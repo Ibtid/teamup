@@ -42,7 +42,7 @@ const data = [
 const OverLoadChart = () => {
   return (
     <ResponsiveContainer width='85%' height='70%'>
-      <RadarChart cx='60%' cy='60%' outerRadius='80%' data={data}>
+      <RadarChart cx='56%' cy='60%' outerRadius='80%' data={data}>
         <PolarGrid stroke='#525252' fill='#525252' />
         <PolarAngleAxis dataKey='subject' stroke='#f2f2f2' />
 

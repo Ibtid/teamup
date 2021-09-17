@@ -157,6 +157,7 @@ const Kanban = () => {
                               : '#252525',
                             width: '100%',
                             minHeight: '100%',
+                            padding: '1vh 0',
                           }}>
                           {column.items.map((item, index) => {
                             return (
