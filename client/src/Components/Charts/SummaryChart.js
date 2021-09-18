@@ -13,63 +13,8 @@ import {
 } from 'recharts';
 
 const SummaryChart = (props) => {
-  const data = [
-    {
-      name: 'Sprint 1',
-      velocity: 21,
-      stories: 7,
-      meanVelocity: 21,
-      meanStory: 7,
-    },
-    {
-      name: 'Sprint 2',
-      velocity: 30,
-      stories: 8,
-      meanVelocity: 25,
-      meanStory: 7.5,
-    },
-    {
-      name: 'Sprint 3',
-      velocity: 25,
-      stories: 8,
-      meanVelocity: 25,
-      meanStory: 8,
-    },
-    {
-      name: 'Sprint 4',
-      velocity: 21,
-      stories: 7,
-      meanVelocity: 23,
-      meanStory: 7.5,
-    },
-    {
-      name: 'Sprint 5',
-      velocity: 21,
-      stories: 8,
-      meanVelocity: 22,
-      meanStory: 7.9,
-    },
-    {
-      name: 'Sprint 6',
-      velocity: 27,
-      stories: 9,
-      meanVelocity: 25,
-      meanStory: 8,
-    },
-    {
-      name: 'Sprint 7',
-      velocity: 27,
-      stories: 8,
-      meanVelocity: 26,
-      meanStory: 7.5,
-    },
-  ];
-
   return (
-    <ComposedChart width={550} height={200} data={data}>
-      <XAxis dataKey='name' axisLine={false} tickLine={false} />
-      <YAxis axisLine={false} tickLine={false} />
-      <Legend />
+    <ComposedChart width={550} height={200} data={props.sprintSummary}>
       {props.forVelocity && (
         <Area
           type='monotone'
@@ -109,6 +54,12 @@ const SummaryChart = (props) => {
           radius={[5, 5, 0, 0]}
         />
       )}
+      <XAxis dataKey='name' axisLine={false} tickLine={false} />
+      <YAxis axisLine={false} tickLine={false} />
+      <Tooltip />
+      {/*<div style={{ marginTop: '10px', height: '10px', width: '10px' }}>
+        <Legend />
+      </div>*/}
     </ComposedChart>
   );
 };

@@ -297,7 +297,7 @@ const Team = () => {
                 tasks.forEach((task, j) => {
                   if (admin._id === task.assignedTo) {
                     total = total + 1;
-                    if (admin.status === 'completed') {
+                    if (task.status === 'completed') {
                       completed = completed + 1;
                     }
                   }
