@@ -173,12 +173,12 @@ const Kanban = () => {
                                       {...provided.dragHandleProps}
                                       style={{
                                         userSelect: 'none',
-                                        padding: '1vh 0.8vw',
+                                        padding: '0vh 0vw',
                                         margin: '0 0 0 0',
                                         minHeight: '1vh',
-                                        borderRadius: '1vh',
+                                        borderRadius: '0vh',
                                         backgroundColor: snapshot.isDragging
-                                          ? '#525252'
+                                          ? '#363636'
                                           : '#252525',
                                         color: 'white',
                                         ...provided.draggableProps.style,

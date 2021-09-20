@@ -34,6 +34,9 @@ const Reports = () => {
   const [taskProgressData, setTaskProgressData] = useState([]);
   const [workLoadData, setWorkLoadData] = useState([]);
   const [sprintSummary, setSprintSummary] = useState([]);
+  const [pending, setPending] = useState('');
+  const [ongoing, setOngoing] = useState('');
+  const [complete, setComplete] = useState('');
 
   useEffect(() => {
     setLoading(true);
@@ -48,6 +51,11 @@ const Reports = () => {
           { name: 'B', value: response.ongoing, fill: '#00AAF2' },
           { name: 'C', value: response.completed, fill: '#8F44FD' },
         ]);
+
+        setPending(response.pending);
+        setOngoing(response.ongoing);
+        setComplete(response.completed);
+
         setWorkLoadData(response.workLoadData);
         setSprintSummary(response.sprintSummary);
         setLoading(false);
@@ -138,19 +146,31 @@ const Reports = () => {
                 <div className='reports__progressColorsGroup'>
                   <div className='sprintOverview__pendingColor'></div>
                   <div className='sprintOverview__chartInfoText'>
-                    Pending 20%
+                    Pending{' '}
+                    {((pending / totalStories) * 100)
+                      .toString()
+                      .substring(0, 5)}
+                    %
                   </div>
                 </div>
                 <div className='reports__progressColorsGroup'>
                   <div className='sprintOverview__ongoingColor'></div>
                   <div className='sprintOverview__chartInfoText'>
-                    Ongoing 20%
+                    Ongoing{' '}
+                    {((ongoing / totalStories) * 100)
+                      .toString()
+                      .substring(0, 5)}
+                    %
                   </div>
                 </div>
                 <div className='reports__progressColorsGroup'>
                   <div className='sprintOverview__completedColor'></div>
                   <div className='sprintOverview__chartInfoText'>
-                    Completed 20%
+                    Completed{' '}
+                    {((complete / totalStories) * 100)
+                      .toString()
+                      .substring(0, 5)}
+                    %
                   </div>
                 </div>
               </div>

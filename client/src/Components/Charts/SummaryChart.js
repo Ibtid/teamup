@@ -56,7 +56,13 @@ const SummaryChart = (props) => {
       )}
       <XAxis dataKey='name' axisLine={false} tickLine={false} />
       <YAxis axisLine={false} tickLine={false} />
-      <Tooltip />
+      <Tooltip
+        wrapperStyle={{
+          color: '#121212',
+          fontSize: '9px',
+          background: '#121212',
+        }}
+      />
       {/*<div style={{ marginTop: '10px', height: '10px', width: '10px' }}>
         <Legend />
       </div>*/}

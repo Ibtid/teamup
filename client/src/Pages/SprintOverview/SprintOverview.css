@@ -21,7 +21,7 @@
 
 .sprintOverview__contentRight {
   width: 38.5vw;
-  height: 72vh;
+  height: 71vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -29,14 +29,14 @@
 
 .sprintOverview__contentRightTop {
   width: 38.5vw;
-  height: 33.5vh;
+  height: 32.5vh;
   background: #ff8c42;
   border-radius: 2.5vh;
 }
 
 .sprintOverview__contentRightBottom {
   width: 38.5vw;
-  height: 33.5vh;
+  height: 32.5vh;
   background: #ff8c42;
   border-radius: 2.5vh;
 }
@@ -44,7 +44,7 @@
 .sprintOverview__contentLeft {
   background: #ff8c42;
   width: 38.5vw;
-  height: 72vh;
+  height: 71vh;
   border-radius: 2.5vh;
 }
 
@@ -55,21 +55,21 @@
   font-family: 'Montserrat';
   font-weight: 600;
   font-size: 1.2vw;
-  height: 6vh;
+  height: 5vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .sprintOverview__contentOverviewSmall {
-  height: 27.5vh;
+  height: 28vh;
   width: 100%;
   background: #252525;
   border-radius: 0vh 0vh 2.5vh 2.5vh;
 }
 
 .sprintOverview__contentOverviewLarge {
-  height: 66vh;
+  height: 65vh;
   width: 100%;
   background: #252525;
   border-radius: 0vh 0vh 2.5vh 2.5vh;
@@ -88,7 +88,9 @@
 .sprintOverview__sprintOverview {
   padding-left: 1vw;
   padding-top: 2vh;
-  border-bottom: 1px solid #525252;
+  background-color: #363636;
+  margin: 1vh 0.5vw;
+  border-radius: 0.5vw;
 }
 
 .sprintOverview__sprintHeader {

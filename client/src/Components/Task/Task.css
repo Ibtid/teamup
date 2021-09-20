@@ -5,16 +5,18 @@
   color: #f2f2f2;
   font-family: 'Open Sans', sans-serif;
   cursor: pointer;
-  margin-bottom: 2.5vh;
-  padding-right: 0vw;
+  margin-bottom: 1.2vh;
   font-size: 1.1vw;
-  width: 100%;
+  width: 90%;
+  margin-left: 0.5vw;
   transition: all 0.3s ease-in-out;
   border-radius: 0.7vw;
+  background-color: #363636;
+  padding: 1.5vh;
 }
 
 .extraMargin {
-  margin-bottom: 3.5vh;
+  margin-bottom: 1.2vh;
 }
 
 .task::-webkit-scrollbar {
@@ -25,12 +27,16 @@
   background-color: #525252;
 }
 
+.task__border {
+  box-shadow: 0px 0.5x 0px #c4c4c4;
+}
+
 .bullet {
   height: 1vw;
   width: 1vw;
   border-radius: 50%;
   overflow: hidden;
-  margin-left: 1vw;
+  margin-left: 0vw;
   margin-right: 0vw;
   margin-top: 0.5vh;
 }
@@ -39,7 +45,7 @@
   text-align: start;
   flex: 0.8;
   font-size: 0.9vw;
-  max-height: 8vh;
+  /*max-height: 8vh;*/
   overflow-y: scroll;
   /*width: 70%;*/
 }
