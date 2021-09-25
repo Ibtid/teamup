@@ -1,0 +1,22 @@
+.info-header {
+  width: 98.7vw;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #121212;
+  color: #f2f2f2;
+}
+
+.info-header-title1 {
+  margin-top: 10vh;
+  font-size: 2vw;
+  font-family: 'Montserrat';
+  margin-bottom: 2vh;
+}
+
+.info-header-subtitle {
+  font-size: 1.1vw;
+  font-family: 'Open Sans';
+}

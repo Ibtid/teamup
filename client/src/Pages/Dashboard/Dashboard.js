@@ -16,8 +16,8 @@ import { getCurrentSprint } from '../../API/sprint';
 
 const useStyles = makeStyles((theme) => ({
   purple: {
-    width: theme.spacing(3.5),
-    height: theme.spacing(3.5),
+    width: theme.spacing(3.0),
+    height: theme.spacing(3.0),
   },
 }));
 

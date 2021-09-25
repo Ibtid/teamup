@@ -17,6 +17,7 @@ import ThirdStep from './Pages/RecoveryPages/ThirdStep';
 import FinalStep from './Pages/RecoveryPages/FinalStep';
 import SprintOverview from './Pages/SprintOverview/SprintOverview';
 import SummaryChart from './Components/Charts/SummaryChart';
+import LandingPage from './Pages/LandingPage/LandingPage';
 
 function App() {
   return (
@@ -100,9 +101,7 @@ function App() {
           </div>
         </Route>
         <Route path='/'>
-          <div className='ball'></div>
-          <input type='datetime-local' name='datetime' />
-          <SummaryChart />
+          <LandingPage />
         </Route>
       </Switch>
     </Router>

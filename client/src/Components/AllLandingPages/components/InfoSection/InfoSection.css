@@ -1,0 +1,141 @@
+.InfoContainer {
+  color: #fff;
+  background: #121212;
+  padding-top: 8vw;
+  height: 90vh;
+  padding-left: 5vw;
+}
+
+.lightBg {
+  background: #f9f9f9;
+}
+
+.InfoWrapper {
+  display: grid;
+  z-index: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 24px;
+  justify-content: center;
+}
+
+.InfoRow {
+  display: grid;
+  grid-auto-columns: minmax(auto, 1fr);
+  align-items: center;
+  grid-template-areas: 'col1 col2';
+}
+
+.imgStart {
+  grid-template-areas: 'col2 col1';
+}
+
+.Column1 {
+  margin-bottom: 15px;
+  padding: 0 15px;
+  grid-area: col1;
+}
+
+.Column2 {
+  margin-bottom: 15px;
+  padding: 0 15px;
+  grid-area: col2;
+}
+
+.TextWrapper {
+  max-width: 540px;
+  padding-top: 0;
+  padding-bottom: 60px;
+}
+
+.TopLine {
+  color: #ff8c42;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.Heading {
+  margin-bottom: 24px;
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #010606;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.lightText {
+  color: #f2f2f2;
+}
+
+.Subtitle {
+  max-width: 440px;
+  margin-bottom: 35px;
+  font-size: 18px;
+  line-height: 24px;
+  color: #c5c5c5;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.darkText {
+  color: #010606;
+}
+
+.BtnWrap {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.ImgWrap {
+  max-width: 555px;
+  height: 100%;
+}
+
+.Img {
+  width: 100%;
+  height: 100%;
+  margin: 0 0 10px 0;
+  padding-right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .InfoContainer {
+    padding: 55px 0;
+  }
+
+  .InfoRow {
+    grid-template-areas: 'col1 col1' 'col2 col2';
+  }
+
+  .TextWrapper {
+    padding-bottom: 20px;
+  }
+
+  .Heading {
+    font-size: 40px;
+  }
+
+  .Subtitle {
+    font-size: 18px;
+  }
+
+  .imgStart {
+    grid-template-areas: 'col1' 'col2';
+  }
+
+  .ImgWrap {
+    height: 220px;
+    padding-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Heading {
+    font-size: 32px;
+  }
+}

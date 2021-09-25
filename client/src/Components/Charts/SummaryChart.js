@@ -14,7 +14,7 @@ import {
 
 const SummaryChart = (props) => {
   return (
-    <ComposedChart width={550} height={200} data={props.sprintSummary}>
+    <ComposedChart width={475} height={175} data={props.sprintSummary}>
       {props.forVelocity && (
         <Area
           type='monotone'

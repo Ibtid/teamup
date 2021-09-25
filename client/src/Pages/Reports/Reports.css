@@ -127,5 +127,9 @@
 .reports__progressColorsGroup {
   display: flex;
   align-items: center;
-  margin-bottom: 1vh;
+  margin-bottom: 2vh;
+}
+
+.sprintOverview__chartInfoText {
+  font-size: 2vh;
 }

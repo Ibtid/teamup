@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
-    width: theme.spacing(4),
-    height: theme.spacing(4),
+    width: theme.spacing(3.2),
+    height: theme.spacing(3.2),
     fontSize: '1vw',
   },
 }));
@@ -314,7 +314,10 @@ const Team = () => {
                   id: admin._id,
                 });
               }}>
-              <Avatar src={`http://localhost:5000/${admin.image}`} />
+              <Avatar
+                style={{ height: '5vh', width: '5vh' }}
+                src={`http://localhost:5000/${admin.image}`}
+              />
               <div className='team__memberName'>{admin.name}</div>
             </div>
           </div>

@@ -3,10 +3,10 @@ import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 const TaskProgress = ({ fromSprint, data, datakey, fromReport }) => {
-  let innerRadius = fromSprint ? 75 : 45;
+  let innerRadius = fromSprint ? 65 : 35;
   let paddingAngle = fromSprint ? 10 : null;
 
-  innerRadius = fromReport ? 45 : innerRadius;
+  innerRadius = fromReport ? 35 : innerRadius;
   paddingAngle = fromReport ? 10 : null;
 
   return (
