@@ -63,7 +63,7 @@ const Navbar = (props) => {
           </li>
           <li className='NavItem'>
             <LinkScroll
-              to='signup'
+              to='reviews'
               activeClass='activeFromLanding'
               smooth={true}
               duration={500}
@@ -71,7 +71,7 @@ const Navbar = (props) => {
               exact='true'
               offset={-80}
               className='NavLinks'>
-              Sign Up
+              Reviews
             </LinkScroll>
           </li>
         </ul>

@@ -2,34 +2,36 @@ import React from 'react';
 
 import Icon1 from '../../assests/banner3.png';
 import Icon2 from '../../assests/nafiz.jpg';
-import Icon3 from '../../assests/nafiz.jpg';
+import Icon3 from '../../assests/Robi.PNG';
 
 import './Services.css';
 
 const Services = () => {
   return (
-    <div className='ServicesContainer' id='services'>
-      <div className='ServicesH1'>Our Services</div>
+    <div className='ServicesContainer' id='reviews'>
       <div className='ServicesWrapper'>
         <div className='ServicesCard'>
-          <img className='ServicesIcon' src={Icon1} />
-          <h2 className='ServicesH2'>Reduce expenses</h2>
-          <p className='ServicesP'>
-            We help reduce your fess and increase your over all revenue
-          </p>
-        </div>
-        <div className='ServicesCard'>
           <img className='ServicesIcon' src={Icon2} />
-          <h2 className='ServicesH2'>Virtual Offices</h2>
+          <h2 className='ServicesH2'>Nafiz Imtiaz</h2>
           <p className='ServicesP'>
-            You can access our platform online anywhere in the world
+            "It has been amazing to have teamup. It is easy to get used to with
+            providing the best tools."
           </p>
         </div>
         <div className='ServicesCard'>
           <img className='ServicesIcon' src={Icon3} />
-          <h2 className='ServicesH2'>Premium Benefits</h2>
+          <h2 className='ServicesH2'>Adnan Rahman Robe</h2>
           <p className='ServicesP'>
-            Unlock our special membership card that return 5% cash back
+            "You can access this. platform online anywhere in the world. Virtual
+            Office now looks fun."
+          </p>
+        </div>
+        <div className='ServicesCard'>
+          <img className='ServicesIcon' src={Icon1} />
+          <h2 className='ServicesH2'>Ibtid Rahman</h2>
+          <p className='ServicesP'>
+            "Teamup has been essential part of our business. I would definitely
+            reccomend Teamup."
           </p>
         </div>
       </div>

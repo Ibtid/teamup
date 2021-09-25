@@ -140,7 +140,9 @@ const Taskboard = () => {
                         setBoardId(board._id);
                         setOpenAddTask(true);
                       }}>
-                      <AddCircleOutlineIcon />
+                      <AddCircleOutlineIcon
+                        style={{ height: '5vh', width: '1.5vw' }}
+                      />
                     </div>
                     <div
                       className='taskboard__deleteBoard'
@@ -148,7 +150,9 @@ const Taskboard = () => {
                         setBoardId(board._id);
                         setOpenConsentModal(true);
                       }}>
-                      <DeleteOutlineIcon />
+                      <DeleteOutlineIcon
+                        style={{ height: '5vh', width: '1.5vw' }}
+                      />
                     </div>
                   </div>
                 </div>
