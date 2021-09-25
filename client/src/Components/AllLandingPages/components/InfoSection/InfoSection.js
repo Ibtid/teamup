@@ -1,14 +1,48 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link as LinkS } from 'react-scroll';
 import '../Button.css';
 import './InfoSection.css';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const InfoSection = (props) => {
+  let column1Ref = useRef();
+  let column2Ref = useRef();
+  let holdingRef = useRef();
+  gsap.registerPlugin(ScrollTrigger);
+
+  useEffect(() => {
+    const element = column1Ref.current;
+    gsap.fromTo(
+      element,
+      {
+        opacity: 1,
+        scale: 1,
+        x: -1200,
+        y: 0,
+      },
+      {
+        opacity: 1,
+        x: 1140,
+        y: 45,
+        scale: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: element,
+          start: '0px 80%',
+          end: '0px -5%',
+          scrub: 4,
+          markers: true,
+        },
+      }
+    );
+  }, []);
+
   return (
     <div
       className={`InfoContainer ${props.lightBg ? 'lightBg' : ''}`}
       id={props.id}>
-      <div className='InfoWrapper'>
+      <div className='InfoWrapper' ref={column1Ref}>
         <div className={`InfoRow ${props.imgStart ? 'imgStart' : ''}`}>
           <div className='Column1'>
             <div className='TextWrapper'>
