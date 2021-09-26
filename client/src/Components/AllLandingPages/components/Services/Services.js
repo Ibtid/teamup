@@ -1,15 +1,46 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import Icon1 from '../../assests/banner3.png';
 import Icon2 from '../../assests/nafiz.jpg';
 import Icon3 from '../../assests/Robi.PNG';
 
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import './Services.css';
 
 const Services = () => {
+  let column1Ref = useRef();
+  gsap.registerPlugin(ScrollTrigger);
+
+  useEffect(() => {
+    const element = column1Ref.current;
+    gsap.fromTo(
+      element,
+      {
+        opacity: 0,
+        scale: 1,
+        y: 20,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: element,
+          start: '0px 60%',
+          end: '0px 40%',
+          scrub: true,
+          markers: false,
+        },
+      }
+    );
+  }, []);
+
   return (
     <div className='ServicesContainer' id='reviews'>
-      <div className='ServicesWrapper'>
+      <div className='ServicesWrapper' ref={column1Ref}>
         <div className='ServicesCard'>
           <img className='ServicesIcon' src={Icon2} />
           <h2 className='ServicesH2'>Nafiz Imtiaz</h2>

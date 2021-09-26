@@ -22,13 +22,13 @@
 }
 
 .taskboard__content::-webkit-scrollbar {
-  height: 5px;
+  height: 12px;
 }
 .taskboard__content::-webkit-scrollbar-track {
   background: rgba(18, 18, 18, 0);
 }
 .taskboard__content::-webkit-scrollbar-thumb {
-  background: rgba(255, 140, 66, 0.5);
+  background: rgb(255, 140, 66);
   border-radius: 2.5vh;
 }
 

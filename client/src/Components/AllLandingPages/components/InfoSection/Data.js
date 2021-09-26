@@ -23,7 +23,7 @@ export const homeObjHero = {
 };
 
 export const homeObjOne = {
-  id: 'services',
+  id: 'servicess',
   lightBg: false,
   lightText: true,
   lightTextDesc: true,

@@ -7,8 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const InfoSection = (props) => {
   let column1Ref = useRef();
-  let column2Ref = useRef();
-  let holdingRef = useRef();
+
   gsap.registerPlugin(ScrollTrigger);
 
   useEffect(() => {
@@ -19,20 +18,19 @@ const InfoSection = (props) => {
         opacity: 1,
         scale: 1,
         x: -1200,
-        y: 0,
       },
       {
         opacity: 1,
-        x: 1140,
-        y: 45,
+        x: 0,
         scale: 1,
         ease: 'none',
         scrollTrigger: {
           trigger: element,
-          start: '0px 80%',
+          start: '0px 30%',
           end: '0px -5%',
-          scrub: 4,
-          markers: true,
+          scrub: true,
+          markers: false,
+          pin: true,
         },
       }
     );
@@ -43,7 +41,9 @@ const InfoSection = (props) => {
       className={`InfoContainer ${props.lightBg ? 'lightBg' : ''}`}
       id={props.id}>
       <div className='InfoWrapper' ref={column1Ref}>
-        <div className={`InfoRow ${props.imgStart ? 'imgStart' : ''}`}>
+        <div
+          className={`InfoRow ${props.imgStart ? 'imgStart' : ''}`}
+          id='services'>
           <div className='Column1'>
             <div className='TextWrapper'>
               {/*<p className='TopLine'>{props.topline}</p>*/}
