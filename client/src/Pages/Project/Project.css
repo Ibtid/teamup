@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&display=swap');
 
 .project {
-  background: #121212;
+  background: #101522;
   height: 100vh;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .project__logo {
-  color: #ff8c42;
+  color: #5bc0eb;
   font-family: 'Righteous';
   margin-left: 4vw;
   font-size: 4vh;
@@ -26,7 +26,7 @@
 .project__accountInfo {
   margin-right: 4vw;
   margin-top: 2vh;
-  border: 1px solid #ff8c42;
+  border: 1px solid #5bc0eb;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -38,7 +38,7 @@
 
 .project__name {
   padding-right: 1.2vw;
-  color: #f2f2f2;
+  color: #f5f9e9;
   font-size: 2vh;
   font-family: 'Open Sans';
 }
@@ -52,7 +52,7 @@
 }
 
 .project__contentText {
-  color: #f2f2f2;
+  color: #f5f9e9;
   font-family: 'Montserrat';
   font-size: 5vh;
   display: flex;
@@ -68,7 +68,7 @@
 }
 
 .project__buttondrop {
-  border: 1px solid #ff8c42;
+  border: 1px solid #5bc0eb;
   border-radius: 1.5vh;
   padding-top: 0.5vh;
   padding-bottom: 0.5vh;
@@ -76,7 +76,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #f2f2f2;
+  color: #f5f9e9;
   font-size: 1vw;
   height: 3vh;
   cursor: pointer;
@@ -88,7 +88,7 @@
 }
 
 .project__icon {
-  color: #ff8c42;
+  color: #5bc0eb;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,13 +96,13 @@
 }
 
 .project__smallText {
-  color: #f2f2f2;
+  color: #f5f9e9;
   font-size: 2vh;
   margin: 0vh 1vh;
 }
 
 .project__button {
-  background-color: #ff8c42;
+  background-color: #5bc0eb;
   border-radius: 1.5vh;
   padding-top: 0.5vh;
   padding-bottom: 0.5vh;
@@ -110,7 +110,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #121212;
+  color: #101522;
   font-size: 2vh;
   height: 4.5vh;
   display: flex;

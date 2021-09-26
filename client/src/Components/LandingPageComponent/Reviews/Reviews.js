@@ -9,6 +9,11 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import niloy from '../svgs/Niloy.PNG';
+import ibtid from '../svgs/banner3.png';
+import nafiz from '../svgs/nafiz.jpg';
+import robi from '../svgs/Robi.PNG';
+
 const Reviews = () => {
   const containerRef = useRef();
   gsap.registerPlugin(ScrollTrigger);
@@ -51,12 +56,30 @@ const Reviews = () => {
     <div className='review'>
       <div className='review__container' ref={containerRef}>
         <Slider {...settings} className='review__slider'>
-          <ReviewCard no='1' />
-          <ReviewCard no='2' />
-          <ReviewCard no='3' />
-          <ReviewCard no='4' />
-          <ReviewCard no='5' />
-          <ReviewCard no='6' />
+          <ReviewCard
+            pic={niloy}
+            name='Aseer Intiser Niloy'
+            message='Teamup has been essential part of our business. I would definitely
+            recommend Teamup.'
+          />
+          <ReviewCard
+            pic={ibtid}
+            name='Ibtid Rahman'
+            message='Teamup has been essential part of our business. I would definitely
+            recommend Teamup.'
+          />
+          <ReviewCard
+            pic={nafiz}
+            name='Nafiz Imtiaz'
+            message='Teamup has been essential part of our business. I would definitely
+            recommend Teamup.'
+          />
+          <ReviewCard
+            pic={robi}
+            name='Adnan Rahman Robe'
+            message='Teamup has been essential part of our business. I would definitely
+            recommend Teamup.'
+          />
         </Slider>
       </div>
     </div>
