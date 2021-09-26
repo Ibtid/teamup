@@ -33,7 +33,7 @@ const PatternTwo = (props) => {
   }, []);
   return (
     <div className='patternOne'>
-      <div className='patternOneContainer' ref={patternTwoRef}>
+      <div className='patternOneContainer' ref={patternTwoRef} id={props.id}>
         <div className='patternOne__right patternTwo__marginRight'>
           <img className='patternOne__image' src={props.patternImage} />
         </div>

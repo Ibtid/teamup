@@ -33,7 +33,7 @@ const PatternOne = (props) => {
   }, []);
   return (
     <div className='patternOne'>
-      <div className='patternOneContainer' ref={patternOneRef}>
+      <div className='patternOneContainer' ref={patternOneRef} id={props.id}>
         <div className='patternOne__left'>
           <div className='patternOne__Title'>{props.title}</div>
           <div className='patternOne__Subtitle'>{props.subtitle}</div>

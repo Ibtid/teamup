@@ -2,6 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import './ServicesHeader.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Link as LinkScroll } from 'react-scroll';
+import { animateScroll as scroll } from 'react-scroll';
+import { NavLink } from 'react-router-dom';
 
 const ServicesHeader = () => {
   const stickyRef = useRef();
@@ -37,10 +40,61 @@ const ServicesHeader = () => {
           <span className='servicesHeader__logo'>teamup.</span>
         </div>
         <div className='servicesHeader__nav'>
-          <div className='servicesHeader__navItem1'>Backlog</div>
-          <div className='servicesHeader__navItem1'>Kanban</div>
-          <div className='servicesHeader__navItem1'>Collab</div>
-          <div className='servicesHeader__navItem2'>Insights</div>
+          <LinkScroll
+            to='backlog'
+            activeClass='services__active'
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact='true'
+            offset={-220}
+            className='servicesHeader__navItem1'>
+            Backlog
+          </LinkScroll>
+          <LinkScroll
+            to='kanban'
+            activeClass='services__active2'
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact='true'
+            offset={-220}
+            className='servicesHeader__navItem1'>
+            Kanban
+          </LinkScroll>
+          <LinkScroll
+            to='collab'
+            activeClass='services__active2'
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact='true'
+            offset={-220}
+            className='servicesHeader__navItem1'>
+            Collab
+          </LinkScroll>
+          <LinkScroll
+            to='reports'
+            activeClass='services__active3'
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact='true'
+            offset={-220}
+            className='servicesHeader__navItem1 services__hide'>
+            Insights
+          </LinkScroll>
+          <LinkScroll
+            to='reports'
+            activeClass='services__active3'
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact='true'
+            offset={-220}
+            className='servicesHeader__navItem1'>
+            Insights
+          </LinkScroll>
         </div>
       </div>
     </div>
