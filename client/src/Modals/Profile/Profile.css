@@ -15,9 +15,9 @@
 .profile__container {
   height: 99vh;
   width: 22.5vw;
-  background-color: #252525;
+  background-color: #1f2430;
   border-radius: 2vw 0vw 0vw 2vw;
-  border: 1px solid #ff8c42;
+  border: 1px solid #5bc0eb;
   position: relative;
   top: 0.5%;
   left: 77.4%;
@@ -46,7 +46,7 @@
   margin-top: 2vh;
   margin-left: 1vw;
   cursor: pointer;
-  color: #ff8c42;
+  color: #5bc0eb;
 }
 
 .profile__imageSection {
@@ -75,12 +75,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fafafa;
+  color: #f5f9e9;
 }
 
 .profile__fullName {
   margin-top: 2.5vh;
-  color: #fafafa;
+  color: #f5f9e9;
   font-size: 1.4vw;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
@@ -96,7 +96,7 @@
 .profile__infoTitle {
   margin-top: 3vh;
   margin-bottom: 1.5vh;
-  color: #ff8c42;
+  color: #5bc0eb;
   font-weight: 900;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.95vw;
@@ -105,7 +105,7 @@
 .profile__infoData {
   margin-top: 1vh;
   margin-bottom: 1vh;
-  color: #fafafa;
+  color: #f5f9e9;
 
   font-family: 'Montserrat', sans-serif;
   font-size: 0.95vw;
@@ -120,7 +120,7 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  background-color: #252525;
+  background-color: #1f2430;
   width: 80%;
   height: 5vh;
   border-radius: 0.7vw;
@@ -140,20 +140,20 @@
   border: none;
   outline: none;
   font-family: 'Montserrat', sans-serif;
-  background-color: #252525;
+  background-color: #1f2430;
   font-size: 1vw;
 }
 
 .profile__tagInput:focus {
-  color: #f2f2f2;
+  color: #f5f9e9;
 }
 
 .whiteBorder {
-  color: #f2f2f2;
+  color: #f5f9e9;
   border-bottom: 3px solid #cacaca;
-  border-top: 3px solid #252525;
-  border-right: 3px solid #252525;
-  border-left: 3px solid #252525;
+  border-top: 3px solid #1f2430;
+  border-right: 3px solid #1f2430;
+  border-left: 3px solid #1f2430;
   border-radius: 0.5vh;
   /*border-color: #bbbbbb;*/
 }

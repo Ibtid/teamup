@@ -1,7 +1,7 @@
 .scrumboard {
   height: 86vh;
   width: 85vw;
-  background: #121212;
+  background: #101522;
   padding-left: 1.8vw;
   padding-top: 4vh;
 }
@@ -13,9 +13,8 @@
 
 .scrumboard__selector {
   height: 4.95vh;
-  min-width: 7.95vw;
+  min-width: 6.9vw;
   max-width: 9.95vw;
-  background-color: #ff8c42;
   border-radius: 0.7vw;
   font-size: 0.8vw;
   display: flex;
@@ -26,17 +25,10 @@
   cursor: pointer;
   color: #121212;
   transition: all 0.1s ease-in-out;
-  border: 1px solid #ff8c42;
   outline: none;
   margin-left: 2vw;
   padding-left: 1vw;
   margin-right: 26vw;
-}
-
-.scrumboard__selector:hover {
-  background: #121212;
-  color: #ff8c42;
-  border: 1px solid #ff8c42;
 }
 
 .scrumboard__content {

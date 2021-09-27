@@ -13,17 +13,6 @@ import { useParams } from 'react-router-dom';
 import Spinkit from '../../Modals/Spinkit/Spinkit';
 
 const Reports = () => {
-  const chartData = [
-    { name: 'A', value: 20, fill: '#2D2D2D' },
-    { name: 'B', value: 25, fill: '#00AAF2' },
-  ];
-
-  const data2 = [
-    { name: 'A', value: 8, fill: '#2D2D2D' },
-    { name: 'B', value: 25, fill: '#00AAF2' },
-    { name: 'C', value: 30, fill: '#8F44FD' },
-  ];
-
   const { projectId } = useParams();
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);

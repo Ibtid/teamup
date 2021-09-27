@@ -73,20 +73,7 @@ const Scrumboard = () => {
           }}>
           + New Sprint
         </Button>
-        <select className='scrumboard__selector'>
-          <option id='1' className='addTask__option'>
-            Sprint 1
-          </option>
-          <option id='2' className='addTask__option'>
-            Sprint 2
-          </option>
-          <option id='3' className='addTask__option'>
-            Sprint 3
-          </option>
-          <option id='4' className='addTask__option'>
-            Sprint 4
-          </option>
-        </select>
+        <div className='scrumboard__selector'></div>
         <Button
           red='red'
           onClick={() => {

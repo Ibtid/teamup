@@ -1,7 +1,7 @@
 .reports {
   height: 86vh;
   width: 85vw;
-  background: #121212;
+  background: #101522;
   padding-left: 2vw;
   padding-top: 4vh;
 }
@@ -11,7 +11,7 @@
 }
 
 .reports__content {
-  background-color: #121212;
+  background-color: #101522;
   height: 71vh;
   width: 79vw;
 }
@@ -21,7 +21,7 @@
   height: 34.5vh;
   display: flex;
   justify-content: space-between;
-  background-color: #121212;
+  background-color: #101522;
 }
 .reports__summaryTextGroup {
   height: 100%;
@@ -35,7 +35,7 @@
 .reports__summary {
   width: 10vw;
   height: 10vh;
-  background-color: #252525;
+  background-color: #1f2430;
   border-radius: 1.5vh;
   display: flex;
   align-items: center;
@@ -46,7 +46,7 @@
 }
 
 .reports__summaryText {
-  color: #f2f2f2;
+  color: #f5f9e9;
   height: 100%;
   width: 50%;
   display: flex;
@@ -56,8 +56,8 @@
 }
 
 .reports__summaryGraph {
-  color: #f2f2f2;
-  background-color: #252525;
+  color: #f5f9e9;
+  background-color: #1f2430;
   border-radius: 1.5vh;
   width: 42vw;
 }
@@ -90,17 +90,17 @@
 .reports__completion {
   width: 20vw;
   height: 34.5vh;
-  background: #252525;
+  background: #1f2430;
   border-radius: 1.5vh;
-  color: #f2f2f2;
+  color: #f5f9e9;
 }
 
 .reports__rowOneChart {
   width: 35vw;
   height: 34.5vh;
-  background: #252525;
+  background: #1f2430;
   border-radius: 1.5vh;
-  color: #f2f2f2;
+  color: #f5f9e9;
 }
 
 .reports__rowOneContent {

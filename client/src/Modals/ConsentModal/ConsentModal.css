@@ -11,7 +11,7 @@
   justify-content: center;
 }
 .consentModal__container {
-  background-color: #252525;
+  background-color: #1f2430;
   padding: 4vh 1.5vw;
   border-radius: 1.5vh;
   display: flex;
@@ -22,7 +22,7 @@
 }
 
 .consentModal__text {
-  color: #f2f2f2;
+  color: #f5f9e9;
   font-family: 'Open Sans', sans-serif;
   font-size: 1.5vw;
   margin-bottom: 5vh;

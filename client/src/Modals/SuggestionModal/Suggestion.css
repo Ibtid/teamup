@@ -7,7 +7,7 @@
   width: 18vw;
   margin-top: 1vh;
   margin-bottom: 1vh;
-  color: #f2f2f2;
+  color: #f5f9e9;
   font-weight: 900;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.1vw;
@@ -20,7 +20,7 @@
 .yellowtext {
   margin-left: 0vw;
   width: 20vw;
-  color: #ff8c42;
+  color: #5bc0eb;
 }
 
 .suggest__rank {
