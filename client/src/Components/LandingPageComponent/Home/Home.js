@@ -11,38 +11,43 @@ import image4 from '../svgs/undraw_data_report_bi6l 1.svg';
 import Reviews from '../Reviews/Reviews';
 import Footer from '../Footer/Footer';
 
+import './Home.css';
+
 const Home = () => {
   return (
     <>
       <LandingNav />
       <Hero />
       <ServicesHeader />
-      <PatternOne
-        title='Divide your task into multiple Boards'
-        subtitle='Make different boards according to your needs and manage your task
+      <div className='Home'>
+        <PatternOne
+          title='Divide your task into multiple Boards'
+          subtitle='Make different boards according to your needs and manage your task
           easily.'
-        patternImage={image1}
-        id='backlog'
-      />
-      <PatternTwo
-        title='Kanban Makes Everything Easier'
-        subtitle='Use Kanban board to keep track of your tasks dividing it into pending, ongoing and completed status.'
-        patternImage={image2}
-        id='kanban'
-      />
-      <PatternOne
-        title='Draw, Chat, Collaborate!'
-        subtitle='The Collab Whiteboard allows you to draw, write, add pictures and much more with your team members in the perfect virtual environment to work together in real-time.'
-        patternImage={image3}
-        id='collab'
-      />
-      <PatternTwo
-        title='Boost your productivity by monitoring reports'
-        subtitle='The Report tab helps you keep track of your progress and show the statistics of you and your team in a visually pleasing way'
-        patternImage={image4}
-        id='reports'
-      />
-      <Reviews />
+          patternImage={image1}
+          id='backlog'
+        />
+        <PatternTwo
+          title='Kanban Makes Everything Easier'
+          subtitle='Use Kanban board to keep track of your tasks dividing it into pending, ongoing and completed status.'
+          patternImage={image2}
+          id='kanban'
+        />
+        <PatternOne
+          title='Draw, Chat, Collaborate!'
+          subtitle='The Collab Whiteboard allows you to draw, write, add pictures and much more with your team members in the perfect virtual environment to work together in real-time.'
+          patternImage={image3}
+          id='collab'
+        />
+
+        <PatternTwo
+          title='Boost your productivity by monitoring reports'
+          subtitle='The Report tab helps you keep track of your progress and show the statistics of you and your team in a visually pleasing way'
+          patternImage={image4}
+          id='reports'
+        />
+        <Reviews />
+      </div>
       <Footer />
     </>
   );

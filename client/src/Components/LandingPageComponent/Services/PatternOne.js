@@ -14,7 +14,7 @@ const PatternOne = (props) => {
       element,
       {
         opacity: 0,
-        x: -1200,
+        x: 1200,
       },
       {
         opacity: 1,
