@@ -15,6 +15,13 @@ import {
 const SummaryChart = (props) => {
   return (
     <ComposedChart width={475} height={175} data={props.sprintSummary}>
+      <Tooltip
+        wrapperStyle={{
+          color: '#121212',
+          fontSize: '9px',
+          background: '#121212',
+        }}
+      />
       {props.forVelocity && (
         <Area
           type='monotone'
@@ -56,13 +63,7 @@ const SummaryChart = (props) => {
       )}
       <XAxis dataKey='name' axisLine={false} tickLine={false} />
       <YAxis axisLine={false} tickLine={false} />
-      <Tooltip
-        wrapperStyle={{
-          color: '#121212',
-          fontSize: '9px',
-          background: '#121212',
-        }}
-      />
+
       {/*<div style={{ marginTop: '10px', height: '10px', width: '10px' }}>
         <Legend />
       </div>*/}

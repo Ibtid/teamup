@@ -17,6 +17,16 @@
   border-radius: 80vw;
 }
 
+.patternOne__fade {
+  height: 75vh;
+  width: 98.72vw;
+  background: #101522;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 80vw;
+}
+
 .patternOne__left {
   margin-left: 9vw;
   color: #f5f9e9;

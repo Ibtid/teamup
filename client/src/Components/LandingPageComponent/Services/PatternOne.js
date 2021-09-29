@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './PatternOne.css';
 const PatternOne = (props) => {
   const patternOneRef = useRef();
+  const fadeRef = useRef();
   gsap.registerPlugin(ScrollTrigger);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ const PatternOne = (props) => {
       }
     );
   }, []);
+
   return (
     <div className='patternOne'>
       <div className='patternOneContainer' ref={patternOneRef} id={props.id}>

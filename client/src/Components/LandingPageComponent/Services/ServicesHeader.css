@@ -67,18 +67,18 @@
 .services__active {
   background-color: #5bc0eb;
   border-radius: 2.5vh 0 0 2.5vh;
-  box-shadow: 1px 1px 6px #4a4747;
+  box-shadow: 2px 2px 10px #4a4747;
 }
 
 .services__active2 {
   background-color: #5bc0eb;
-  box-shadow: 1px 1px 6px #4a4747;
+  box-shadow: 2px 2px 10px #4a4747;
 }
 
 .services__active3 {
   background-color: #5bc0eb;
   border-radius: 0 2.5vh 2.5vh 0vh;
-  box-shadow: 1px 1px 6px #5bc0eb;
+  box-shadow: 2px 2px 10px #5bc0eb;
 }
 
 .services__hide {

@@ -28,6 +28,9 @@ const Dashboard = () => {
 
   const [myTasks, setMyTasks] = useState([]);
   const [allTasks, setALLTasks] = useState([]);
+  const [completed, setCompleted] = useState();
+  const [pending, setPending] = useState();
+  const [percentage, setPercentage] = useState(0);
   const [currentTasks, setCurrentTasks] = useState([]);
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
@@ -69,6 +72,9 @@ const Dashboard = () => {
     listTasksByProjectId(projectId).then((response) => {
       if (response.success) {
         setALLTasks(response.tasks);
+        setCompleted(response.completed);
+        setPending(response.pending);
+        setPercentage(response.percentage);
       }
       setLoadinga(false);
     });
@@ -90,8 +96,8 @@ const Dashboard = () => {
   }, []);
 
   const chartData = [
-    { name: 'A', value: 20, fill: '#2D2D2D' },
-    { name: 'B', value: 25, fill: '#00AAF2' },
+    { name: 'A', value: pending, fill: '#2D2D2D' },
+    { name: 'B', value: completed, fill: '#00AAF2' },
   ];
 
   return (
@@ -204,7 +210,9 @@ const Dashboard = () => {
             </div>
             <div className='dashboard__reportContent'>
               <div className='dashboard__chartInfo'>
-                <div className='sprintOverview__chartInfoGroup'>67.9%</div>
+                <div className='sprintOverview__chartInfoGroup'>
+                  {percentage.toString().substring(0, 5)}
+                </div>
               </div>
               <TaskProgress data={chartData} datakey='value' />
             </div>
@@ -238,7 +246,7 @@ const Dashboard = () => {
                     return <div></div>;
                   })
                 ) : (
-                  <div>No Members</div>
+                  <div className='noData__text'>No Members</div>
                 )}
               </Scrollable>
             </div>

@@ -2,11 +2,21 @@ import React, { useState, useRef, useEffect } from 'react';
 import io from 'socket.io-client';
 import { useParams } from 'react-router-dom';
 import './ArtBoard.css';
+import DraggableCard from '../Draggable/DraggableCard';
+import pencil from './assests/pencil.svg';
+import text from './assests/text (2).svg';
+import eraser from './assests/eraser.svg';
+import picture from './assests/Picture.svg';
+import pencilBold from './assests/pencilOneUse.svg';
+import textBold from './assests/TextOnUse.svg';
+import eraserBold from './assests/eraserOnUse.svg';
+import pictureBold from './assests/PictureInUse.svg';
 
 const ArtBoard = () => {
   const [input, setInput] = useState('');
   const canvasRef = useRef(null);
   const colorsRef = useRef(null);
+  const whiteRef = useRef(null);
   const socketRef = useRef();
   const projectId = useParams();
 
@@ -14,6 +24,13 @@ const ArtBoard = () => {
     e.preventDefault();
     console.log('submit');
   };
+
+  const [switchPencil, setPencil] = useState(true);
+  const [switchEraser, setEraser] = useState(false);
+  const [switchText, setSwitchText] = useState(false);
+  const [switchImage, setImage] = useState(false);
+  const [openColorBox, setOpenColorBox] = useState(false);
+  const [eraserCur, setEraserCur] = useState('');
 
   useEffect(() => {
     console.log(projectId);
@@ -132,11 +149,52 @@ const ArtBoard = () => {
     socketRef.current.on('drawing', onDrawingEvent);
   }, []);
 
+  const whiteClicked = () => {
+    whiteRef.current.click();
+    setOpenColorBox(false);
+  };
+
+  const switchToPencil = () => {
+    setEraser(false);
+    setImage(false);
+    setSwitchText(false);
+    setPencil(true);
+    setOpenColorBox(!openColorBox);
+    setEraserCur('');
+  };
+  const switchToEraser = () => {
+    setOpenColorBox(false);
+    setEraser(true);
+    setImage(false);
+    setSwitchText(false);
+    setPencil(false);
+    whiteClicked();
+    setEraserCur('eraser');
+  };
+  const switchToText = () => {
+    setOpenColorBox(false);
+    setEraser(false);
+    setImage(false);
+    setSwitchText(!switchText);
+    setPencil(false);
+    setEraserCur('');
+  };
+  const switchToImage = () => {
+    setOpenColorBox(false);
+    setEraserCur('');
+    setEraser(false);
+    setImage(true);
+    setSwitchText(false);
+    setPencil(false);
+  };
+
   return (
     <div className='artboard'>
-      <canvas className='artboard__container' ref={canvasRef}></canvas>
-      <div className='artboard__settings'>
-        {/*<div className='artboard__label'>Colors</div>*/}
+      <canvas
+        className={`artboard__container ${eraserCur}`}
+        ref={canvasRef}></canvas>
+      {/*<div className='artboard__settings'>
+        <div className='artboard__label'>Colors</div>
         <div ref={colorsRef} className='colors'>
           <div className='color black black' />
           <div className='color red red' />
@@ -145,7 +203,7 @@ const ArtBoard = () => {
           <div className='color #f2f2f2 white' />
         </div>
 
-        {/*<div className='artboard__label'>Text pitchers</div>*/}
+        <div className='artboard__label'>Text pitchers</div>
         <form className='input_container'>
           <input
             className='input'
@@ -165,33 +223,79 @@ const ArtBoard = () => {
             Send a message
           </button>
         </form>
+      </div>*/}
+
+      <div className='artboard__newSettings'>
+        <div onClick={switchToPencil}>
+          {switchPencil ? (
+            <img className='artboard__icon' src={pencilBold} />
+          ) : (
+            <img className='artboard__icon' src={pencil} />
+          )}
+        </div>
+        <div onClick={switchToEraser}>
+          {switchEraser ? (
+            <img
+              className='color #f2f2f2 white artboard__icon'
+              src={eraserBold}
+              ref={colorsRef}
+            />
+          ) : (
+            <img className='artboard__icon' src={eraser} />
+          )}
+        </div>
+        <div onClick={switchToText}>
+          {switchText ? (
+            <img className='artboard__icon' src={textBold} />
+          ) : (
+            <img className='artboard__icon' src={text} />
+          )}
+        </div>
+        <div onClick={switchToImage}>
+          {switchImage ? (
+            <img className='artboard__icon' src={pictureBold} />
+          ) : (
+            <img className='artboard__icon' src={picture} />
+          )}
+        </div>
+      </div>
+      <div className='artboard__settings'>
+        <div
+          onClick={() => setOpenColorBox(!openColorBox)}
+          ref={colorsRef}
+          className={`colors ${openColorBox ? '' : 'hidden'}`}>
+          <div className='color black black' />
+          <div className='color red red' />
+          <div className='color green green' />
+          <div className='color blue blue' />
+          <div className='color #f2f2f2 white hidden' ref={whiteRef} />
+        </div>
+
+        {switchText && (
+          <form className='input_container'>
+            <input
+              className='input'
+              type='text'
+              id='name'
+              name='name'
+              value={input}
+              placeholder='Enter pitcher'
+              onChange={(e) => {
+                setInput(e.target.value);
+              }}
+            />
+            <button
+              className='pitcher_button'
+              onClick={sendPitcher}
+              type='submit'>
+              Send a message
+            </button>
+          </form>
+        )}
       </div>
 
-      {/*<div className='artboard__File'>
-        <TextFieldsIcon />
-        <form className='input_container'>
-          <input
-            className='input'
-            type='text'
-            id='name'
-            name='name'
-            value={input}
-            placeholder='Enter pitcher name'
-            onChange={(e) => {
-              setInput(e.target.value);
-            }}
-          />
-          <button
-            className='pitcher_button'
-            onClick={sendPitcher}
-            type='submit'>
-            Send a message
-          </button>
-        </form>
-      </div>
-      <div className='artboard__Image'>
-        <ImageIcon />
-        </div>*/}
+      <DraggableCard id='1' name='Drag me' xaxis='300' yaxis='300' />
+      <DraggableCard id='2' name='Drag me' xaxis='350' yaxis='300' />
     </div>
   );
 };

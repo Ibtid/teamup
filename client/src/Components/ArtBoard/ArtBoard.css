@@ -15,25 +15,27 @@
   left: 0;
   height: 100%;
   width: 100%;
-  /*cursor: url('https://image.flaticon.com/icons/png/512/63/63612.png'), auto;*/
+  cursor: url('./assests/cursor.cur'), auto;
+}
+
+.eraser {
+  cursor: url('./assests/cursor\ \(1\).cur'), auto;
 }
 
 .artboard__settings {
   font-size: 0.7vw;
   color: #f2f2f2;
   position: absolute;
-  top: 22.45vh;
+  top: 30vh;
   left: 19vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  max-width: 15vw;
+  width: 11vw;
   max-height: 20vh;
-  background-color: #545454;
-  border-radius: 2vh 0vh 0vh 0vh;
   overflow: hidden;
-  padding: 0.5vw;
+  margin-left: 1vw;
 }
 
 .colors {
@@ -58,8 +60,9 @@
 
 .input_container {
   display: flex;
-  height: 3vh;
-  padding: 0.2rem;
+  height: 5vh;
+  width: 15vw;
+
   justify-content: center;
   align-items: center;
   color: aliceblue;
@@ -68,14 +71,52 @@
 
 .input {
   border-radius: 0.2rem;
+  height: 5vh;
   width: 100%;
   padding: 0.4vh;
-  font-size: 0.7vw;
+  font-size: 0.9vw;
+  font-weight: 600;
   border: none;
   outline: none;
   font-family: 'Open Sans';
 }
 
 .pitcher_button {
+  display: none;
+}
+
+.artboard__newSettings {
+  font-size: 0.7vw;
+  color: #f2f2f2;
+  position: absolute;
+  top: 22.45vh;
+  left: 19vw;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 15vw;
+  max-height: 20vh;
+  border-radius: 2vh 0vh 0vh 0vh;
+  overflow: hidden;
+  padding: 0.5vw;
+  margin-left: 0.75vw;
+  margin-top: 0.25vw;
+}
+
+.artboard__icon {
+  height: 3vh;
+  width: 3vh;
+  margin-right: 1.5vw;
+  cursor: pointer;
+  z-index: 500;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+.hidden {
   display: none;
 }

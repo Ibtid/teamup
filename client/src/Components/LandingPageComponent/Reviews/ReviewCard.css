@@ -1,10 +1,11 @@
 .reviewCard {
   height: 60vh;
-  width: 18vw;
+  width: 20vw;
   border-radius: 2.5vh;
   background: #101522;
   display: flex;
   align-items: center;
+  justify-content: center;
   color: #f5f9e9;
 }
 
