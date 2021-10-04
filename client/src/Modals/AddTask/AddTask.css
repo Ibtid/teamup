@@ -72,7 +72,7 @@
   color: #f5f9e9;
   font-family: 'Montserrat', sans-serif;
   margin-top: 1.5vh;
-  padding: 1vh 1vw 1vh 1vw;
+  padding: 0.2vh 0.8vw 0.2vh 0.8vw;
   border-radius: 1vh;
   display: flex;
   align-items: center;
@@ -154,4 +154,16 @@
 
 .addTask__option:hover {
   background-color: #5bc0eb;
+}
+
+.addTask__selectorIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addTask__selectorText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

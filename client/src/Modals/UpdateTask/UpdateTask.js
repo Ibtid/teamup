@@ -202,8 +202,8 @@ const UpdateTask = (props) => {
               onClick={() => {
                 setShowDropDown(!showDropDown);
               }}>
-              <div>{assignedEmail}</div>
-              <div>
+              <div className='addTask__selectorText'>{assignedEmail}</div>
+              <div className='addTask__selectorIcon'>
                 {showDropDown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
               </div>
             </div>
@@ -235,23 +235,15 @@ const UpdateTask = (props) => {
         <div className='updateTask__secondSection'>
           <div className='updateTask__SprintContainer'>
             <div className='updateTask__title'>Add Sprint</div>
-            {/*<select className='addTask__selector' onChange={selectSprint}>
-              {sprints.map((indexSprint) => (
-                <option
-                  key={indexSprint._id}
-                  value={indexSprint._id}
-                  className='addTask__option'>
-                  Sprint {indexSprint.sprintNo}
-                </option>
-              ))}
-              </select>*/}
             <div
               className='addTask__selector'
               onClick={() => {
                 setShowSprintDropDown(!showSprintDropDown);
               }}>
-              <div>Sprint {assignedSprint}</div>
-              <div>
+              <div className='addTask__selectorText'>
+                Sprint {assignedSprint}
+              </div>
+              <div className='addTask__selectorIcon'>
                 {showSprintDropDown ? (
                   <ArrowDropUpIcon />
                 ) : (

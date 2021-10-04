@@ -132,8 +132,8 @@ const AddTask = (props) => {
               onClick={() => {
                 setShowDropDown(!showDropDown);
               }}>
-              <div>{assignedEmail}</div>
-              <div>
+              <div className='addTask__selectorText'>{assignedEmail}</div>
+              <div className='addTask__selectorIcon'>
                 {showDropDown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
               </div>
             </div>
