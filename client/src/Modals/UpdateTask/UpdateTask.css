@@ -57,6 +57,8 @@
 
 .updateTask__SprintContainer {
   margin-right: 2.5vw;
+  width: 8vw;
+  position: relative;
 }
 
 .updateTask__points {
@@ -81,4 +83,27 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.selectSprint__options {
+  height: 100px;
+  overflow-y: hidden;
+  width: 8vw;
+  background-color: #1f2430;
+  border: 1px solid #5bc0eb;
+  border-radius: 1vh;
+  z-index: 5;
+  position: absolute;
+  overflow-y: scroll;
+  top: 10;
+}
+.selectSprint__options::-webkit-scrollbar {
+  width: 4px;
+}
+.selectSprint__options::-webkit-scrollbar-track {
+  background: #101522;
+}
+.selectSprint__options::-webkit-scrollbar-thumb {
+  background: #5bc0eb;
+  border-radius: 2.5vh;
 }

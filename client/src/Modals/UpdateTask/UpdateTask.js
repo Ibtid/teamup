@@ -32,7 +32,7 @@ const UpdateTask = (props) => {
   const defaultSprint = [
     { _id: props.sprintId || 0, sprintNo: props.sprintNo || '--' },
   ];
-  const [sprints, setSprints] = useState([]);
+  const [sprints, setSprints] = useState(defaultSprint);
   const [sprint, setSprint] = useState('');
   const [openSuggestResponse, setOpenSuggestResponse] = useState(false);
   const [suggested, setSuggested] = useState([]);
@@ -43,7 +43,9 @@ const UpdateTask = (props) => {
   const [openResponse, setOpenResponse] = useState(false);
   const [openConsentModal, setOpenConsentModal] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
+  const [showSprintDropDown, setShowSprintDropDown] = useState(false);
   const [assignedEmail, setAssignedEmail] = useState('None');
+  const [assignedSprint, setAssignedSprint] = useState(sprints[0].sprintNo);
 
   useEffect(() => {
     setLoading(true);
@@ -195,16 +197,6 @@ const UpdateTask = (props) => {
         <div className='addTask__memberContainer'>
           <div className='addTask__member'>
             <div className='addTask__title'>Assign Member</div>
-            {/*<select className='addTask__selector' onChange={selectMember}>
-              {toBeAssigned.map((member) => (
-                <option
-                  key={member._id}
-                  value={member._id}
-                  className='addTask__option'>
-                  {member.email}
-                </option>
-              ))}
-            </select>*/}
             <div
               className='addTask__selector'
               onClick={() => {
@@ -243,7 +235,7 @@ const UpdateTask = (props) => {
         <div className='updateTask__secondSection'>
           <div className='updateTask__SprintContainer'>
             <div className='updateTask__title'>Add Sprint</div>
-            <select className='addTask__selector' onChange={selectSprint}>
+            {/*<select className='addTask__selector' onChange={selectSprint}>
               {sprints.map((indexSprint) => (
                 <option
                   key={indexSprint._id}
@@ -252,7 +244,38 @@ const UpdateTask = (props) => {
                   Sprint {indexSprint.sprintNo}
                 </option>
               ))}
-            </select>
+              </select>*/}
+            <div
+              className='addTask__selector'
+              onClick={() => {
+                setShowSprintDropDown(!showSprintDropDown);
+              }}>
+              <div>Sprint {assignedSprint}</div>
+              <div>
+                {showSprintDropDown ? (
+                  <ArrowDropUpIcon />
+                ) : (
+                  <ArrowDropDownIcon />
+                )}
+              </div>
+            </div>
+            {showSprintDropDown && (
+              <div className='selectSprint__options'>
+                {sprints.map((indexSprint) => (
+                  <div
+                    key={indexSprint._id}
+                    value={indexSprint._id}
+                    className='addTask__option'
+                    onClick={() => {
+                      setAssignedSprint(indexSprint.sprintNo);
+                      setSprint(indexSprint._id);
+                      setShowSprintDropDown(!showSprintDropDown);
+                    }}>
+                    Sprint {indexSprint.sprintNo}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           <div className='updateTask__StoryPoints'>
             <div className='updateTask__title'>Story Points</div>
