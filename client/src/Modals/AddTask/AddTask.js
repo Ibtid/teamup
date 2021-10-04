@@ -46,10 +46,6 @@ const AddTask = (props) => {
     });
   }, []);
 
-  const selectMember = (event) => {
-    setAssignedTo(event.target.value);
-  };
-
   const submitHandler = () => {
     setLoading(true);
     const body = {
