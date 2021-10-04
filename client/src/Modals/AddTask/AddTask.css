@@ -107,3 +107,8 @@
   align-items: center;
   justify-content: center;
 }
+
+.addTask__option {
+  max-height: 200px;
+  overflow: scroll;
+}

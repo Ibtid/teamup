@@ -46,7 +46,7 @@
   width: 100%;
   height: 4vh;
   border-radius: 0.25vw;
-  background-color: #525252;
+  background-color: #333a4b;
   color: #f2f2f2;
 }
 
@@ -56,6 +56,7 @@
   cursor: pointer;
   overflow: hidden;
   border-radius: 0.5vh;
+  border: 1px solid #f5e9f9;
 }
 
 .input_container {

@@ -22,3 +22,26 @@
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
 }
+
+.card__image {
+  height: 10vh;
+  width: 6vw;
+
+  background-color: #5bc0eb;
+  border-radius: 0.7vw;
+  font-size: 0.8vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-family: 'Open Sans';
+  cursor: pointer;
+  color: #101522;
+  transition: all 0.05s ease;
+  border: 1px solid #5bc0eb;
+
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}

@@ -128,10 +128,7 @@ const AddTask = (props) => {
             <div className='addTask__title'>Assign Member</div>
             <select className='addTask__selector' onChange={selectMember}>
               {toBeAssigned.map((member) => (
-                <option
-                  key={member._id}
-                  value={member._id}
-                  className='addTask__option'>
+                <option key={member._id} value={member._id}>
                   {member.email}
                 </option>
               ))}

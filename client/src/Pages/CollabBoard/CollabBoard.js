@@ -89,7 +89,6 @@ const CollabBoard = () => {
                   style={{
                     height: '5vh',
                     width: '2.5vw',
-                    border: '0.3vh solid #f2f2f2',
                   }}
                   alt='Remy Sharp'
                   src={`http://localhost:5000/${member.image}`}
@@ -102,7 +101,6 @@ const CollabBoard = () => {
             style={{
               height: '5vh',
               width: '2.5vw',
-              border: '0.3vh solid #f2f2f2',
             }}
             alt='Remy Sharp'
             src={`http://localhost:5000/${user.user.image}`}

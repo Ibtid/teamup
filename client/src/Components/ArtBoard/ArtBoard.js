@@ -264,10 +264,11 @@ const ArtBoard = () => {
           onClick={() => setOpenColorBox(!openColorBox)}
           ref={colorsRef}
           className={`colors ${openColorBox ? '' : 'hidden'}`}>
-          <div className='color black black' />
-          <div className='color red red' />
-          <div className='color green green' />
-          <div className='color blue blue' />
+          <div className='color #101522 black' />
+          <div className='color #de3c4b red' />
+          <div className='color #59cd90 green' />
+          <div className='color #1768ec blue' />
+          <div className='color #eac435 yellow' />
           <div className='color #f2f2f2 white hidden' ref={whiteRef} />
         </div>
 
@@ -296,6 +297,13 @@ const ArtBoard = () => {
 
       <DraggableCard id='1' name='Drag me' xaxis='300' yaxis='300' />
       <DraggableCard id='2' name='Drag me' xaxis='350' yaxis='300' />
+      <DraggableCard
+        id='2'
+        name='Drag me'
+        xaxis='450'
+        yaxis='330'
+        image='yes'
+      />
     </div>
   );
 };
