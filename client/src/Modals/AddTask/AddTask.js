@@ -10,6 +10,8 @@ import ResponseModal from '../ResponseModal/ResponseModal';
 import { create, getSuggestions } from '../../API/task';
 import { useHistory } from 'react-router';
 import SuggestUserModal from '../SuggestionModal/SuggestUserModal';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
 const AddTask = (props) => {
   const { projectId } = useParams();
@@ -21,8 +23,11 @@ const AddTask = (props) => {
   const [openResponse, setOpenResponse] = useState(false);
   const [openSuggestResponse, setOpenSuggestResponse] = useState(false);
   const [assignedTo, setAssignedTo] = useState('');
+  const [assignedEmail, setAssignedEmail] = useState('None');
   const [story, setStory] = useState('');
   const [points, setPoints] = useState(3);
+  const [showDropDown, setShowDropDown] = useState(false);
+
   const history = useHistory();
 
   useEffect(() => {
@@ -126,13 +131,33 @@ const AddTask = (props) => {
         <div className='addTask__memberContainer'>
           <div className='addTask__member'>
             <div className='addTask__title'>Assign Member</div>
-            <select className='addTask__selector' onChange={selectMember}>
-              {toBeAssigned.map((member) => (
-                <option key={member._id} value={member._id}>
-                  {member.email}
-                </option>
-              ))}
-            </select>
+            <div
+              className='addTask__selector'
+              onClick={() => {
+                setShowDropDown(!showDropDown);
+              }}>
+              <div>{assignedEmail}</div>
+              <div>
+                {showDropDown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+              </div>
+            </div>
+            {showDropDown && (
+              <div className='addTask__options'>
+                {toBeAssigned.map((member) => (
+                  <div
+                    className='addTask__option'
+                    key={member._id}
+                    value={member._id}
+                    onClick={() => {
+                      setAssignedTo(member._id);
+                      setAssignedEmail(member.email);
+                      setShowDropDown(!showDropDown);
+                    }}>
+                    {member.email}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           <div
             className='addTask__getSuggestions'
