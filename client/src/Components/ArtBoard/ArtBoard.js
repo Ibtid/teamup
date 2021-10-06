@@ -59,14 +59,12 @@ const ArtBoard = () => {
     };
 
     createTextPitcher(body).then((response) => {
-      console.log(response);
       setInput('');
     });
   };
 
   useEffect(() => {
     getPitchers(projectId.projectId).then((response) => {
-      console.log(response);
       if (response.success) {
         setPitchers(response.pitchers);
       }
@@ -75,7 +73,6 @@ const ArtBoard = () => {
 
   const fetchCards = () => {
     getPitchers(projectId.projectId).then((response) => {
-      console.log(response);
       if (response.success) {
         setPitchers(response.pitchers);
       }
@@ -89,7 +86,6 @@ const ArtBoard = () => {
 
     var channel = pusher.subscribe('pitchers');
     channel.bind('please', function (data) {
-      //console.log(data);
       fetchCards();
     });
   }, []);

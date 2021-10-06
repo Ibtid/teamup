@@ -59,15 +59,11 @@ const CollabBoard = () => {
       projectId,
       image: user.user.image,
     };
-    getOnline(body).then((response) => {
-      //console.log(response);
-    });
+    getOnline(body).then((response) => {});
     getActives(projectId).then((response) => {
-      //console.log(response);
       if (response.success) {
         setActiveMembers(response.actives);
       } else {
-        //console.log(response.message);
       }
     });
     return () => {
@@ -87,8 +83,8 @@ const CollabBoard = () => {
               member.image !== user.user.image ? (
                 <Avatar
                   style={{
-                    height: '5vh',
-                    width: '2.5vw',
+                    height: '4.7vh',
+                    width: '2.35vw',
                   }}
                   alt='Remy Sharp'
                   src={`http://localhost:5000/${member.image}`}
@@ -99,8 +95,8 @@ const CollabBoard = () => {
             )}
           <Avatar
             style={{
-              height: '5vh',
-              width: '2.5vw',
+              height: '4.7vh',
+              width: '2.35vw',
             }}
             alt='Remy Sharp'
             src={`http://localhost:5000/${user.user.image}`}

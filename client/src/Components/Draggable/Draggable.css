@@ -2,6 +2,7 @@
   height: 4.95vh;
   width: 7.95vw;
 
+  position: relative;
   background-color: #5bc0eb;
   border-radius: 0.7vw;
   font-size: 0.8vw;
@@ -44,4 +45,43 @@
   -khtml-user-drag: none;
   -moz-user-drag: none;
   -o-user-drag: none;
+}
+
+.imageCard {
+  position: relative;
+
+  height: 10vh;
+  width: 6vw;
+
+  background-color: #5bc0eb;
+  border-radius: 0.7vw;
+  font-size: 0.8vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-family: 'Open Sans';
+  cursor: pointer;
+  color: #101522;
+  transition: all 0.05s ease;
+  border: 1px solid #5bc0eb;
+
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}
+
+.card__icon {
+  position: absolute;
+  top: -12px;
+  right: -15px;
+  cursor: pointer;
+}
+
+.card__iconOne {
+  position: absolute;
+  top: -10px;
+  right: -15px;
+  cursor: pointer;
 }
