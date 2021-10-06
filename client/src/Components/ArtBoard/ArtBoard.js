@@ -18,7 +18,7 @@ import {
 } from '../../API/pitcher';
 import Pusher from 'pusher-js';
 
-const ArtBoard = () => {
+const ArtBoard = ({ cleanSignal }) => {
   const [input, setInput] = useState('');
   const canvasRef = useRef(null);
   const colorsRef = useRef(null);
@@ -212,7 +212,7 @@ const ArtBoard = () => {
     };
     socketRef.current = io.connect('http://localhost:4000/');
     socketRef.current.on('drawing', onDrawingEvent);
-  }, []);
+  }, [cleanSignal]);
 
   const whiteClicked = () => {
     whiteRef.current.click();

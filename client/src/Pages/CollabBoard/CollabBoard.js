@@ -9,11 +9,13 @@ import { Avatar } from '@material-ui/core';
 import { getOnline, getActives, getOffline } from '../../API/active';
 import { useParams } from 'react-router';
 import Pusher from 'pusher-js';
+import { deleteAllPitchers } from '../../API/pitcher';
 
 const CollabBoard = () => {
   const { projectId } = useParams();
   const user = JSON.parse(sessionStorage.getItem('jwt'));
   const [activeMembers, setActiveMembers] = useState([]);
+  const [cleanSignal, setCleanSignal] = useState(false);
 
   useEffect(() => {
     const pusher = new Pusher('44f5dfd1d0a381447e26', {
@@ -72,11 +74,16 @@ const CollabBoard = () => {
       });
     };
   }, []);
+  const clearBoard = () => {
+    deleteAllPitchers(projectId).then((response) => {
+      setCleanSignal(!cleanSignal);
+    });
+  };
   return (
     <div className='collabboard'>
       <div className='collabboard__navbar'>
         <BigDropDown />
-        <Button>Clear Board</Button>
+        <Button onClick={clearBoard}>Clear Board</Button>
         <AvatarGroup style={{ margin: '0vw 0vw 0vw 2vw' }} max={8}>
           {activeMembers.length !== 0 &&
             activeMembers.map((member) =>
@@ -105,7 +112,7 @@ const CollabBoard = () => {
       </div>
       <div className='collabboard__content'>
         <div className='collabboard__left'>
-          <ArtBoard />
+          <ArtBoard cleanSignal={cleanSignal} />
         </div>
         <div className='collabboard__right'>
           <CreateRoom />
