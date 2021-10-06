@@ -11,6 +11,12 @@ import pencilBold from './assests/pencilOneUse.svg';
 import textBold from './assests/TextOnUse.svg';
 import eraserBold from './assests/eraserOnUse.svg';
 import pictureBold from './assests/PictureInUse.svg';
+import {
+  createImagePitcher,
+  createTextPitcher,
+  getPitchers,
+} from '../../API/pitcher';
+import Pusher from 'pusher-js';
 
 const ArtBoard = () => {
   const [input, setInput] = useState('');
@@ -19,11 +25,74 @@ const ArtBoard = () => {
   const whiteRef = useRef(null);
   const socketRef = useRef();
   const projectId = useParams();
+  const [pitchers, setPitchers] = useState([]);
+  const filePickerRef = useRef();
+
+  const pickImageHandler = () => {
+    filePickerRef.current.click();
+  };
+
+  const handleImage = async (event) => {
+    let pickedFile;
+    if (event.target.files && event.target.files.length === 1) {
+      pickedFile = event.target.files[0];
+    }
+
+    const formData = new FormData();
+    formData.append('image', event.target.files[0]);
+    formData.append('projectId', projectId.projectId);
+    createImagePitcher(formData).then((response) => {
+      console.log(response);
+      setImage(false);
+    });
+  };
 
   const sendPitcher = (e) => {
     e.preventDefault();
-    console.log('submit');
+
+    let body = {
+      x: 300,
+      y: 300,
+      projectId: projectId.projectId,
+      pitcherContent: input,
+      pitcherType: 'text',
+    };
+
+    createTextPitcher(body).then((response) => {
+      console.log(response);
+      setInput('');
+    });
   };
+
+  useEffect(() => {
+    getPitchers(projectId.projectId).then((response) => {
+      console.log(response);
+      if (response.success) {
+        setPitchers(response.pitchers);
+      }
+    });
+  }, []);
+
+  const fetchCards = () => {
+    getPitchers(projectId.projectId).then((response) => {
+      console.log(response);
+      if (response.success) {
+        setPitchers(response.pitchers);
+      }
+    });
+  };
+
+  useEffect(() => {
+    const pusher = new Pusher('44f5dfd1d0a381447e26', {
+      cluster: 'ap2',
+    });
+
+    var channel = pusher.subscribe('pitchers');
+    channel.bind('please', function (data) {
+      //console.log(data);
+      fetchCards();
+    });
+  }, []);
 
   const [switchPencil, setPencil] = useState(true);
   const [switchEraser, setEraser] = useState(false);
@@ -193,37 +262,6 @@ const ArtBoard = () => {
       <canvas
         className={`artboard__container ${eraserCur}`}
         ref={canvasRef}></canvas>
-      {/*<div className='artboard__settings'>
-        <div className='artboard__label'>Colors</div>
-        <div ref={colorsRef} className='colors'>
-          <div className='color black black' />
-          <div className='color red red' />
-          <div className='color green green' />
-          <div className='color blue blue' />
-          <div className='color #f2f2f2 white' />
-        </div>
-
-        <div className='artboard__label'>Text pitchers</div>
-        <form className='input_container'>
-          <input
-            className='input'
-            type='text'
-            id='name'
-            name='name'
-            value={input}
-            placeholder='Enter pitcher'
-            onChange={(e) => {
-              setInput(e.target.value);
-            }}
-          />
-          <button
-            className='pitcher_button'
-            onClick={sendPitcher}
-            type='submit'>
-            Send a message
-          </button>
-        </form>
-      </div>*/}
 
       <div className='artboard__newSettings'>
         <div onClick={switchToPencil}>
@@ -255,7 +293,11 @@ const ArtBoard = () => {
           {switchImage ? (
             <img className='artboard__icon' src={pictureBold} />
           ) : (
-            <img className='artboard__icon' src={picture} />
+            <img
+              className='artboard__icon'
+              src={picture}
+              onClick={pickImageHandler}
+            />
           )}
         </div>
       </div>
@@ -295,15 +337,36 @@ const ArtBoard = () => {
         )}
       </div>
 
-      <DraggableCard id='1' name='Drag me' xaxis='300' yaxis='300' />
-      <DraggableCard id='2' name='Drag me' xaxis='350' yaxis='300' />
-      <DraggableCard
-        id='2'
-        name='Drag me'
-        xaxis='450'
-        yaxis='330'
-        image='yes'
+      <input
+        style={{ display: 'none' }}
+        ref={filePickerRef}
+        type='file'
+        className='newProduct__input'
+        id='image'
+        name='image'
+        placeholder='Choose the image'
+        accept='.jpg,.png,.jpeg'
+        onChange={handleImage}
       />
+
+      {pitchers.map((pitch) =>
+        pitch.pitcherType === 'text' ? (
+          <DraggableCard
+            _id={pitch._id}
+            name={pitch.pitcherContent}
+            xaxis={pitch.x}
+            yaxis={pitch.y}
+          />
+        ) : (
+          <DraggableCard
+            _id={pitch._id}
+            name={pitch.pitcherContent}
+            xaxis={pitch.x}
+            yaxis={pitch.y}
+            image='yes'
+          />
+        )
+      )}
     </div>
   );
 };

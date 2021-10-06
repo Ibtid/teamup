@@ -1,30 +1,30 @@
 import { useState, useEffect } from 'react';
-//import services from '../services';
-//import Pusher from 'pusher-js';
+import { update } from '../../API/pitcher';
+import Pusher from 'pusher-js';
 
 export default function useDraggable(el, xaxis, yaxis, _id) {
   const [{ dx, dy }, setOffset] = useState({ dx: xaxis, dy: yaxis });
 
-  /*useEffect(() => {
-    const pusher = new Pusher('4a9719cb17f8a5fbaa96', {
+  useEffect(() => {
+    const pusher = new Pusher('44f5dfd1d0a381447e26', {
       cluster: 'ap2',
     });
 
     var channel = pusher.subscribe('pitchers');
-    channel.bind('updated', function (data) {
-      //alert(JSON.stringify(data));
-      console.log('data received', data);
-      if (_id === data._id._id) {
-        setOffset({ dx: data.message.xaxis, dy: data.message.yaxis });
+    channel.bind('pitcherUpdate', function (data) {
+      console.log(data);
+      console.log('here');
+      if (_id === data.message.identity._id) {
+        setOffset({ dx: data.message.x, dy: data.message.y });
       }
     });
-  }, []);*/
+  }, []);
 
-  /*const update = (data) => {
-    services.update(data).then((response) => {
+  const updatePitcher = (data) => {
+    update(data).then((response) => {
       console.log(response.data);
     });
-  };*/
+  };
 
   useEffect(() => {
     const handleMouseDown = (event) => {
@@ -44,12 +44,13 @@ export default function useDraggable(el, xaxis, yaxis, _id) {
         () => {
           document.removeEventListener('mousemove', handleMouseMove);
 
-          /*const data = {
+          const data = {
             _id: _id,
             xaxis: dx,
             yaxis: dy,
           };
-          update(data);*/
+          console.log('DATA', data);
+          updatePitcher(data);
           console.log(dx, dy);
         },
         { once: true }

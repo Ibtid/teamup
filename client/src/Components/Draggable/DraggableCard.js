@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import useDraggable from './useDraggable';
 import './Draggable.css';
-import ibtid from '../LandingPageComponent/svgs/banner3.png';
 
 const DraggableCard = ({ name, xaxis, yaxis, _id, image }) => {
   const cardRef = useRef(null);
@@ -14,7 +13,13 @@ const DraggableCard = ({ name, xaxis, yaxis, _id, image }) => {
       </div>
     );
   } else {
-    return <img className='card__image' src={ibtid} ref={cardRef} />;
+    return (
+      <img
+        className='card__image'
+        src={`http://localhost:5000/${name}`}
+        ref={cardRef}
+      />
+    );
   }
 };
 

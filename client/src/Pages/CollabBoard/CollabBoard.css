@@ -1,7 +1,7 @@
 .collabboard {
   height: 86vh;
   width: 85vw;
-  background: #121212;
+  background: #101522;
   padding-left: 1.8vw;
   padding-top: 4vh;
   font-family: 'Open Sans';
@@ -13,7 +13,7 @@
 }
 
 .collabboard__content {
-  background-color: #121212;
+  background-color: #101522;
   height: 71.5vh;
   width: 79vw;
   display: flex;
@@ -24,7 +24,7 @@
 .collabboard__left {
   height: 71.5vh;
   width: 64vw;
-  background-color: aliceblue;
+  background-color: #101522;
   border-radius: 2.5vh;
   overflow: hidden;
 }
@@ -32,5 +32,5 @@
 .collabboard__right {
   height: 71.5vh;
   width: 14vw;
-  background-color: #525252;
+  background-color: #101522;
 }
