@@ -22,6 +22,7 @@ const Navbar = () => {
   const [openProfile, setOpenProfile] = useState(false);
   const [openNotifications, setOpenNotifications] = useState(false);
   const [notifications, setNotifications] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     getNotifications(user.user._id).then((response) => {
@@ -66,7 +67,17 @@ const Navbar = () => {
         <div
           className='navbar__icon'
           onClick={() => {
-            setOpenNotifications(!openNotifications);
+            if (isOpen) {
+              setOpenNotifications(false);
+              setNotifications([]);
+              setIsOpen(false);
+            } else if (!isOpen && notifications.length) {
+              setOpenNotifications(true);
+              setIsOpen(true);
+            } else {
+              setOpenNotifications(false);
+              setIsOpen(false);
+            }
           }}>
           {notifications.length !== 0 ? (
             <div className='navbar__shakeIcon'>
