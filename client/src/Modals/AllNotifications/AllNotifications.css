@@ -1,0 +1,35 @@
+.allNotifications {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(13, 13, 13, 0.5);
+  position: fixed;
+  left: 0px;
+  top: 10vh;
+  height: 90vh;
+  width: 100%;
+  z-index: 1015;
+}
+
+.notification__container {
+  position: absolute;
+  top: 0vh;
+  right: 1vw;
+  height: 60vh;
+  width: 25vw;
+  background-color: #101522;
+  border: 0.2vh solid #5bc0eb;
+  border-radius: 0vw 0vw 1.5vw 1.5vw;
+  overflow-y: scroll;
+}
+
+.notification__container::-webkit-scrollbar {
+  width: 6px;
+}
+.notification__container::-webkit-scrollbar-track {
+  background: #101522;
+}
+.notification__container::-webkit-scrollbar-thumb {
+  background: #5bc0eb;
+  border-radius: 2.5vh;
+}
