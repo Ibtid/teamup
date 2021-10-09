@@ -1,7 +1,7 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');*/
 .landingNav {
   height: 9.75vh;
-  width: 98.72vw;
+  width: 100vw;
   background: #101522;
   border-bottom: 0.25vh solid #5bc0eb;
   position: sticky;
@@ -42,6 +42,7 @@
   align-items: center;
   width: 20vw;
   justify-content: space-between;
+  transition: all 0.3 ease-in-out;
 }
 
 .landingNav__MenuItem {
@@ -87,4 +88,9 @@
   align-items: center;
   justify-content: center;
   font-size: 2vh;
+}
+
+.landingNav__active {
+  color: #5bc0eb;
+  border-bottom: 0.2vh solid #5bc0eb;
 }

@@ -14,7 +14,7 @@ const PatternTwo = (props) => {
       element,
       {
         opacity: 0,
-        x: -1200,
+        x: -600,
       },
       {
         opacity: 1,
@@ -22,7 +22,7 @@ const PatternTwo = (props) => {
         ease: 'none',
         scrollTrigger: {
           trigger: element,
-          start: '0px 40%',
+          start: '0px 27.5%',
           end: '0px 10%',
           scrub: true,
           markers: false,
@@ -32,7 +32,7 @@ const PatternTwo = (props) => {
     );
   }, []);
   return (
-    <div className='patternOne'>
+    <div className='patternOne' id='features'>
       <div className='patternOneContainer' ref={patternTwoRef} id={props.id}>
         <div className='patternOne__right patternTwo__marginRight'>
           <img className='patternOne__image' src={props.patternImage} />

@@ -44,7 +44,7 @@ const ServicesHeader = () => {
             smooth={true}
             duration={500}
             spy={true}
-            offset={-180}
+            offset={-166}
             exact='true'
             className='servicesHeader__navItem1'>
             Backlog
@@ -53,10 +53,10 @@ const ServicesHeader = () => {
             to='kanban'
             activeClass='services__active2'
             smooth={true}
-            duration={500}
+            duration={100}
             spy={true}
             exact='true'
-            offset={0}
+            offset={-166}
             className='servicesHeader__navItem1'>
             Kanban
           </LinkScroll>
@@ -67,7 +67,7 @@ const ServicesHeader = () => {
             duration={500}
             spy={true}
             exact='true'
-            offset={-180}
+            offset={-166}
             className='servicesHeader__navItem1'>
             Collab
           </LinkScroll>
@@ -78,7 +78,7 @@ const ServicesHeader = () => {
             duration={500}
             spy={true}
             exact='true'
-            offset={-180}
+            offset={-166}
             className='servicesHeader__navItem1 services__hide'>
             Insights
           </LinkScroll>
@@ -89,7 +89,7 @@ const ServicesHeader = () => {
             duration={500}
             spy={true}
             exact='true'
-            offset={-180}
+            offset={-166}
             className='servicesHeader__navItem1'>
             Insights
           </LinkScroll>

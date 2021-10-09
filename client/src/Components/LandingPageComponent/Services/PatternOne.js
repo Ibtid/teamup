@@ -15,15 +15,16 @@ const PatternOne = (props) => {
       element,
       {
         opacity: 0,
-        x: 1200,
+        x: 500,
       },
       {
         opacity: 1,
         x: 0,
+
         ease: 'none',
         scrollTrigger: {
           trigger: element,
-          start: '0px 40%',
+          start: '0px 27.5%',
           end: '0px 10%',
           scrub: true,
           markers: false,
@@ -34,13 +35,13 @@ const PatternOne = (props) => {
   }, []);
 
   return (
-    <div className='patternOne'>
+    <div className='patternOne' id='features'>
       <div className='patternOneContainer' ref={patternOneRef} id={props.id}>
         <div className='patternOne__left'>
           <div className='patternOne__Title'>{props.title}</div>
           <div className='patternOne__Subtitle'>{props.subtitle}</div>
         </div>
-        <div className='patternOne__right'>
+        <div className='patternOne__right '>
           <img className='patternOne__image' src={props.patternImage} />
         </div>
       </div>

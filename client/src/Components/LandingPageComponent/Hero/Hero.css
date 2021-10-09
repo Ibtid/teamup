@@ -1,6 +1,6 @@
 .hero {
   height: 90vh;
-  width: 98.72vw;
+  width: 100vw;
   background: #101522;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .hero__topTitle {
-  font-size: 5.5vh;
+  font-size: 5vh;
   font-family: 'Montserrat';
   font-weight: bold;
   color: #f5f9e9;

@@ -13,10 +13,11 @@ const LandingNav = () => {
           <div className='landingNav__Menu'>
             <LinkS
               to='features'
+              activeClass='landingNav__active'
               smooth={true}
-              duration={4000}
+              duration={4500}
               spy={true}
-              offset={300}
+              offset={215}
               exact='true'
               className='landingNav__MenuItem'>
               Features
@@ -24,9 +25,10 @@ const LandingNav = () => {
             <LinkS
               to='reviews'
               smooth={true}
-              duration={10000}
+              duration={2000}
               spy={true}
               offset={180}
+              activeClass='landingNav__active'
               exact='true'
               className='landingNav__MenuItem '>
               Reviews
@@ -35,9 +37,10 @@ const LandingNav = () => {
             <LinkS
               to='footer'
               smooth={true}
+              activeClass='landingNav__active'
               duration={1000}
               spy={true}
-              offset={-180}
+              offset={0}
               exact='true'
               className='landingNav__MenuItem'>
               Contact Us

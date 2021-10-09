@@ -85,10 +85,10 @@ const Hero = () => {
     <div className='hero'>
       <div className='hero__top'>
         <div className='hero__left' ref={leftRef}>
-          <div className='hero__topTitle'>Manage all of your</div>
-          <div className='hero__topTitle'>projects with the</div>
-          <div className='hero__topTitle'>most unique project</div>
-          <div className='hero__topTitle'>management tool.</div>
+          <div className='hero__topTitle'>Mantain your virtual</div>
+          <div className='hero__topTitle'>office projects with a</div>
+          <div className='hero__topTitle'>powerful but easy to use</div>
+          <div className='hero__topTitle'>project management tool</div>
           <div className='landingNav__filledButton buttonExtraMargin'>
             Open App
           </div>
