@@ -3,8 +3,6 @@ import './ServicesHeader.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link as LinkScroll } from 'react-scroll';
-import { animateScroll as scroll } from 'react-scroll';
-import { NavLink } from 'react-router-dom';
 
 const ServicesHeader = () => {
   const stickyRef = useRef();
@@ -33,7 +31,7 @@ const ServicesHeader = () => {
     );
   }, []);
   return (
-    <div className='servicesHeader'>
+    <div className='servicesHeader' id='features'>
       <div className='servicesHeader__sticky' ref={stickyRef}>
         <div className='servicesHeader__top'>
           Ways to ease up with{' '}
@@ -46,8 +44,8 @@ const ServicesHeader = () => {
             smooth={true}
             duration={500}
             spy={true}
+            offset={-180}
             exact='true'
-            offset={-220}
             className='servicesHeader__navItem1'>
             Backlog
           </LinkScroll>
@@ -58,7 +56,7 @@ const ServicesHeader = () => {
             duration={500}
             spy={true}
             exact='true'
-            offset={-220}
+            offset={0}
             className='servicesHeader__navItem1'>
             Kanban
           </LinkScroll>
@@ -69,7 +67,7 @@ const ServicesHeader = () => {
             duration={500}
             spy={true}
             exact='true'
-            offset={-220}
+            offset={-180}
             className='servicesHeader__navItem1'>
             Collab
           </LinkScroll>
@@ -80,7 +78,7 @@ const ServicesHeader = () => {
             duration={500}
             spy={true}
             exact='true'
-            offset={-220}
+            offset={-180}
             className='servicesHeader__navItem1 services__hide'>
             Insights
           </LinkScroll>
@@ -91,7 +89,7 @@ const ServicesHeader = () => {
             duration={500}
             spy={true}
             exact='true'
-            offset={-220}
+            offset={-180}
             className='servicesHeader__navItem1'>
             Insights
           </LinkScroll>

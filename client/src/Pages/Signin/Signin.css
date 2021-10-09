@@ -91,14 +91,27 @@
 .signin__input {
   height: 2.5vh;
   width: 20vw;
-  background: #a3a3a3;
+  background: #1f2430;
+  color: #f5f9e9;
   border: none;
   outline: none;
   padding: 0.5vh 0.5vw;
   border-radius: 1.5vh;
   font-size: 0.9vw;
   border: 0.3vh solid #5bc0eb;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Montserrat';
+}
+
+.signin__input:-webkit-autofill,
+.signin__input:-webkit-autofill:hover,
+.signin__input:-webkit-autofill:focus,
+.signin__input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #1f2430 inset !important;
+}
+
+.signin__input:-webkit-autofill {
+  -webkit-text-fill-color: #f5f9e9 !important;
+  -webkit-text-size-adjust: 1vh;
 }
 
 .signin__forgetPassword {

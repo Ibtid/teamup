@@ -44,6 +44,10 @@
   justify-content: space-between;
 }
 
+.landingNav__MenuItem {
+  cursor: pointer;
+}
+
 .landingNav__rightSide {
   display: flex;
   align-items: center;
@@ -61,6 +65,7 @@
   align-items: center;
   justify-content: center;
   font-size: 2vh;
+  text-decoration: none;
 }
 
 .landingNav__line {

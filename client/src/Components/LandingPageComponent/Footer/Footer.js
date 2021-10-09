@@ -8,7 +8,7 @@ import './Footer.css';
 
 const Footer = () => {
   return (
-    <div className='footer'>
+    <div className='footer' id='footer'>
       <div className='footer__left'>
         <div className='footer__logo'>teamup.</div>
         <div className='footer__icons'>

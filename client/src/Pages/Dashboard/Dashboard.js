@@ -13,6 +13,9 @@ import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TaskProgress from '../../Components/Charts/TaskProgress';
 import { getCurrentSprint } from '../../API/sprint';
+import { getActives } from '../../API/active';
+import AvatarGroup from '@material-ui/lab/AvatarGroup';
+import Pusher from 'pusher-js';
 
 const useStyles = makeStyles((theme) => ({
   purple: {
@@ -38,6 +41,32 @@ const Dashboard = () => {
   const [loadingb, setLoadingb] = useState(false);
   const [loadingc, setLoadingc] = useState(false);
   const [members, setMembers] = useState([]);
+  const [activeMembers, setActiveMembers] = useState([]);
+
+  useEffect(() => {
+    const pusher = new Pusher('44f5dfd1d0a381447e26', {
+      cluster: 'ap2',
+    });
+    var channel = pusher.subscribe('actives');
+    channel.bind('inserted', function (data) {
+      getActives(projectId).then((response) => {
+        if (response.success) {
+          setActiveMembers(response.actives);
+        } else {
+          console.log(response.message);
+        }
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    getActives(projectId).then((response) => {
+      if (response.success) {
+        setActiveMembers(response.actives);
+      } else {
+      }
+    });
+  }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -188,13 +217,33 @@ const Dashboard = () => {
             <div className='dashboard__title'>
               <div className='dashboard__titleName'>Collab Board</div>
               <div className='dashboard__orange'>
-                <div className='dashboard__orangeText'>Create Now</div>
+                <div className='dashboard__orangeText'>Join Now</div>
                 <div className='dashboard__orangeIcon'>
                   <NavigateNextIcon />
                 </div>
               </div>
             </div>
-            <div className='dashboard__collabboardContext'></div>
+            <div className='dashboard__collabboardContext'>
+              {activeMembers.length !== 0 && (
+                <div className='dashboard__actives'>Active Members </div>
+              )}
+              {activeMembers.length !== 0 ? (
+                <AvatarGroup max={8}>
+                  {activeMembers.map((member) => (
+                    <Avatar
+                      style={{
+                        height: '4.0vh',
+                        width: '2.0vw',
+                      }}
+                      alt='Remy Sharp'
+                      src={`http://localhost:5000/${member.image}`}
+                    />
+                  ))}
+                </AvatarGroup>
+              ) : (
+                <div className='emptyList'>No Active Members</div>
+              )}
+            </div>
           </div>
         </div>
         <div className='dashboard__contentColumnThree slide__downC3'>
@@ -211,7 +260,7 @@ const Dashboard = () => {
             <div className='dashboard__reportContent'>
               <div className='dashboard__chartInfo'>
                 <div className='sprintOverview__chartInfoGroup'>
-                  {percentage.toString().substring(0, 5)}
+                  {percentage.toString().substring(0, 4)} %
                 </div>
               </div>
               <TaskProgress data={chartData} datakey='value' />
@@ -246,7 +295,7 @@ const Dashboard = () => {
                     return <div></div>;
                   })
                 ) : (
-                  <div className='noData__text'>No Members</div>
+                  <div className='emptyList'>No Members</div>
                 )}
               </Scrollable>
             </div>

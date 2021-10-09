@@ -172,6 +172,26 @@
   border-radius: 2.5vh;
 }
 
+.dashboard__collabboardContext {
+  height: 60%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.dashboard__actives {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 30%;
+
+  font-size: 1vw;
+  font-family: 'Montserrat';
+}
+
 .dashboard__contentColumnThree {
   width: 25vw;
   height: 100%;
@@ -252,5 +272,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Montserrat';
   color: #62656c;
 }

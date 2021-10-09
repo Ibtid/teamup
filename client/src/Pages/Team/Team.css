@@ -140,11 +140,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #f2f2f2;
+  color: #f5f9e9;
   font-size: 2vh;
   height: 3vh;
   outline: none;
-  background-color: #252525;
+  background-color: #1f2430;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9vw;
   font-weight: 500;
@@ -230,13 +230,13 @@
 .team__selectedData {
   margin-top: 1vh;
   margin-bottom: 1vh;
-  color: #f2f2f2;
+  color: #f5f9e9;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.95vw;
 }
 
 .team__selectedButton {
-  color: #121212;
+  color: #101522;
   background-color: #fa5959;
   padding: 0.5vh 1vw 0.5vh 1vw;
   font-family: 'Montserrat', sans-serif;

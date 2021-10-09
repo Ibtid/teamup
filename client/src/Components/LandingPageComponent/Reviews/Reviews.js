@@ -53,7 +53,7 @@ const Reviews = () => {
   };
 
   return (
-    <div className='review'>
+    <div className='review' id='reviews'>
       <div className='review__container' ref={containerRef}>
         <Slider {...settings} className='review__slider'>
           <ReviewCard

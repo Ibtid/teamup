@@ -22,7 +22,7 @@
 }
 
 .taskboard__content::-webkit-scrollbar {
-  height: 12px;
+  height: 8px;
 }
 .taskboard__content::-webkit-scrollbar-track {
   background: #101522;
