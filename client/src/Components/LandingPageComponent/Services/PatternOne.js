@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './PatternOne.css';
 const PatternOne = (props) => {
   const patternOneRef = useRef();
-  const fadeRef = useRef();
+  const yRef = useRef();
   gsap.registerPlugin(ScrollTrigger);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const PatternOne = (props) => {
           <div className='patternOne__Title'>{props.title}</div>
           <div className='patternOne__Subtitle'>{props.subtitle}</div>
         </div>
-        <div className='patternOne__right '>
+        <div className='patternOne__right'>
           <img className='patternOne__image' src={props.patternImage} />
         </div>
       </div>

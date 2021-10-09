@@ -15,7 +15,7 @@ const LandingNav = () => {
               to='features'
               activeClass='landingNav__active'
               smooth={true}
-              duration={4500}
+              duration={4000}
               spy={true}
               offset={215}
               exact='true'
