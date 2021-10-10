@@ -12,6 +12,7 @@ import { useHistory } from 'react-router';
 import SuggestUserModal from '../SuggestionModal/SuggestUserModal';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import { isAuthenticated } from '../../API/auth-helper';
 
 const AddTask = (props) => {
   const { projectId } = useParams();
@@ -27,6 +28,7 @@ const AddTask = (props) => {
   const [story, setStory] = useState('');
   const [points, setPoints] = useState(3);
   const [showDropDown, setShowDropDown] = useState(false);
+  const jwt = isAuthenticated();
 
   const history = useHistory();
 
@@ -57,7 +59,7 @@ const AddTask = (props) => {
       projectId,
       status: 'Pending',
     };
-    create(body).then((response) => {
+    create({ t: jwt.token }, body).then((response) => {
       console.log(response);
       if (response.success) {
         setLoading(false);

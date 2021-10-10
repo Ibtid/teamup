@@ -1,10 +1,11 @@
-const create = async (task) => {
+const create = async (credentials, task) => {
   try {
     let response = await fetch('http://localhost:5000/api/tasks', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + credentials.t,
       },
       body: JSON.stringify(task),
     });
