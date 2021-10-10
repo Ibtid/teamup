@@ -49,7 +49,7 @@ const getMyTask = async (userId) => {
   }
 };
 
-const updateTask = async (body) => {
+const updateTask = async (credentials, body) => {
   try {
     let response = await fetch(
       `http://localhost:5000/api/tasks/${body.taskId}`,
@@ -58,6 +58,7 @@ const updateTask = async (body) => {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + credentials.t,
         },
         body: JSON.stringify(body),
       }
@@ -87,13 +88,14 @@ const updateTaskFromKanban = async (body) => {
   }
 };
 
-const deleteTask = async (taskId) => {
+const deleteTask = async (credentials, taskId) => {
   try {
     let response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + credentials.t,
       },
     });
     return await response.json();

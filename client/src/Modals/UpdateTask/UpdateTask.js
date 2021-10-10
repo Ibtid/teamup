@@ -14,6 +14,7 @@ import { deleteTask, getSuggestions } from '../../API/task';
 import SuggestUserModal from '../SuggestionModal/SuggestUserModal';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import { isAuthenticated } from '../../API/auth-helper';
 
 const UpdateTask = (props) => {
   const { projectId } = useParams();
@@ -46,6 +47,8 @@ const UpdateTask = (props) => {
   const [showSprintDropDown, setShowSprintDropDown] = useState(false);
   const [assignedEmail, setAssignedEmail] = useState('None');
   const [assignedSprint, setAssignedSprint] = useState(sprints[0].sprintNo);
+
+  const jwt = isAuthenticated();
 
   useEffect(() => {
     setLoading(true);
@@ -87,10 +90,6 @@ const UpdateTask = (props) => {
     });
   }, []);
 
-  const selectSprint = (event) => {
-    setSprint(event.target.value);
-  };
-
   const update = () => {
     setLoadingb(true);
     const body = {
@@ -101,7 +100,7 @@ const UpdateTask = (props) => {
       taskId: props._id,
     };
     console.log(body);
-    updateTask(body).then((response) => {
+    updateTask({ t: jwt.token }, body).then((response) => {
       console.log(response);
       if (response.success) {
         setLoadingb(false);
@@ -116,7 +115,7 @@ const UpdateTask = (props) => {
 
   const removeTaskClicked = () => {
     setLoading(true);
-    deleteTask(props._id).then((response) => {
+    deleteTask({ t: jwt.token }, props._id).then((response) => {
       if (response.success) {
         setLoading(false);
         setOpenConsentModal(false);
