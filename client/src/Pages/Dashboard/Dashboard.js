@@ -16,6 +16,7 @@ import { getCurrentSprint } from '../../API/sprint';
 import { getActives } from '../../API/active';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import Pusher from 'pusher-js';
+import { isAuthenticated } from '../../API/auth-helper';
 
 const useStyles = makeStyles((theme) => ({
   purple: {
@@ -42,6 +43,8 @@ const Dashboard = () => {
   const [loadingc, setLoadingc] = useState(false);
   const [members, setMembers] = useState([]);
   const [activeMembers, setActiveMembers] = useState([]);
+
+  const jwt = isAuthenticated();
 
   useEffect(() => {
     const pusher = new Pusher('44f5dfd1d0a381447e26', {
@@ -98,7 +101,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     setLoadinga(true);
-    listTasksByProjectId(projectId).then((response) => {
+    listTasksByProjectId({ t: jwt.token }, projectId).then((response) => {
       if (response.success) {
         setALLTasks(response.tasks);
         setCompleted(response.completed);

@@ -15,13 +15,14 @@ const create = async (credentials, task) => {
   }
 };
 
-const listTasksByProjectId = async (projectId) => {
+const listTasksByProjectId = async (credentials, projectId) => {
   try {
     let response = await fetch(`http://localhost:5000/api/tasks/${projectId}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + credentials.t,
       },
     });
     return await response.json();

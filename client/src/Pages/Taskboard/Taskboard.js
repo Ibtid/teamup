@@ -14,6 +14,7 @@ import AddTask from '../../Modals/AddTask/AddTask';
 import { listTasksByProjectId } from '../../API/task';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import ConsentModal from '../../Modals/ConsentModal/ConsentModal';
+import { isAuthenticated } from '../../API/auth-helper';
 
 const Taskboard = () => {
   const { projectId } = useParams();
@@ -34,6 +35,7 @@ const Taskboard = () => {
 
   const [reloadSignal, setReloadSignal] = useState(false);
   const [reloadSignala, setReloadSignala] = useState(false);
+  const jwt = isAuthenticated();
 
   useEffect(() => {
     setLoading(true);
@@ -52,7 +54,7 @@ const Taskboard = () => {
 
   useEffect(() => {
     setLoadinga(true);
-    listTasksByProjectId(projectId).then((response) => {
+    listTasksByProjectId({ t: jwt.token }, projectId).then((response) => {
       if (response.success) {
         console.log(response);
         setTasks(response.tasks);
