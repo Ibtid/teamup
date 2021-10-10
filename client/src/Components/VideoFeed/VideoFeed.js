@@ -11,7 +11,6 @@ import VideoStreamPreview from '../VideoStreamPreview/VideoStreamPreview';
 import styled from 'styled-components';
 import Peer from 'simple-peer';
 import io from 'socket.io-client';
-import { useStateValue } from '../../StateProvider/StateProvider';
 
 const StyledVideo = styled.video`
   height: 31%;
@@ -47,7 +46,6 @@ const VideoFeed = () => {
   const [audio, setAudio] = useState(false);
   const [peers, setPeers] = useState([]);
 
-  const [state, dispatch] = useStateValue();
   const socketRef = useRef();
   const userVideo = useRef();
   const peersRef = useRef([]);
@@ -60,11 +58,11 @@ const VideoFeed = () => {
     navigator.mediaDevices
       .getUserMedia({ video: videoConstraints, audio: audio })
       .then((stream) => {
-        //userVideo.current.srcObject = stream;
+        userVideo.current.srcObject = stream;
         socketRef.current.emit('join room', roomId, user.user._id);
 
         socketRef.current.on('all users', (users) => {
-          const peers = [];
+          const peers1 = [];
           console.log('USERS IN FEED', users);
           users.forEach((userID) => {
             const peer = createPeer(userID, socketRef.current.id, stream);
@@ -72,9 +70,9 @@ const VideoFeed = () => {
               peerID: userID,
               peer,
             });
-            peers.push(peer);
+            peers1.push(peer);
           });
-          setPeers(peers);
+          setPeers(peers1);
         });
 
         socketRef.current.on('user joined', (payload) => {
@@ -93,21 +91,9 @@ const VideoFeed = () => {
         });
       });
     return () => {
-      socketRef.current.disconnect();
-      console.log(peersRef.current[0]);
-      //peersRef.current[0].peer.destroy();
+      socketRef.current.emit('disconnectChat');
     };
   }, []);
-
-  useEffect(() => {
-    navigator.mediaDevices
-      .getUserMedia({ video: videoConstraints, audio: audio })
-      .then((stream) => {
-        if (video) {
-          userVideo.current.srcObject = stream;
-        }
-      });
-  }, [video]);
 
   const createPeer = (userToSignal, callerID, stream) => {
     const peer = new Peer({
@@ -179,11 +165,10 @@ const VideoFeed = () => {
         <div
           className='videoFeed__disconnectButton'
           onClick={() => {
-            socketRef.current.disconnect();
-            console.log(peersRef.current[0]);
-            //peersRef.current[0].peer.destroy();
+            socketRef.current.emit('disconnectChatfromButton');
             setVideo(false);
             setAudio(false);
+            console.log(peers);
             history.push(`/collabboard/${roomId}`);
           }}
           style={{ color: 'red', cursor: 'pointer' }}>
