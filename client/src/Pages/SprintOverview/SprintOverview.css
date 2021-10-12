@@ -25,6 +25,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  opacity: 0;
 }
 
 .sprintOverview__contentRightTop {
@@ -46,6 +47,7 @@
   width: 38.5vw;
   height: 71vh;
   border-radius: 2.5vh;
+  opacity: 0;
 }
 
 .sprintOverview__header {

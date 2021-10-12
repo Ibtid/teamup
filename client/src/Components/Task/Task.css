@@ -131,3 +131,26 @@
 .putWhitespace {
   white-space: normal;
 }
+
+.drop__downtaskList {
+  animation: drop-tasks 1s forwards;
+  -webkit-animation: drop-tasks 1s forwards;
+}
+
+@-webkit-keyframes drop-tasks {
+  0% {
+    -webkit-transform: translateY(-300%);
+  }
+  100% {
+    -webkit-transform: translateY(0%);
+  }
+}
+
+@keyframes drop-tasks {
+  0% {
+    transform: translateY(-300%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}

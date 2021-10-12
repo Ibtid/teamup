@@ -33,8 +33,9 @@
 }
 
 .pop {
-  animation: pop 0.5s forwards;
-  -webkit-animation: pop 0.5s forwards;
+  animation: pop 1s forwards;
+  -webkit-animation: pop 1s forwards;
+  animation-delay: 1s;
 }
 
 @-webkit-keyframes pop {
@@ -60,8 +61,9 @@
 }
 
 .drop__down {
-  animation: drop-down 0.5s forwards;
-  -webkit-animation: drop-down 0.5s forwards;
+  animation: drop-down 1s forwards;
+  -webkit-animation: drop-down 1s forwards;
+  animation-delay: 1s;
 }
 
 @-webkit-keyframes drop-down {
@@ -90,30 +92,6 @@
   }
 }
 
-.drop__downtaskList {
-  animation: drop-tasks 0.5s forwards;
-  -webkit-animation: drop-tasks 0.5s forwards;
-  background-color: #fbff42;
-}
-
-@-webkit-keyframes drop-tasks {
-  0% {
-    -webkit-transform: translateY(-100%);
-  }
-  100% {
-    -webkit-transform: translateY(0%);
-  }
-}
-
-@keyframes drop-tasks {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(0%);
-  }
-}
-
 .taskboard__taskBoard {
   display: inline-block;
   border-radius: 2.5vh;
@@ -121,6 +99,7 @@
   width: 25vw;
   margin-right: 1.5vw;
   overflow: hidden;
+  opacity: 0;
 }
 
 .taskboard__red {
