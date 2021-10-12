@@ -10,6 +10,7 @@ import { getSprints } from '../../API/sprint';
 import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
 import Spinkit from '../../Modals/Spinkit/Spinkit';
 import { useParams } from 'react-router-dom';
+import { isAuthenticated } from '../../API/auth-helper';
 
 const SprintOverview = () => {
   const { projectId } = useParams();
@@ -22,9 +23,11 @@ const SprintOverview = () => {
   const [completedSprints, setCompletedSprints] = useState([]);
   const [currentSprint, setCurrentSprint] = useState([]);
 
+  const jwt = isAuthenticated();
+
   useEffect(() => {
     setLoading(true);
-    getSprints(projectId).then((response) => {
+    getSprints({ t: jwt.token }, projectId).then((response) => {
       console.log(response);
       if (response.success) {
         const lastSprint = response.sprints[response.sprints.length - 1];

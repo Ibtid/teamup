@@ -14,7 +14,7 @@ const create = async (body) => {
   }
 };
 
-const getSprints = async (projectId) => {
+const getSprints = async (credentials, projectId) => {
   try {
     let response = await fetch(
       `http://localhost:5000/api/sprints/${projectId}`,
@@ -23,6 +23,7 @@ const getSprints = async (projectId) => {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + credentials.t,
         },
       }
     );
@@ -68,7 +69,7 @@ const deleteSprint = async (sprintId) => {
   }
 };
 
-const getCurrentSprint = async (projectId) => {
+const getCurrentSprint = async (credentials, projectId) => {
   try {
     let response = await fetch(
       `http://localhost:5000/api/currentSprint/${projectId}`,
@@ -77,6 +78,7 @@ const getCurrentSprint = async (projectId) => {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + credentials.t,
         },
       }
     );

@@ -7,6 +7,7 @@ import { addNewMember } from '../../API/project';
 import { useParams } from 'react-router-dom';
 import ResponseModal from '../ResponseModal/ResponseModal';
 import Spinkit from '../Spinkit/Spinkit';
+import { isAuthenticated } from '../../API/auth-helper';
 
 const AddMember = (props) => {
   const { projectId } = useParams();
@@ -15,13 +16,15 @@ const AddMember = (props) => {
   const [openResponse, setOpenResponse] = useState(false);
   const [message, setMessage] = useState('');
 
+  const jwt = isAuthenticated();
+
   const addMember = () => {
     setLoading(true);
     const body = {
       email: email,
       projectId: projectId,
     };
-    addNewMember(body).then((response) => {
+    addNewMember({ t: jwt.token }, body).then((response) => {
       console.log(response);
       if (response.success) {
         setLoading(false);

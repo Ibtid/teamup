@@ -85,7 +85,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     setLoadingc(true);
-    getCurrentSprint(projectId).then((response) => {
+    getCurrentSprint({ t: jwt.token }, projectId).then((response) => {
       if (response.success) {
         let aggregate = [];
         response.currentSprint.pending.forEach((x) => aggregate.push(x));

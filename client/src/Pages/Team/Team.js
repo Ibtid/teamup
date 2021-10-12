@@ -14,6 +14,7 @@ import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
 import AddMember from '../../Modals/AddMember/AddMember';
 import ConsentModal from '../../Modals/ConsentModal/ConsentModal';
 import { removeMember } from '../../API/project';
+import { isAuthenticated } from '../../API/auth-helper';
 
 const useStyles = makeStyles((theme) => ({
   purple: {
@@ -46,6 +47,8 @@ const Team = () => {
   const [jrDev, setJrDev] = useState([]);
   const [intern, setIntern] = useState([]);
   const [openLeaveConsentModal, setOpenLeaveConsentModal] = useState(false);
+
+  const jwt = isAuthenticated();
 
   useEffect(() => {
     setLoading(true);
@@ -82,7 +85,7 @@ const Team = () => {
       projectId: projectId,
       memberId: memberToBeRemovedId,
     };
-    removeMember(body).then((response) => {
+    removeMember({ t: jwt.token }, body).then((response) => {
       setLoading(true);
       if (response.success) {
         setSelectedMember(false);

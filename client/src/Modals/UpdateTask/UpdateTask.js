@@ -75,7 +75,7 @@ const UpdateTask = (props) => {
 
   useEffect(() => {
     setLoadinga(true);
-    getSprints(projectId).then((response) => {
+    getSprints({ t: jwt.token }, projectId).then((response) => {
       if (response.success) {
         response.sprints.map((sprint) => {
           if (sprint._id !== defaultSprint[0]._id) defaultSprint.push(sprint);
