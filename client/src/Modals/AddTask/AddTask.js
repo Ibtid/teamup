@@ -111,7 +111,7 @@ const AddTask = (props) => {
           setOpen={() => setOpenSuggestResponse(false)}
         />
       )}
-      <div className='addTask__container'>
+      <div className='addTask__container pop__up'>
         <div className='addTask__closeButton' onClick={props.closeAddTask}>
           <CloseIcon />
         </div>

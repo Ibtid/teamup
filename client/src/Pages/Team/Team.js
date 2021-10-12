@@ -106,8 +106,9 @@ const Team = () => {
       projectId: projectId,
       memberId: memberToBeRemovedId,
     };
-    removeMember(body).then((response) => {
+    removeMember({ t: jwt.token }, body).then((response) => {
       setLoading(true);
+      console.log(response);
       if (response.success) {
         setSelectedMember(false);
         setOpenConsentModal(false);

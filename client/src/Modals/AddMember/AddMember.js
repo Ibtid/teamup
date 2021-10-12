@@ -46,7 +46,7 @@ const AddMember = (props) => {
           setOpen={() => setOpenResponse(false)}
         />
       )}
-      <div className='addMember__form'>
+      <div className='addMember__form pop__up'>
         <div className='addMember__top'>
           <div className='addMember__label'>User Mail</div>
           <div className='addMember__closeIcon' onClick={props.closeAddMember}>

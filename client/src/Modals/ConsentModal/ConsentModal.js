@@ -7,7 +7,7 @@ import './ConsentModal.css';
 const ConsentModal = ({ message, answerNo, answerYes }) => {
   return ReactDOM.createPortal(
     <div className='consentModal'>
-      <div className='consentModal__container'>
+      <div className='consentModal__container pop__up'>
         <div className='consentModal__text'>{message}</div>
         <div className='consentModal__actionButtons'>
           <Button red='red' onClick={answerYes}>

@@ -21,7 +21,7 @@ const SuggestUserModal = (props) => {
   };
   return ReactDOM.createPortal(
     <div className='responseModal'>
-      <div className='responseModal__container paddingMinus'>
+      <div className='responseModal__container paddingMinus pop__up'>
         {props.suggested.length === 0 && (
           <div className='responseModal__message'>{props.message}</div>
         )}

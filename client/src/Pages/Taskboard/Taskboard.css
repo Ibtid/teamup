@@ -32,6 +32,88 @@
   border-radius: 2.5vh;
 }
 
+.pop {
+  animation: pop 0.5s forwards;
+  -webkit-animation: pop 0.5s forwards;
+}
+
+@-webkit-keyframes pop {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.drop__down {
+  animation: drop-down 0.5s forwards;
+  -webkit-animation: drop-down 0.5s forwards;
+}
+
+@-webkit-keyframes drop-down {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+    -webkit-transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -webkit-transform: translateY(0%);
+  }
+}
+
+@keyframes drop-down {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    transform: translateY(0%);
+  }
+}
+
+.drop__downtaskList {
+  animation: drop-tasks 0.5s forwards;
+  -webkit-animation: drop-tasks 0.5s forwards;
+  background-color: #fbff42;
+}
+
+@-webkit-keyframes drop-tasks {
+  0% {
+    -webkit-transform: translateY(-100%);
+  }
+  100% {
+    -webkit-transform: translateY(0%);
+  }
+}
+
+@keyframes drop-tasks {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
 .taskboard__taskBoard {
   display: inline-block;
   border-radius: 2.5vh;

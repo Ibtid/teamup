@@ -130,7 +130,7 @@ const Taskboard = () => {
           .slice(0)
           .reverse()
           .map((board) => (
-            <div className='taskboard__taskBoard' key={board._id}>
+            <div className='taskboard__taskBoard pop' key={board._id}>
               <div className={board.color}>
                 <div className='taskboard__header'>
                   <div className='taskboard__headerText'>{board.name}</div>
@@ -158,7 +158,7 @@ const Taskboard = () => {
                     </div>
                   </div>
                 </div>
-                <div className='taskboard__taskList'>
+                <div className='taskboard__taskList drop__down'>
                   <Scrollable>
                     {tasks ? (
                       tasks

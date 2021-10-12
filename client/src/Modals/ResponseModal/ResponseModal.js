@@ -7,7 +7,7 @@ import './ResponseModal.css';
 const ResponseModal = (props) => {
   return ReactDOM.createPortal(
     <div className='responseModal'>
-      <div className='responseModal__container'>
+      <div className='responseModal__container pop__up'>
         <div className='responseModal__message'>{props.message}</div>
         <Button onClick={props.setOpen}>Okay</Button>
       </div>

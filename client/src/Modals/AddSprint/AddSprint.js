@@ -61,7 +61,7 @@ const AddSprint = (props) => {
           }}
         />
       )}
-      <div className='addSprint__container'>
+      <div className='addSprint__container pop__up'>
         <div className='addTask__closeButton' onClick={props.closeAddSprint}>
           <CloseIcon />
         </div>
