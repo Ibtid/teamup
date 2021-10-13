@@ -47,6 +47,7 @@ const Team = () => {
   const [jrDev, setJrDev] = useState([]);
   const [intern, setIntern] = useState([]);
   const [openLeaveConsentModal, setOpenLeaveConsentModal] = useState(false);
+  const [slideOn, setSlideOn] = useState('team__slideOn');
 
   const jwt = isAuthenticated();
 
@@ -307,16 +308,20 @@ const Team = () => {
                   }
                 });
 
-                setSelectedMember({
-                  name: admin.name,
-                  image: admin.image,
-                  username: admin.username,
-                  email: admin.email,
-                  completed: completed || ' -',
-                  total: total || '-',
-                  role: 'Team Lead',
-                  id: admin._id,
-                });
+                setSlideOn('team__slideOff');
+                setTimeout(() => {
+                  setSlideOn('team__slideOn');
+                  setSelectedMember({
+                    name: admin.name,
+                    image: admin.image,
+                    username: admin.username,
+                    email: admin.email,
+                    completed: completed || ' -',
+                    total: total || '-',
+                    role: 'Team Lead',
+                    id: admin._id,
+                  });
+                }, 300);
               }}>
               <Avatar
                 style={{ height: '5vh', width: '5vh' }}
@@ -346,18 +351,22 @@ const Team = () => {
                           }
                         });
 
-                        setSelectedMember({
-                          name: member.name,
-                          image: member.image,
-                          username: member.username,
-                          email: member.email,
-                          completed: completed || ' -',
-                          total: total || '-',
-                          role:
-                            designationDiv(member._id).memberDesignation ||
-                            'Member',
-                          id: member._id,
-                        });
+                        setSlideOn('team__slideOff');
+                        setTimeout(() => {
+                          setSlideOn('team__slideOn');
+                          setSelectedMember({
+                            name: member.name,
+                            image: member.image,
+                            username: member.username,
+                            email: member.email,
+                            completed: completed || ' -',
+                            total: total || '-',
+                            role:
+                              designationDiv(member._id).memberDesignation ||
+                              'Member',
+                            id: member._id,
+                          });
+                        }, 300);
                       }}>
                       <div className='team__profileGroup'>
                         <Avatar
@@ -395,7 +404,7 @@ const Team = () => {
         </div>
         <div className='team__contentRight slide__downC3'>
           {selectedMember ? (
-            <div className='team__selectedMember'>
+            <div className={`team__selectedMember ${slideOn}`}>
               <Avatar
                 style={{ width: '9.4vw', height: '19.7vh' }}
                 src={`http://localhost:5000/${selectedMember.image}`}

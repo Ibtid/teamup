@@ -141,9 +141,9 @@ const Kanban = () => {
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
         {Object.entries(columns).map(([columnId, column], index) => {
           return (
-            <div className='kanban__columnSpace pop' key={columnId}>
+            <div className='kanban__columnSpace' key={columnId}>
               <div className='kanban__columnHeader'>{column.name}</div>
-              <div className='kanban__columnBody drop__down'>
+              <div className='kanban__columnBody'>
                 <Droppable droppableId={columnId} key={columnId}>
                   {(provided, snapshot) => {
                     return (
@@ -183,7 +183,7 @@ const Kanban = () => {
                                         color: '#f5f939',
                                         ...provided.draggableProps.style,
                                       }}>
-                                      <div className='task drop__downtaskList'>
+                                      <div className='task'>
                                         <div className='bullet noMargin'>
                                           <div className={item.color}></div>
                                         </div>

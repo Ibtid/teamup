@@ -26,12 +26,13 @@ const Reports = () => {
   const [pending, setPending] = useState('');
   const [ongoing, setOngoing] = useState('');
   const [complete, setComplete] = useState('');
+  const [reportsFound, setReportsFound] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     getAllReports(projectId).then((response) => {
-      console.log(response);
       if (response.success) {
+        setReportsFound(true);
         setTotalStories(response.totalStories);
         setTotalEpics(response.totalEpics);
         setTotalSprints(response.totalSprints);
@@ -75,94 +76,125 @@ const Reports = () => {
           <div className='reports__summaryTextGroup'>
             <div className='reports__summary'>
               <div className='reports__summaryText'>
-                <div className='reports__bigText'>{totalStories}</div>
-                <div className='reports__smallText'>Stories</div>
+                {reportsFound && (
+                  <div className='reports__bigText'>{totalStories}</div>
+                )}
+                {reportsFound && (
+                  <div className='reports__smallText'>Stories</div>
+                )}
               </div>
               <div className='reports__summaryIcon'>
-                <NoteIcon style={{ height: '4vh', width: '4vh' }} />
+                {reportsFound && (
+                  <NoteIcon style={{ height: '4vh', width: '4vh' }} />
+                )}
               </div>
             </div>
             <div className='reports__summary'>
-              <div className='reports__summaryText'>
-                <div className='reports__bigText'>{totalEpics}</div>
-                <div className='reports__smallText'>Epics</div>
-              </div>
+              {reportsFound && (
+                <div className='reports__summaryText'>
+                  <div className='reports__bigText'>{totalEpics}</div>
+                  <div className='reports__smallText'>Epics</div>
+                </div>
+              )}
               <div className='reports__summaryIcon'>
-                <LibraryBooksIcon style={{ height: '4vh', width: '4vh' }} />
+                {reportsFound && (
+                  <LibraryBooksIcon style={{ height: '4vh', width: '4vh' }} />
+                )}
               </div>
             </div>
             <div className='reports__summary'>
-              <div className='reports__summaryText'>
-                <div className='reports__bigText'>{totalSprints}</div>
-                <div className='reports__smallText'>Sprints</div>
-              </div>
+              {reportsFound && (
+                <div className='reports__summaryText'>
+                  <div className='reports__bigText'>{totalSprints}</div>
+                  <div className='reports__smallText'>Sprints</div>
+                </div>
+              )}
               <div className='reports__summaryIcon'>
-                <TrendingUpIcon style={{ height: '4vh', width: '4vh' }} />
+                {reportsFound && (
+                  <TrendingUpIcon style={{ height: '4vh', width: '4vh' }} />
+                )}
               </div>
             </div>
           </div>
           <div className='reports__completion'>
-            <div className='reports__rowOneTitle'>Work Load</div>
+            {reportsFound && (
+              <div className='reports__rowOneTitle'>Work Load</div>
+            )}
             <div className='reports__rowOneContent'>
-              <OverLoadChart workLoadData={workLoadData} />
+              {reportsFound && <OverLoadChart workLoadData={workLoadData} />}
             </div>
           </div>
           <div className='reports__summaryGraph'>
-            <div className='reports__rowOneTitle'>Velocity</div>
+            {reportsFound && (
+              <div className='reports__rowOneTitle'>Velocity</div>
+            )}
             <div className='reports__rowGraphContent'>
-              <SummaryChart forVelocity={true} sprintSummary={sprintSummary} />
+              {reportsFound && (
+                <SummaryChart
+                  forVelocity={true}
+                  sprintSummary={sprintSummary}
+                />
+              )}
             </div>
           </div>
         </div>
         <div className='reports__firstRow'>
           <div className='reports__summaryGraph'>
-            <div className='reports__rowOneTitle'>Story</div>
+            {reportsFound && <div className='reports__rowOneTitle'>Story</div>}
             <div className='reports__rowGraphContent'>
-              <SummaryChart forStory={true} sprintSummary={sprintSummary} />
+              {reportsFound && (
+                <SummaryChart forStory={true} sprintSummary={sprintSummary} />
+              )}
             </div>
           </div>
           <div className='reports__rowOneChart'>
-            <div className='reports__rowOneTitle'>Task Progress</div>
+            {reportsFound && (
+              <div className='reports__rowOneTitle'>Task Progress</div>
+            )}
             <div className='reports__rowOneContent'>
               <div className='reports__taskprogressContainer'>
-                <TaskProgress
-                  fromReport={true}
-                  data={taskProgressData}
-                  datakey='value'
-                />
+                {reportsFound && (
+                  <TaskProgress
+                    fromReport={true}
+                    data={taskProgressData}
+                    datakey='value'
+                  />
+                )}
               </div>
-              <div className='reports__progressColors'>
-                <div className='reports__progressColorsGroup'>
-                  <div className='sprintOverview__pendingColor'></div>
-                  <div className='sprintOverview__chartInfoText'>
-                    Pending{' '}
-                    {((pending / totalStories) * 100)
-                      .toString()
-                      .substring(0, 5)}
-                    %
+              {reportsFound && (
+                <div className='reports__progressColors'>
+                  <div className='reports__progressColorsGroup'>
+                    <div className='sprintOverview__pendingColor'></div>
+                    <div className='sprintOverview__chartInfoText'>
+                      Pending{' '}
+                      {((pending / totalStories) * 100)
+                        .toString()
+                        .substring(0, 5)}
+                      %
+                    </div>
+                  </div>
+                  <div className='reports__progressColorsGroup'>
+                    <div className='sprintOverview__ongoingColor'></div>
+                    <div className='sprintOverview__chartInfoText'>
+                      Ongoing{' '}
+                      {((ongoing / totalStories) * 100)
+                        .toString()
+                        .substring(0, 5)}
+                      %
+                    </div>
+                  </div>
+                  <div className='reports__progressColorsGroup'>
+                    <div className='sprintOverview__completedColor'></div>
+                    <div className='sprintOverview__chartInfoText'>
+                      Completed{' '}
+                      {((complete / totalStories) * 100)
+                        .toString()
+                        .substring(0, 5)}
+                      %
+                    </div>
                   </div>
                 </div>
-                <div className='reports__progressColorsGroup'>
-                  <div className='sprintOverview__ongoingColor'></div>
-                  <div className='sprintOverview__chartInfoText'>
-                    Ongoing{' '}
-                    {((ongoing / totalStories) * 100)
-                      .toString()
-                      .substring(0, 5)}
-                    %
-                  </div>
-                </div>
-                <div className='reports__progressColorsGroup'>
-                  <div className='sprintOverview__completedColor'></div>
-                  <div className='sprintOverview__chartInfoText'>
-                    Completed{' '}
-                    {((complete / totalStories) * 100)
-                      .toString()
-                      .substring(0, 5)}
-                    %
-                  </div>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

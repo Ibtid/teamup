@@ -17,6 +17,7 @@
   background: #101522;
   display: flex;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 .sprintOverview__contentRight {
