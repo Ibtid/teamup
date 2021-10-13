@@ -77,7 +77,7 @@ const Team = () => {
         setLoading(false);
       }
     });
-  }, [openAddMember, openConsentModal, reloadSignal]);
+  }, [reloadSignal]);
 
   const removeMemberClicked = () => {
     setLoading(true);
@@ -91,6 +91,7 @@ const Team = () => {
         setSelectedMember(false);
         setOpenConsentModal(false);
         setLoading(false);
+        setReloadSignal(!reloadSignal);
       } else {
         setOpenConsentModal(false);
         setOpenResponse(true);
@@ -262,6 +263,9 @@ const Team = () => {
         <AddMember
           closeAddMember={() => {
             setOpenAddMember(false);
+          }}
+          changeReloadSignal={() => {
+            setReloadSignal(!reloadSignal);
           }}
         />
       )}
