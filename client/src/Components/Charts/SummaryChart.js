@@ -39,6 +39,7 @@ const SummaryChart = (props) => {
           fill='#D763CD'
           radius={[5, 5, 0, 0]}
           stroke='#D763cd'
+          animationDuration={1000}
         />
       )}
 
@@ -59,6 +60,7 @@ const SummaryChart = (props) => {
           barSize={20}
           fill='#00AAF2'
           radius={[5, 5, 0, 0]}
+          animationDuration={1000}
         />
       )}
       <XAxis dataKey='name' axisLine={false} tickLine={false} />
