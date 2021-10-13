@@ -332,7 +332,7 @@ const Team = () => {
                 <div className='team__members'>
                   {members.map((member) => (
                     <div
-                      className='team__member'
+                      className='team__member drop__downteamList'
                       key={member._id}
                       onClick={() => {
                         let completed = 0;

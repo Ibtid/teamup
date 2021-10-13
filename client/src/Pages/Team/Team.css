@@ -256,3 +256,26 @@
   color: #fa5959;
   border: 0.01vh solid #fa5959;
 }
+
+.drop__downteamList {
+  animation: drop-downteam 1s forwards;
+  -webkit-animation: drop-downteam 1s forwards;
+}
+
+@-webkit-keyframes drop-downteam {
+  0% {
+    -webkit-transform: translateY(-700%);
+  }
+  100% {
+    -webkit-transform: translateY(0%);
+  }
+}
+
+@keyframes drop-downteam {
+  0% {
+    transform: translateY(-700%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
