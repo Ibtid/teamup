@@ -30,6 +30,7 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
+  z-index: 3;
 }
 
 .team__projectOwner {
@@ -260,8 +261,8 @@
 }
 
 .drop__downteamList {
-  animation: drop-downteam 1s forwards;
-  -webkit-animation: drop-downteam 1s forwards;
+  animation: drop-downteam 0.4s forwards;
+  -webkit-animation: drop-downteam 0.4s forwards;
 }
 
 @-webkit-keyframes drop-downteam {
@@ -283,37 +284,43 @@
 }
 
 .team__slideOn {
-  animation: team-slideOn 0.5s forwards;
-  -webkit-animation: team-slideOn 0.5s forwards;
+  animation: team-slideOn 0.4s forwards;
+  -webkit-animation: team-slideOn 0.4s forwards;
 }
 
 @-webkit-keyframes team-slideOn {
   0% {
     opacity: 0;
-    -webkit-transform: translateX(-50%);
+    -webkit-transform: translateX(-100%) scale(0.7);
   }
-  30% {
-    opacity: 0.5;
-    -webkit-transform: translateX(-35%);
+  80% {
+    opacity: 0.7;
+    -webkit-transform: translateX(10%);
   }
   100% {
     opacity: 1;
-    -webkit-transform: translateX(0%);
+    -webkit-transform: translateX(0%) scale(1);
   }
 }
 
 @keyframes team-slideOn {
   0% {
-    transform: translateX(-100%);
+    opacity: 0;
+    transform: translateX(-100%) scale(0.7);
+  }
+  80% {
+    opacity: 0.7;
+    transform: translateX(10%);
   }
   100% {
-    transform: translateX(0%);
+    opacity: 1;
+    transform: translateX(0%) scale(1);
   }
 }
 
 .team__slideOff {
-  animation: team-slideOff 0.5s forwards;
-  -webkit-animation: team-slideOff 0.5s forwards;
+  animation: team-slideOff 0.4s forwards;
+  -webkit-animation: team-slideOff 0.4s forwards;
 }
 
 @-webkit-keyframes team-slideOff {
@@ -321,13 +328,17 @@
     opacity: 1;
     -webkit-transform: translateX(0%);
   }
+  10% {
+    opacity: 1;
+    -webkit-transform: translateX(-10%) scale(1);
+  }
   50% {
     opacity: 0;
-    -webkit-transform: translateX(25%);
+    -webkit-transform: translateX(25%) scale(0.85);
   }
   100% {
     opacity: 0;
-    -webkit-transform: translateX(50%);
+    -webkit-transform: translateX(50%) scale(0.7);
   }
 }
 
@@ -336,12 +347,16 @@
     opacity: 1;
     transform: translateX(0%);
   }
+  10% {
+    opacity: 1;
+    transform: translateX(-10%) scale(1);
+  }
   50% {
     opacity: 0;
-    transform: translateX(50%);
+    transform: translateX(50%) scale(0.85);
   }
   100% {
     opacity: 0;
-    transform: translateX(100%);
+    transform: translateX(100%) scale(0.7);
   }
 }

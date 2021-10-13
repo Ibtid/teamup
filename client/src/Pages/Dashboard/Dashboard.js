@@ -285,7 +285,7 @@ const Dashboard = () => {
                   members.map((member) => {
                     if (member._id !== user.user._id)
                       return (
-                        <div className='dashboard__singleMember'>
+                        <div className='dashboard__singleMember drop__downteamList'>
                           <Avatar
                             className={classes.purple}
                             src={`http://localhost:5000/${member.image}`}

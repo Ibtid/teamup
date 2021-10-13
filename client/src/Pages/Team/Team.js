@@ -47,7 +47,7 @@ const Team = () => {
   const [jrDev, setJrDev] = useState([]);
   const [intern, setIntern] = useState([]);
   const [openLeaveConsentModal, setOpenLeaveConsentModal] = useState(false);
-  const [slideOn, setSlideOn] = useState('team__slideOn');
+  const [slideOn, setSlideOn] = useState('');
 
   const jwt = isAuthenticated();
 
@@ -402,7 +402,7 @@ const Team = () => {
             </div>
           </div>
         </div>
-        <div className='team__contentRight slide__downC3'>
+        <div className={`team__contentRight slide__downC3 ${slideOn}`}>
           {selectedMember ? (
             <div className={`team__selectedMember ${slideOn}`}>
               <Avatar
