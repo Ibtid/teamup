@@ -93,7 +93,7 @@ const SprintOverview = () => {
         <div className='sprintOverview__contentLeft pop'>
           <div className='sprintOverview__contentOverview'>
             <div className='sprintOverview__header'>Current Sprint</div>
-            <div className='sprintOverview__contentOverviewLarge drop__down'>
+            <div className='sprintOverview__contentOverviewLarge drop__downins'>
               {currentSprint.length !== 0 ? (
                 currentSprint.map((sprint) => (
                   <CurrentSprintOverview
@@ -118,7 +118,7 @@ const SprintOverview = () => {
         <div className='sprintOverview__contentRight pop'>
           <div className='sprintOverview__contentRightTop'>
             <div className='sprintOverview__header'>Upcoming Sprint</div>
-            <div className='sprintOverview__contentOverviewSmall drop__down'>
+            <div className='sprintOverview__contentOverviewSmall drop__downins'>
               {upcomingSprints.length !== 0 ? (
                 <div style={{ height: '95%' }}>
                   <Scrollable>
@@ -148,7 +148,7 @@ const SprintOverview = () => {
           <div className='sprintOverview__contentRightBottom '>
             <div className='sprintOverview__contentOverview'>
               <div className='sprintOverview__header'>Completed Sprint</div>
-              <div className='sprintOverview__contentOverviewSmall drop__down'>
+              <div className='sprintOverview__contentOverviewSmall drop__downins'>
                 {completedSprints.length !== 0 ? (
                   <div style={{ height: '95%' }}>
                     <Scrollable>

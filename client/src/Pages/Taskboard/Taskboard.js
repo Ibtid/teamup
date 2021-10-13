@@ -158,7 +158,7 @@ const Taskboard = () => {
                     </div>
                   </div>
                 </div>
-                <div className='taskboard__taskList drop__down'>
+                <div className='taskboard__taskList drop__downins'>
                   <Scrollable>
                     {tasks ? (
                       tasks

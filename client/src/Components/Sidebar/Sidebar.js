@@ -6,15 +6,19 @@ import BrushIcon from '@material-ui/icons/Brush';
 import GroupIcon from '@material-ui/icons/Group';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import NoteIcon from '@material-ui/icons/Note';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams, useHistory } from 'react-router-dom';
 import { useStateValue } from '../../StateProvider/StateProvider';
+import { isAuthenticated } from '../../API/auth-helper';
+import { belongsToProject } from '../../API/project';
 
 const Sidebar = () => {
   const [{ project }, dispatch] = useStateValue();
   const { projectId } = useParams();
   const { roomId } = useParams();
   const { sprintId } = useParams();
-  const projectID = project.id || projectId;
+  const projectID = project.id || projectId || roomId;
+  const jwt = isAuthenticated();
+  let history = useHistory();
 
   const collabboardRoute = roomId
     ? `/room/${roomId}`
@@ -24,9 +28,19 @@ const Sidebar = () => {
     ? `/sprint/${sprintId}`
     : `/scrumboard/${projectID}`;
 
+  const authForProject = () => {
+    belongsToProject({ t: jwt.token }, projectID).then((response) => {
+      if (!response.success) {
+        history.push('/');
+      } else {
+        console.log('authenticated');
+      }
+    });
+  };
+
   return (
     <div className='sidebar'>
-      <div className='sidebar__container'>
+      <div className='sidebar__container' onClick={authForProject}>
         <NavLink
           to={`/dashboard/${projectID}`}
           activeStyle={{ color: '#5bc0eb' }}

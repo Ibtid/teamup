@@ -58,8 +58,7 @@ const Team = () => {
       if (response.success) {
         setMembers([]);
         let responseMembers = [];
-        console.log('i am setting');
-        console.log(response);
+
         setAdmin(response.admin);
         response.members.forEach((member) => {
           if (member._id !== response.admin._id) {
@@ -109,7 +108,7 @@ const Team = () => {
     };
     removeMember({ t: jwt.token }, body).then((response) => {
       setLoading(true);
-      console.log(response);
+
       if (response.success) {
         setSelectedMember(false);
         setOpenConsentModal(false);
@@ -386,9 +385,11 @@ const Team = () => {
                         {user.user._id === admin._id ? (
                           <ClearIcon
                             onClick={() => {
-                              setMemberToBeRemovedName(member.name);
-                              setMemberToBeRemovedId(member._id);
-                              setOpenConsentModal(true);
+                              setTimeout(() => {
+                                setMemberToBeRemovedName(member.name);
+                                setMemberToBeRemovedId(member._id);
+                                setOpenConsentModal(true);
+                              }, 300);
                             }}
                           />
                         ) : (

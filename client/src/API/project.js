@@ -128,6 +128,25 @@ const listAllSprints = async (body) => {
   }
 };
 
+const belongsToProject = async (credentials, projectId) => {
+  try {
+    let response = await fetch(
+      `http://localhost:5000/auth/projects/${projectId}/`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + credentials.t,
+        },
+      }
+    );
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export {
   create,
   findProjectByUserId,
@@ -136,4 +155,5 @@ export {
   removeMember,
   listAllSprints,
   changeMemberDesignation,
+  belongsToProject,
 };
