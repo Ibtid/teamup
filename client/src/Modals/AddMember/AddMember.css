@@ -1,7 +1,7 @@
 .addMember {
   height: 100vh;
   width: 100vw;
-  background-color: rgba(13, 13, 13, 0.5);
+  background-color: rgba(13, 13, 13, 0.7);
   position: fixed;
   left: 0px;
   top: 0px;
@@ -12,8 +12,8 @@
 }
 
 .addMember__form {
-  min-height: 20vh;
-  min-width: 30vw;
+  min-height: 15vh;
+  min-width: 25vw;
   background-color: #1f2430;
   padding: 2vh 1.5vw;
   border-radius: 1.5vh;
@@ -21,6 +21,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-bottom: 4vh;
 }
 
 .addMember__top {
@@ -28,7 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 1.3vw;
+  font-size: 1.2vw;
   font-family: 'Montserrat', sans-serif;
   margin-bottom: 0vh;
   width: 100%;
@@ -56,7 +57,7 @@
   font-size: 1vw;
   padding: 0.5vh 0.5vw;
   outline: none;
-  height: 5vh;
+  height: 4vh;
   width: 95%;
   border-radius: 1vh;
   border: 0.1vh solid #5bc0eb;

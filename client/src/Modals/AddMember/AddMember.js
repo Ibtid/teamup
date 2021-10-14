@@ -61,7 +61,9 @@ const AddMember = (props) => {
           }}
           placeholder='@gmail.com'
         />
-        <Button onClick={addMember}>Add Member</Button>
+        <Button onClick={addMember} size='small'>
+          Add Member
+        </Button>
       </div>
     </div>,
     document.getElementById('addMember')

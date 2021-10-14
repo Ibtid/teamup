@@ -23,7 +23,7 @@
 
 .consentModal__text {
   color: #f5f9e9;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.5vw;
   margin-bottom: 5vh;
   text-align: center;
@@ -34,5 +34,40 @@
   align-items: center;
   justify-content: space-evenly;
   flex-direction: row;
-  width: 30vw;
+  width: 25vw;
+}
+
+.pop__down {
+  animation: pop-down 0.5s forwards;
+  -webkit-animation: pop-down 0.5s forwards;
+}
+
+@-webkit-keyframes pop-down {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+  }
+}
+
+@keyframes pop-down {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
 }

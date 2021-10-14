@@ -9,7 +9,9 @@ const ResponseModal = (props) => {
     <div className='responseModal'>
       <div className='responseModal__container pop__up'>
         <div className='responseModal__message'>{props.message}</div>
-        <Button onClick={props.setOpen}>Okay</Button>
+        <Button onClick={props.setOpen} size='small'>
+          Okay
+        </Button>
       </div>
     </div>,
     document.getElementById('responsePortal')
