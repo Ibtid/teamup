@@ -175,6 +175,12 @@ const UpdateTask = (props) => {
           suggested={suggested}
           message={message}
           setOpen={() => setOpenSuggestResponse(false)}
+          selectEmail={(email) => {
+            setAssignedEmail(email);
+          }}
+          selectId={(id) => {
+            setAssignedTo(id);
+          }}
         />
       )}
       <div className='updateTask__container pop__up'>
@@ -275,7 +281,9 @@ const UpdateTask = (props) => {
               type='number'
               value={points}
               onChange={(e) => {
-                setPoints(e.target.value);
+                if (e.target.value > 5) setPoints(5);
+                else if (e.target.value < 1) setPoints(1);
+                else setPoints(e.target.value);
               }}
             />
           </div>

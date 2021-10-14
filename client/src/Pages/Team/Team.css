@@ -261,8 +261,8 @@
 }
 
 .drop__downteamList {
-  animation: drop-downteam 0.4s forwards;
-  -webkit-animation: drop-downteam 0.4s forwards;
+  animation: drop-downteam 0.5s forwards;
+  -webkit-animation: drop-downteam 0.5s forwards;
 }
 
 @-webkit-keyframes drop-downteam {
@@ -284,8 +284,8 @@
 }
 
 .team__slideOn {
-  animation: team-slideOn 0.4s forwards;
-  -webkit-animation: team-slideOn 0.4s forwards;
+  animation: team-slideOn 0.5s forwards;
+  -webkit-animation: team-slideOn 0.5s forwards;
 }
 
 @-webkit-keyframes team-slideOn {

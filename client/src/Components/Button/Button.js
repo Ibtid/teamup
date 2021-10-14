@@ -6,6 +6,7 @@ const Button = (props) => {
   button = props.green === 'green' ? 'greenButton' : 'button';
   button = props.red === 'red' ? 'redButton' : button;
   button = props.neutral === 'neutral' ? 'neutral' : button;
+  button = props.size === 'small' ? 'button small' : button;
   return (
     <div className={button} onClick={props.onClick}>
       {props.children}

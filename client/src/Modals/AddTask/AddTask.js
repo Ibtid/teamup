@@ -109,6 +109,12 @@ const AddTask = (props) => {
           suggested={suggested}
           message={message}
           setOpen={() => setOpenSuggestResponse(false)}
+          selectEmail={(email) => {
+            setAssignedEmail(email);
+          }}
+          selectId={(id) => {
+            setAssignedTo(id);
+          }}
         />
       )}
       <div className='addTask__container pop__up'>
@@ -168,8 +174,10 @@ const AddTask = (props) => {
           className='addTask__storyPoint'
           type='number'
           value={points}
-          onChange={(event) => {
-            setPoints(event.target.value);
+          onChange={(e) => {
+            if (e.target.value > 5) setPoints(5);
+            else if (e.target.value < 1) setPoints(1);
+            else setPoints(e.target.value);
           }}
         />
         <div className='addTask__button'>

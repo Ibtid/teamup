@@ -92,3 +92,7 @@
   background-color: rgba(83, 162, 236, 0.904);
   color: #1f2430;
 }
+
+.small {
+  height: 4vh;
+}

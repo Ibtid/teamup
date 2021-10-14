@@ -28,8 +28,8 @@ const AddMember = (props) => {
       console.log(response);
       if (response.success) {
         setLoading(false);
-        //history.push(`/team/${projectId}`);
         props.closeAddMember();
+        props.changeReloadSignal();
       } else {
         setMessage(response.message);
         setOpenResponse(true);
