@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 import Scrollable from '../Scrollable/Scrollable';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
 import { useParams } from 'react-router-dom';
 import { getSprintDetails } from '../../API/sprint';
 import Spinkit from '../../Modals/Spinkit/Spinkit';
@@ -15,8 +14,6 @@ import './Kanban.css';
 
 const useStyles = makeStyles((theme) => ({
   purple: {
-    color: theme.palette.getContrastText(deepPurple[500]),
-    backgroundColor: deepPurple[500],
     width: theme.spacing(3.5),
     height: theme.spacing(3.5),
     fontSize: '3vh',
@@ -191,10 +188,17 @@ const Kanban = () => {
                                           {item.story}
                                         </div>
 
-                                        <Avatar
-                                          className={classes.purple}
-                                          src={`http://localhost:5000/${item.assignedTo.image}`}
-                                        />
+                                        {item.assignedTo ? (
+                                          <Avatar
+                                            className={classes.purple}
+                                            src={`http://localhost:5000/${item.assignedTo.image}`}
+                                          />
+                                        ) : (
+                                          <Avatar
+                                            className={classes.purple}
+                                            src=''
+                                          />
+                                        )}
                                       </div>
                                     </div>
                                   );

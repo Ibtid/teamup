@@ -58,7 +58,7 @@ const Scrumboard = () => {
       )}
       {openConsentModal && (
         <ConsentModal
-          message={`Are you sure you want to delete the epic along with all of it's stories?`}
+          message={`Are you sure you want to delete this sprint?`}
           answerNo={() => {
             setOpenConsentModal(false);
           }}

@@ -166,6 +166,7 @@ const Taskboard = () => {
                         .reverse()
                         .map((task) => {
                           if (task.boardId === board._id) {
+                            console.log(task);
                             let sprintId = task.sprintId
                               ? task.sprintId._id
                               : 0;

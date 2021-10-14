@@ -169,7 +169,7 @@ const Dashboard = () => {
                           key={task._id}
                           color={task.color}
                           story={task.story}
-                          image={task.assignedTo.image}
+                          image={task.assignedTo ? task.assignedTo.image : ''}
                           smallText='smallText'
                           noStatus='noDisplay'
                           evenly='evenly'
