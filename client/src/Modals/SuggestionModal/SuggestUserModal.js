@@ -21,9 +21,11 @@ const SuggestUserModal = (props) => {
     }
     return `${number}th`;
   };
+  const [pop, setPop] = useState('pop__up');
+
   return ReactDOM.createPortal(
     <div className='responseModal'>
-      <div className='responseModal__container pop__up'>
+      <div className={`responseModal__container ${pop}`}>
         {props.suggested.length !== 0 ? (
           <div className='suggestion__true'>
             <div className='suggestion__header'>Rank</div>
@@ -58,8 +60,16 @@ const SuggestUserModal = (props) => {
           <div></div>
         )}
         <div className='suggest__extraSpace'></div>
-        <Button onClick={props.setOpen} size='small'>
-          Okay
+
+        <Button
+          onClick={() => {
+            setPop('pop__down');
+            setTimeout(() => {
+              props.setOpen();
+            }, 500);
+          }}
+          size='small'>
+          Assign
         </Button>
       </div>
     </div>,

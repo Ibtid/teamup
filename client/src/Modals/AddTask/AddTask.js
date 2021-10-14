@@ -28,6 +28,8 @@ const AddTask = (props) => {
   const [story, setStory] = useState('');
   const [points, setPoints] = useState(3);
   const [showDropDown, setShowDropDown] = useState(false);
+  const [pop, setPop] = useState('pop__up');
+
   const jwt = isAuthenticated();
 
   const history = useHistory();
@@ -64,7 +66,10 @@ const AddTask = (props) => {
       if (response.success) {
         setLoading(false);
         history.push(`/taskboard/${projectId}`);
-        props.closeAddTask();
+        setPop('pop__down');
+        setTimeout(() => {
+          props.closeAddTask();
+        }, 500);
       } else {
         setMessage(response.message);
         setOpenResponse(true);
@@ -117,8 +122,15 @@ const AddTask = (props) => {
           }}
         />
       )}
-      <div className='addTask__container pop__up'>
-        <div className='addTask__closeButton' onClick={props.closeAddTask}>
+      <div className={`addTask__container ${pop}`}>
+        <div
+          className='addTask__closeButton'
+          onClick={() => {
+            setPop('pop__down');
+            setTimeout(() => {
+              props.closeAddTask();
+            }, 500);
+          }}>
           <CloseIcon />
         </div>
         <div className='addTask__storyContainer'>
@@ -181,7 +193,12 @@ const AddTask = (props) => {
           }}
         />
         <div className='addTask__button'>
-          <Button onClick={submitHandler}>Add Story</Button>
+          <Button
+            onClick={() => {
+              submitHandler();
+            }}>
+            Add Story
+          </Button>
         </div>
       </div>
     </div>,
