@@ -23,6 +23,9 @@ const Task = (props) => {
   let activeClassText = props.status === 'Pending' ? 'inactive' : 'active';
   activeClassText = props.status === 'completed' ? 'done' : activeClassText;
 
+  let flexForText = props.flexIncrease === 'myTask' ? 'flexIncrease' : '';
+  let bulletForMyTask = props.flexForText === 'myTask' ? 'bulletForMyTask' : '';
+
   const [openUpdateTask, setOpenUpdateTask] = useState(false);
 
   return (
@@ -46,10 +49,11 @@ const Task = (props) => {
         onClick={() => {
           setOpenUpdateTask(true);
         }}>
-        <div className={`bullet ${props.noMargin}`}>
+        <div className={`bullet ${props.noMargin} ${bulletForMyTask}`}>
           <div className={props.color}></div>
         </div>
-        <div className={`task__text ${props.smallText} ${props.putWhitespace}`}>
+        <div
+          className={`task__text ${props.smallText} ${props.putWhitespace} ${flexForText}`}>
           {props.story}
         </div>
         <div className={`task__image ${props.noDisplay}`}>

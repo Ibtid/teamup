@@ -208,6 +208,7 @@ const Dashboard = () => {
                       evenly='evenly'
                       smallText='smallText'
                       noMargin='noMargin'
+                      flexIncrease='myTask'
                     />
                   ))
                 ) : (

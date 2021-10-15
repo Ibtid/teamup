@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-
+import { emailVerification } from '../../API/auth';
 import { create } from '../../API/user';
-
 import ResponseModal from '../../Modals/ResponseModal/ResponseModal';
 import Spinkit from '../../Modals/Spinkit/Spinkit';
+import VerificationCode from '../../Modals/VerificationCode/VerificationCode';
 
 const SignupForm = () => {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openVerification, setOpenVerification] = useState(false);
   const [message, setMessage] = useState('');
   const [slideOn, setSlideOn] = useState('team__slideOn');
 
@@ -34,10 +35,10 @@ const SignupForm = () => {
       password: values.password || undefined,
       username: values.username || undefined,
     };
-    create(user).then((response) => {
+    emailVerification(user).then((response) => {
       if (response.success) {
         setLoading(false);
-        history.push('/signin');
+        setOpenVerification(true);
       } else {
         setMessage(response.message);
         setOpen(true);
@@ -48,6 +49,15 @@ const SignupForm = () => {
   return (
     <div className={`signin__form ${slideOn}`}>
       {loading && <Spinkit />}
+      {openVerification && (
+        <VerificationCode
+          setOpen={() => setOpenVerification(false)}
+          name={values.name}
+          email={values.email}
+          password={values.password}
+          username={values.username}
+        />
+      )}
       {open && (
         <ResponseModal setOpen={() => setOpen(false)} message={message} />
       )}

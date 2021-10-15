@@ -19,10 +19,12 @@ const AddSprint = (props) => {
 
   const createSprint = () => {
     setLoading(true);
+    let sDate = new Date(startDate);
+    let myDate = new Date(sDate.getTime() + 7 * 24 * 60 * 60 * 1000);
     const body = {
       sprintNo: props.sprintNo + 1,
-      startTime: new Date(startDate),
-      endTime: new Date(endDate),
+      startTime: sDate,
+      endTime: myDate,
       projectId: projectId,
     };
     console.log(body);
@@ -80,20 +82,11 @@ const AddSprint = (props) => {
             }}
           />
         </div>
-        <div className='addSprint__time'>
-          <div className='addSprint__sprintName'>End Time</div>
-          <input
-            type='datetime-local'
-            name='datetime'
-            className='addSprint__dateInput'
-            value={endDate}
-            onChange={(e) => {
-              setEndDate(e.target.value);
-            }}
-          />
-        </div>
+
         <div className='addSprint__buttonContainer'>
-          <Button onClick={createSprint}>Add Sprint</Button>
+          <Button size='small' onClick={createSprint}>
+            Add Sprint
+          </Button>
         </div>
       </div>
     </div>,
