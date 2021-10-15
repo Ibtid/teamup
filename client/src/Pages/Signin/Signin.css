@@ -89,7 +89,7 @@
 }
 
 .signin__input {
-  height: 2.5vh;
+  height: 3vh;
   width: 20vw;
   background: #1f2430;
   color: #f5f9e9;
@@ -142,6 +142,13 @@
   margin-bottom: 3.5vh;
   border-radius: 1vh;
   transition: all 0.3s ease-in-out;
+  font-family: 'Montserrat';
+  border: 1px solid #5bc0eb;
+}
+
+.signin__button:hover {
+  background: #1f2430;
+  color: #5bc0eb;
 }
 
 .signin__switchState {
@@ -162,4 +169,5 @@
 .signin__orange {
   color: #5bc0eb;
   padding-left: 1vh;
+  cursor: pointer;
 }

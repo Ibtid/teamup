@@ -8,7 +8,9 @@
 
 .scrumboard__navbar {
   margin-bottom: 3vh;
+  width: 79vw;
   display: flex;
+  justify-content: space-between;
 }
 
 .scrumboard__selector {

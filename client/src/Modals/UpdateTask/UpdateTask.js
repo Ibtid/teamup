@@ -290,9 +290,12 @@ const UpdateTask = (props) => {
         </div>
 
         <div className='updateTask__buttonContainer'>
-          <Button onClick={update}>Update</Button>
+          <Button size='small' onClick={update}>
+            Update
+          </Button>
           <Button
             red='red'
+            size='small'
             onClick={() => {
               setOpenConsentModal(true);
             }}>

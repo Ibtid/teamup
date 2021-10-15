@@ -18,7 +18,8 @@
   background-color: #1f2430;
   flex-direction: column;
   min-height: 20vh;
-  width: 25vw;
+  min-width: 25vw;
+  max-width: 30vw;
   color: #f5f9e9;
   padding: 2vw 2vw;
   border-radius: 2.5vh;

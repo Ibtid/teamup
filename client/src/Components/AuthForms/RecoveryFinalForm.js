@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useHistory, useParams } from 'react-router-dom';
 
 const RecoveryFirstForm = () => {
   const history = useHistory();
+  const [slideOn, setSlideOn] = useState('team__slideOn');
 
   return (
-    <div className='signin__form'>
+    <div className={`signin__form ${slideOn}`}>
       <div className='signin__header'>Account Recovery</div>
       <div
         style={{
@@ -23,7 +24,10 @@ const RecoveryFirstForm = () => {
         <button
           className='signin__button'
           onClick={() => {
-            history.push('/signin');
+            setSlideOn('team__slideOff');
+            setTimeout(() => {
+              history.push('/signin');
+            }, 300);
           }}>
           Next
         </button>

@@ -13,6 +13,8 @@ const RecoveryFirstForm = () => {
   const [verificationCode, setVerificationCode] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [slideOn, setSlideOn] = useState('team__slideOn');
+
   const sendAgain = () => {
     setLoading(true);
     const body = {
@@ -22,7 +24,10 @@ const RecoveryFirstForm = () => {
       console.log(response);
       if (response.success) {
         setLoading(false);
-        history.push(`/account-recovery/stepTwo/${email}`);
+        setSlideOn('team__slideOff');
+        setTimeout(() => {
+          history.push(`/account-recovery/stepTwo/${email}`);
+        }, 300);
       } else {
         setMessage(response.message);
         setOpen(true);
@@ -31,7 +36,7 @@ const RecoveryFirstForm = () => {
     });
   };
   return (
-    <div className='signin__form'>
+    <div className={`signin__form ${slideOn}`}>
       {loading && <Spinkit />}
       {open && (
         <ResponseModal setOpen={() => setOpen(false)} message={message} />

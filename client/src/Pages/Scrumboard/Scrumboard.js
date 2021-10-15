@@ -40,14 +40,6 @@ const Scrumboard = () => {
   return (
     <div className='scrumboard'>
       {loading && <Spinkit />}
-      {openNewSprint && (
-        <AddSprint
-          sprintNo={sprintNo}
-          closeAddSprint={() => {
-            setOpenNewSprint(false);
-          }}
-        />
-      )}
       {open && (
         <ResponseModal
           message={message}
@@ -67,15 +59,10 @@ const Scrumboard = () => {
       )}
       <div className='scrumboard__navbar'>
         <BigDropDown />
-        <Button
-          onClick={() => {
-            setOpenNewSprint(true);
-          }}>
-          + New Sprint
-        </Button>
+
         <div className='scrumboard__selector'></div>
         <Button
-          red='red'
+          fill='red'
           onClick={() => {
             setOpenConsentModal(true);
           }}>

@@ -16,6 +16,7 @@ const SigninForm = () => {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [state, dispatch] = useStateValue();
+  const [slideOn, setSlideOn] = useState('team__slideOn');
 
   const [values, setValues] = useState({
     password: '',
@@ -50,7 +51,7 @@ const SigninForm = () => {
     /*history.push('/project');*/
   };
   return (
-    <div className='signin__form'>
+    <div className={`signin__form ${slideOn}`}>
       {loading && <Spinkit />}
       {open && (
         <ResponseModal setOpen={() => setOpen(false)} message={message} />
@@ -77,9 +78,18 @@ const SigninForm = () => {
           value={values.password}
           onChange={handleChange('password')}></input>
       </div>
-      <Link to='/account-recovery/stepOne' className='signin__forgetPassword'>
+
+      <div
+        className='signin__forgetPassword'
+        onClick={() => {
+          setSlideOn('team__slideOff');
+          setTimeout(() => {
+            history.push('/account-recovery/stepOne');
+          }, 300);
+        }}>
         Forgot Password?
-      </Link>
+      </div>
+
       <div className='signin__buttondiv'>
         <button className='signin__button' onClick={clickSubmit}>
           Sign In
@@ -87,9 +97,17 @@ const SigninForm = () => {
       </div>
       <div className='signin__switchState'>
         <div>Don't have an account?</div>
-        <Link to='/signup' className='signin__orange'>
+
+        <div
+          className='signin__orange'
+          onClick={() => {
+            setSlideOn('team__slideOff');
+            setTimeout(() => {
+              history.push('/signup');
+            }, 300);
+          }}>
           Sign Up
-        </Link>
+        </div>
       </div>
     </div>
   );

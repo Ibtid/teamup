@@ -13,6 +13,8 @@ const SignupForm = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('');
+  const [slideOn, setSlideOn] = useState('team__slideOn');
+
   const [values, setValues] = useState({
     name: '',
     password: '',
@@ -44,7 +46,7 @@ const SignupForm = () => {
     });
   };
   return (
-    <div className='signin__form'>
+    <div className={`signin__form ${slideOn}`}>
       {loading && <Spinkit />}
       {open && (
         <ResponseModal setOpen={() => setOpen(false)} message={message} />
@@ -101,9 +103,16 @@ const SignupForm = () => {
       </div>
       <div className='signin__switchState'>
         <div>Already have an account?</div>
-        <Link to='/signin' className='signin__orange'>
+        <div
+          className='signin__orange'
+          onClick={() => {
+            setSlideOn('team__slideOff');
+            setTimeout(() => {
+              history.push('/signin');
+            }, 300);
+          }}>
           Sign In
-        </Link>
+        </div>
       </div>
     </div>
   );
