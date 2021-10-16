@@ -67,6 +67,11 @@
   justify-content: center;
   font-size: 2vh;
   text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.landingNav__outlineButton:hover {
+  background-color: #5bc0eb;
 }
 
 .landingNav__line {
@@ -88,6 +93,13 @@
   align-items: center;
   justify-content: center;
   font-size: 2vh;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.landingNav__filledButton:hover {
+  background-color: #101522;
+  color: #f5f9e9;
 }
 
 .landingNav__active {

@@ -15,7 +15,7 @@
 .notification__container {
   position: absolute;
   top: 0vh;
-  right: 1vw;
+  right: 12vw;
   max-height: 60vh;
   width: 25vw;
   background-color: #101522;

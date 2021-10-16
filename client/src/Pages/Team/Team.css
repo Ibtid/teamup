@@ -284,8 +284,8 @@
 }
 
 .team__slideOn {
-  animation: team-slideOn 0.5s forwards;
-  -webkit-animation: team-slideOn 0.5s forwards;
+  animation: team-slideOn 0.7s forwards;
+  -webkit-animation: team-slideOn 0.7s forwards;
 }
 
 @-webkit-keyframes team-slideOn {
@@ -319,8 +319,8 @@
 }
 
 .team__slideOff {
-  animation: team-slideOff 0.4s forwards;
-  -webkit-animation: team-slideOff 0.4s forwards;
+  animation: team-slideOff 0.7s forwards;
+  -webkit-animation: team-slideOff 0.7s forwards;
 }
 
 @-webkit-keyframes team-slideOff {

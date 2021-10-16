@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import CloseIcon from '@material-ui/icons/Close';
 import Spinkit from '../Spinkit/Spinkit';
 import ResponseModal from '../ResponseModal/ResponseModal';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 import './AddSprint.css';
 import { create } from '../../API/sprint';
@@ -17,6 +19,10 @@ const AddSprint = (props) => {
   const [message, setMessage] = useState('');
   const [openResponse, setOpenResponse] = useState(false);
   const [duration, setDuration] = useState(7);
+  const everyDuration = [
+    7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+    27, 28,
+  ];
 
   const createSprint = () => {
     setLoading(true);
@@ -75,42 +81,23 @@ const AddSprint = (props) => {
         <div className='addSprint__time'>
           <div className='addSprint__sprintName'>Sprint Duration</div>
           <div className='addSprint__radioBox'>
-            <div
-              className={`${
-                duration === 7 ? 'addSprint__radioActive' : 'addSprint__radio'
-              }`}
-              onClick={() => {
-                setDuration(7);
-              }}>
-              7
+            <ArrowLeftIcon />
+            <div className='addSprint__radioBoxContainer'>
+              {everyDuration.map((oneDuration) => (
+                <div
+                  className={`${
+                    duration === oneDuration
+                      ? 'addSprint__radioActive'
+                      : 'addSprint__radio'
+                  }`}
+                  onClick={() => {
+                    setDuration(oneDuration);
+                  }}>
+                  {oneDuration}
+                </div>
+              ))}
             </div>
-            <div
-              className={`${
-                duration === 14 ? 'addSprint__radioActive' : 'addSprint__radio'
-              }`}
-              onClick={() => {
-                setDuration(14);
-              }}>
-              14
-            </div>
-            <div
-              className={`${
-                duration === 21 ? 'addSprint__radioActive' : 'addSprint__radio'
-              }`}
-              onClick={() => {
-                setDuration(21);
-              }}>
-              21
-            </div>
-            <div
-              className={`${
-                duration === 28 ? 'addSprint__radioActive' : 'addSprint__radio'
-              }`}
-              onClick={() => {
-                setDuration(28);
-              }}>
-              28
-            </div>
+            <ArrowRightIcon />
           </div>
         </div>
 
