@@ -57,7 +57,7 @@ const SuggestUserModal = (props) => {
             </div>
           </div>
         ) : (
-          <div></div>
+          <div className='emptySuggest'>Could not suggest from the records</div>
         )}
         <div className='suggest__extraSpace'></div>
 
@@ -69,7 +69,7 @@ const SuggestUserModal = (props) => {
             }, 500);
           }}
           size='small'>
-          Assign
+          {props.suggested.length !== 0 ? 'Assign' : 'Okay'}
         </Button>
       </div>
     </div>,

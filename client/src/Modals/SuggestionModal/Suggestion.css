@@ -66,3 +66,14 @@
 .choosen:hover {
   background-color: #5bc0eb;
 }
+
+.emptySuggest {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat';
+  font-size: 3vh;
+  color: #f5f9e9;
+}

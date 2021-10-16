@@ -41,6 +41,7 @@ const Dashboard = () => {
   const [loadinga, setLoadinga] = useState(false);
   const [loadingb, setLoadingb] = useState(false);
   const [loadingc, setLoadingc] = useState(false);
+  const [currentSprintId, setCurrentSprintId] = useState('');
   const [members, setMembers] = useState([]);
   const [activeMembers, setActiveMembers] = useState([]);
 
@@ -88,6 +89,7 @@ const Dashboard = () => {
     getCurrentSprint({ t: jwt.token }, projectId).then((response) => {
       if (response.success) {
         let aggregate = [];
+        setCurrentSprintId(response.currentSprint._id);
         response.currentSprint.pending.forEach((x) => aggregate.push(x));
         response.currentSprint.ongoing.forEach((x) => aggregate.push(x));
         response.currentSprint.completed.forEach((x) => aggregate.push(x));
@@ -152,12 +154,14 @@ const Dashboard = () => {
           <div className='dashboard__sprintSection'>
             <div className='dashboard__title'>
               <div className='dashboard__titleName'>Current Sprint</div>
-              <div className='dashboard__orange'>
+              <Link
+                to={`/sprint/${currentSprintId}`}
+                className='dashboard__orange'>
                 <div className='dashboard__orangeText'>Details</div>
                 <div className='dashboard__orangeIcon'>
                   <NavigateNextIcon />
                 </div>
-              </div>
+              </Link>
             </div>
             <div className='dashboard__sprintContent'>
               <Scrollable>
@@ -189,12 +193,14 @@ const Dashboard = () => {
           <div className='dashboard__myTaskSection'>
             <div className='dashboard__title'>
               <div className='dashboard__titleName'>My Task</div>
-              <div className='dashboard__orange'>
+              <Link
+                to={`/taskboard/${projectId}`}
+                className='dashboard__orange'>
                 <div className='dashboard__orangeText'>See All</div>
                 <div className='dashboard__orangeIcon'>
                   <NavigateNextIcon />
                 </div>
-              </div>
+              </Link>
             </div>
             <div className='dashboard__myTaskContent'>
               <Scrollable>
