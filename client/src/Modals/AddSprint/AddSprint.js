@@ -16,11 +16,12 @@ const AddSprint = (props) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [openResponse, setOpenResponse] = useState(false);
+  const [duration, setDuration] = useState(7);
 
   const createSprint = () => {
     setLoading(true);
     let sDate = new Date(startDate);
-    let myDate = new Date(sDate.getTime() + 7 * 24 * 60 * 60 * 1000);
+    let myDate = new Date(sDate.getTime() + duration * 24 * 60 * 60 * 1000);
     const body = {
       sprintNo: props.sprintNo + 1,
       startTime: sDate,
@@ -39,17 +40,6 @@ const AddSprint = (props) => {
         setLoading(false);
       }
     });
-    console.log(body.startTime);
-    console.log(body.endTime);
-    console.log(Date());
-
-    let time = new Date();
-    if (body.endTime < time) {
-      console.log('less');
-    }
-    if (body.endTime > time) {
-      console.log('more');
-    }
   };
   return ReactDOM.createPortal(
     <div className='addSprint'>
@@ -81,6 +71,47 @@ const AddSprint = (props) => {
               setStartDate(e.target.value);
             }}
           />
+        </div>
+        <div className='addSprint__time'>
+          <div className='addSprint__sprintName'>Sprint Duration</div>
+          <div className='addSprint__radioBox'>
+            <div
+              className={`${
+                duration === 7 ? 'addSprint__radioActive' : 'addSprint__radio'
+              }`}
+              onClick={() => {
+                setDuration(7);
+              }}>
+              7
+            </div>
+            <div
+              className={`${
+                duration === 14 ? 'addSprint__radioActive' : 'addSprint__radio'
+              }`}
+              onClick={() => {
+                setDuration(14);
+              }}>
+              14
+            </div>
+            <div
+              className={`${
+                duration === 21 ? 'addSprint__radioActive' : 'addSprint__radio'
+              }`}
+              onClick={() => {
+                setDuration(21);
+              }}>
+              21
+            </div>
+            <div
+              className={`${
+                duration === 28 ? 'addSprint__radioActive' : 'addSprint__radio'
+              }`}
+              onClick={() => {
+                setDuration(28);
+              }}>
+              28
+            </div>
+          </div>
         </div>
 
         <div className='addSprint__buttonContainer'>
