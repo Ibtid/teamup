@@ -81,23 +81,15 @@ const AddSprint = (props) => {
         <div className='addSprint__time'>
           <div className='addSprint__sprintName'>Sprint Duration</div>
           <div className='addSprint__radioBox'>
-            <ArrowLeftIcon />
-            <div className='addSprint__radioBoxContainer'>
-              {everyDuration.map((oneDuration) => (
-                <div
-                  className={`${
-                    duration === oneDuration
-                      ? 'addSprint__radioActive'
-                      : 'addSprint__radio'
-                  }`}
-                  onClick={() => {
-                    setDuration(oneDuration);
-                  }}>
-                  {oneDuration}
-                </div>
-              ))}
-            </div>
-            <ArrowRightIcon />
+            <input
+              className='addSprint__storyPoint'
+              type='number'
+              value={duration}
+              onChange={(e) => {
+                setDuration(e.target.value);
+              }}
+            />
+            <div style={{ marginLeft: '1vw' }}>Days</div>
           </div>
         </div>
 
