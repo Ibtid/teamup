@@ -6,6 +6,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import Profile from '../../Modals/Profile/Profile';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import './Navbar.css';
+import { useHistory } from 'react-router-dom';
 import AllNotifications from '../../Modals/AllNotifications/AllNotifications';
 import { getNotifications } from '../../API/user';
 import Pusher from 'pusher-js';
@@ -23,6 +24,7 @@ const Navbar = () => {
   const [openNotifications, setOpenNotifications] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  let history = useHistory();
 
   useEffect(() => {
     getNotifications(user.user._id).then((response) => {
@@ -61,7 +63,13 @@ const Navbar = () => {
       {openNotifications && notifications.length !== 0 && (
         <AllNotifications notifications={notifications} />
       )}
-      <div className='navbar__logo'>teamup.</div>
+      <div
+        className='navbar__logo'
+        onClick={() => {
+          history.push('/');
+        }}>
+        teamup.
+      </div>
       <div className='navbar__right'>
         <Button>+ New Project</Button>
         <div

@@ -47,7 +47,7 @@ const ServicesHeader = () => {
             offset={-166}
             exact='true'
             className='servicesHeader__navItem1'>
-            Backlog
+            Epics
           </LinkScroll>
           <LinkScroll
             to='kanban'
@@ -58,7 +58,7 @@ const ServicesHeader = () => {
             exact='true'
             offset={-166}
             className='servicesHeader__navItem1'>
-            Kanban
+            Board
           </LinkScroll>
           <LinkScroll
             to='collab'
