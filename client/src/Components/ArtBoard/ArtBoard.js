@@ -7,10 +7,10 @@ import pencil from './assests/pencil.svg';
 import text from './assests/text (2).svg';
 import eraser from './assests/eraser.svg';
 import picture from './assests/Picture.svg';
-import pencilBold from './assests/pencilOneUse.svg';
-import textBold from './assests/TextOnUse.svg';
-import eraserBold from './assests/eraserOnUse.svg';
-import pictureBold from './assests/PictureInUse.svg';
+import pencilBold from './assests/bluepen.svg';
+import textBold from './assests/Text (3).svg';
+import eraserBold from './assests/Eraser (2).svg';
+import pictureBold from './assests/Picture (2).svg';
 import {
   createImagePitcher,
   createTextPitcher,
@@ -27,6 +27,7 @@ const ArtBoard = ({ cleanSignal }) => {
   const projectId = useParams();
   const [pitchers, setPitchers] = useState([]);
   const filePickerRef = useRef();
+  const [choosenPen, setChoosenPen] = useState('');
 
   const pickImageHandler = () => {
     filePickerRef.current.click();
